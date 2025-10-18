@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Twitter, Mail, Coffee, Calendar } from "lucide-react";
+import { Twitter, Mail, Coffee, Calendar, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
@@ -153,8 +153,8 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80 pointer-events-none" />
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-light tracking-tighter mb-8 text-white leading-none cosmic-glow">
-            State of<br />Being
+          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-lato font-light tracking-tight mb-8 text-white leading-none cosmic-glow">
+            State of Being
           </h1>
           
           <div className="mb-16">
@@ -162,6 +162,17 @@ const Index = () => {
           </div>
           
           <div className="flex flex-wrap gap-4 justify-center">
+            <Button 
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-zinc-600 bg-zinc-900/50 backdrop-blur-sm text-zinc-200 hover:bg-zinc-800/70 hover:text-white hover:border-accent transition-all"
+            >
+              <a href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT" target="_blank" rel="noopener noreferrer">
+                <Mic className="h-4 w-4 mr-2" />
+                Spotify Interview
+              </a>
+            </Button>
             <Button 
               asChild
               size="lg"
@@ -200,13 +211,38 @@ const Index = () => {
 
       {/* About Section */}
       <section className="py-32 md:py-40 bg-background">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <p className="text-3xl md:text-4xl lg:text-5xl leading-relaxed mb-12 font-light">
-            I explore the intersection of model informed drug discovery and the philosophy of existence.
-          </p>
-          <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light">
-            My work spans PBPK/QSP modeling, AI in pharmaceutical sciences, and the fundamental questions of consciousness and reality.
-          </p>
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-light mb-8 tracking-tight">About</h2>
+              <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-6">
+                I am a poet-scientist navigating the liminal spaces between quantitative rigor and existential wonder. My work lives at the intersection of computational pharmacology and philosophical inquiry—where PBPK/QSP models meet questions of consciousness and being.
+              </p>
+              <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light">
+                As a product manager and researcher in pharmaceutical sciences, I explore how AI and machine learning can transform drug discovery, while never losing sight of the deeper questions: What does it mean to exist? How do we navigate uncertainty? What emerges in the in-betweens?
+              </p>
+            </div>
+            <div className="space-y-6">
+              <div className="p-6 bg-muted/30 rounded-lg">
+                <h3 className="text-xl font-light mb-3">Research Focus</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>• PBPK/QSP Modeling & Simulation</li>
+                  <li>• AI in Pharmaceutical Sciences</li>
+                  <li>• Toxicology & Drug Safety</li>
+                  <li>• Machine Learning for Drug Discovery</li>
+                </ul>
+              </div>
+              <div className="p-6 bg-muted/30 rounded-lg">
+                <h3 className="text-xl font-light mb-3">Philosophy & Writing</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li>• Existential Philosophy</li>
+                  <li>• Consciousness Studies</li>
+                  <li>• Poetry & Narrative</li>
+                  <li>• Science Communication</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

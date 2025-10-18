@@ -7,7 +7,7 @@ export const FractalSubtitle = () => {
       <div className="fractal-content">
         <Sparkles className="h-5 w-5 text-purple-600" />
         <span className="fractal-text">
-          Priyata • Scientist • Explorer of In-Betweens
+          Poet • Scientist • Explorer of In-Betweens
         </span>
       </div>
     </div>
