@@ -177,10 +177,28 @@ const Index = () => {
           
           <Card className="p-8 md:p-12 max-w-3xl mx-auto hover-lift">
             <div className="calendly-inline-widget" 
-              data-url="https://calendly.com/priyata?hide_gdpr_banner=1&primary_color=16b8bd&email=priyata.kalra@gmail.com" 
+              data-url="https://calendly.com/priyata-kalra/1-hour-mentoring-session?hide_gdpr_banner=1&primary_color=16b8bd" 
               style={{ minWidth: '320px', height: '700px' }}
             />
           </Card>
+          
+          <div className="text-center mt-8">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
+            >
+              <a 
+                href="https://calendly.com/priyata-kalra/1-hour-mentoring-session" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Calendar className="h-4 w-4 mr-2" />
+                Open in Calendly
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 
