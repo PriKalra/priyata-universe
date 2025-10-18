@@ -32,7 +32,17 @@ export async function fetchHeyWorldRSS(username: string): Promise<RSSItem[]> {
       const res = await fetch(getUrl, { cache: 'no-cache' });
       if (res.ok) {
         const data = await res.json();
-        xmlText = data.contents as string;
+        let contents = data.contents as string;
+        
+        // Handle base64-encoded data URIs
+        if (contents.startsWith('data:')) {
+          const base64Match = contents.match(/base64,(.+)$/);
+          if (base64Match) {
+            contents = atob(base64Match[1]);
+          }
+        }
+        
+        xmlText = contents;
       }
     }
 
