@@ -153,11 +153,11 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80 pointer-events-none" />
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-lato font-light tracking-tight mb-8 text-white leading-none cosmic-glow">
+          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-lato font-light tracking-tight mb-16 md:mb-20 text-white leading-none cosmic-glow">
             State of Being
           </h1>
           
-          <div className="mb-16">
+          <div className="mb-20 md:mb-24">
             <FractalSubtitle />
           </div>
           
