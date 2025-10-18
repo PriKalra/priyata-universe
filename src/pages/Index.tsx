@@ -170,7 +170,7 @@ const Index = () => {
             >
               <a href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT" target="_blank" rel="noopener noreferrer">
                 <Mic className="h-4 w-4 mr-2" />
-                Spotify Interview
+                Listen to my occasional conversations
               </a>
             </Button>
             <Button 
