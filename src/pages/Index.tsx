@@ -161,48 +161,43 @@ const Index = () => {
       {/* Support Section */}
       <section id="support" className="py-32 md:py-40 bg-[hsl(var(--cosmic-dark))] text-white">
         <div className="container mx-auto px-6 max-w-5xl">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-16 tracking-tight">
             Support
           </h2>
-          <p className="text-lg md:text-xl text-zinc-400 mb-16 font-light max-w-2xl">
-            Help sustain independent research in drug discovery and consciousness studies
-          </p>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="p-10 md:p-12 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
-              <h3 className="text-2xl font-light mb-6 text-white">Bitcoin</h3>
-              <div 
-                className="bg-black/50 p-6 text-xs font-mono break-all mb-6 cursor-pointer hover:bg-black/70 transition-colors text-zinc-300 rounded"
-                onClick={() => navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5')}
-                title="Click to copy"
-              >
-                3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5
-              </div>
-              <Button 
-                className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-                size="lg"
-                onClick={() => navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5')}
-              >
-                Copy Address
-              </Button>
-            </Card>
+          <Card className="p-10 md:p-12 max-w-2xl mx-auto mb-12 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
+            <h3 className="text-2xl font-light mb-6 text-white">Bitcoin</h3>
+            <div 
+              className="bg-black/50 p-6 text-xs font-mono break-all mb-6 cursor-pointer hover:bg-black/70 transition-colors text-zinc-300 rounded"
+              onClick={() => navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5')}
+              title="Click to copy"
+            >
+              3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5
+            </div>
+            <Button 
+              className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
+              size="lg"
+              onClick={() => navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5')}
+            >
+              Copy Address
+            </Button>
+          </Card>
 
-            <Card className="p-10 md:p-12 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
-              <h3 className="text-2xl font-light mb-6 text-white">Buy Me a Coffee</h3>
-              <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
-                One-time or recurring support with card or PayPal
-              </p>
-              <Button 
-                asChild
-                size="lg"
-                className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-              >
-                <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                  Support Now
-                </a>
-              </Button>
-            </Card>
-          </div>
+          <Card className="p-10 md:p-12 max-w-2xl mx-auto bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
+            <h3 className="text-2xl font-light mb-6 text-white">Buy Me a Coffee</h3>
+            <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
+              One-time or recurring support with card or PayPal
+            </p>
+            <Button 
+              asChild
+              size="lg"
+              className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
+            >
+              <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
+                Support Now
+              </a>
+            </Button>
+          </Card>
         </div>
       </section>
 
