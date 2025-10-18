@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   // GitHub Pages support - uncomment base if deploying to a repo subdirectory
-  // base: '/your-repo-name/',
+ base: '/priyata-universe/',
   server: {
     host: "::",
     port: 8080,
