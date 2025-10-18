@@ -58,28 +58,52 @@ const BMC_POSTS: ContentItem[] = [
   }
 ];
 
+const CACHE_KEY = 'hey_world_content_cache';
+const CACHE_DURATION = 15 * 60 * 1000; // 15 minutes
+
+interface CachedData {
+  content: ContentItem[];
+  timestamp: number;
+}
+
 export function useContentFeed() {
-  const [content, setContent] = useState<ContentItem[]>([]);
+  const [content, setContent] = useState<ContentItem[]>(BMC_POSTS); // Start with BMC posts
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        setLoading(true);
+        // Check cache first
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          try {
+            const cachedData: CachedData = JSON.parse(cached);
+            const age = Date.now() - cachedData.timestamp;
+            
+            if (age < CACHE_DURATION) {
+              // Use cached data immediately
+              setContent(cachedData.content);
+              setLoading(false);
+              return;
+            }
+          } catch (e) {
+            // Invalid cache, continue to fetch
+          }
+        }
         
         // Fetch Hey World RSS
         const heyWorldPosts = await fetchHeyWorldRSS('priyata');
         
-        // Convert RSS items to ContentItems
-        const heyWorldContent: ContentItem[] = heyWorldPosts.slice(0, 6).map((post, index) => ({
+        // Convert RSS items to ContentItems (limit to 5 for speed)
+        const heyWorldContent: ContentItem[] = heyWorldPosts.slice(0, 5).map((post, index) => ({
           type: "blog",
           title: post.title,
           excerpt: post.description,
           link: post.link,
           source: "Hey World",
           date: convertRSSDateToISO(post.pubDate),
-          size: index === 0 ? "large" : index % 3 === 0 ? "large" : "small"
+          size: index === 0 ? "large" : "small"
         }));
         
         // Merge Hey World and Buy Me a Coffee content
@@ -92,6 +116,17 @@ export function useContentFeed() {
         
         setContent(sortedContent);
         setLoading(false);
+        
+        // Cache the result
+        try {
+          const cacheData: CachedData = {
+            content: sortedContent,
+            timestamp: Date.now()
+          };
+          localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+        } catch (e) {
+          // Ignore cache errors
+        }
       } catch (err) {
         console.error('Error fetching content:', err);
         setError('Failed to load content');

@@ -10,26 +10,23 @@ export async function fetchHeyWorldRSS(username: string): Promise<RSSItem[]> {
   // Robust fetch that works on GitHub Pages (handles CORS)
   const rssUrl = `https://world.hey.com/${username}/feed.atom`;
 
-  // Try the RAW endpoint first (simpler + CORS-enabled)
-  const rawUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
+  // Use GET endpoint directly (more reliable for base64 response)
   const getUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
 
   try {
     let xmlText: string | null = null;
 
-    // Attempt RAW fetch
-    try {
-      const res = await fetch(rawUrl, { cache: 'no-cache' });
-      if (res.ok) {
-        xmlText = await res.text();
-      }
-    } catch (e) {
-      // ignore and try JSON endpoint next
-    }
+    // Fetch with timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
-    // Fallback to JSON endpoint if needed
-    if (!xmlText) {
-      const res = await fetch(getUrl, { cache: 'no-cache' });
+    try {
+      const res = await fetch(getUrl, { 
+        cache: 'default', // Allow browser caching
+        signal: controller.signal 
+      });
+      clearTimeout(timeoutId);
+      
       if (res.ok) {
         const data = await res.json();
         let contents = data.contents as string;
@@ -44,6 +41,9 @@ export async function fetchHeyWorldRSS(username: string): Promise<RSSItem[]> {
         
         xmlText = contents;
       }
+    } catch (e) {
+      clearTimeout(timeoutId);
+      throw e;
     }
 
     if (!xmlText) return [];
