@@ -7,10 +7,12 @@ import { ContentCard } from "@/components/ContentCard";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
 import { useContentFeed } from "@/hooks/useContentFeed";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const { content, loading } = useContentFeed();
   const [showBMCModal, setShowBMCModal] = useState(false);
+  const { toast } = useToast();
 
   return (
     <div className="min-h-screen">
@@ -169,7 +171,13 @@ const Index = () => {
             <h3 className="text-2xl font-light mb-6 text-white">Bitcoin</h3>
             <div 
               className="bg-black/50 p-6 text-xs font-mono break-all mb-6 cursor-pointer hover:bg-black/70 transition-colors text-zinc-300 rounded"
-              onClick={() => navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5')}
+              onClick={() => {
+                navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
+                toast({
+                  title: "Bitcoin address copied!",
+                  description: "The Bitcoin address has been copied to your clipboard.",
+                });
+              }}
               title="Click to copy"
             >
               3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5
@@ -177,7 +185,13 @@ const Index = () => {
             <Button 
               className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
               size="lg"
-              onClick={() => navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5')}
+              onClick={() => {
+                navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
+                toast({
+                  title: "Bitcoin address copied!",
+                  description: "The Bitcoin address has been copied to your clipboard.",
+                });
+              }}
             >
               Copy Address
             </Button>

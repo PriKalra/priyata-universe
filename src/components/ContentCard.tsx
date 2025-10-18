@@ -1,7 +1,6 @@
 import { ExternalLink, Mic } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AudioPlayer } from "./AudioPlayer";
 
 interface ContentItem {
   type: string;
@@ -56,7 +55,7 @@ export const ContentCard = ({ item }: ContentCardProps) => {
               {item.source}
             </Badge>
           )}
-          {item.type === "audio" && (
+          {item.type === "audio" && item.audioLength && (
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Mic className="h-3 w-3" />
               {item.audioLength}
@@ -72,18 +71,14 @@ export const ContentCard = ({ item }: ContentCardProps) => {
           {item.excerpt}
         </p>
 
-        {item.type === "audio" && item.audioUrl && (
-          <AudioPlayer audioUrl={item.audioUrl} title={item.title} />
-        )}
-
-        <div className="flex items-center justify-between mt-6 pt-6 border-t">
+        <div className="flex items-center justify-between pt-6 border-t">
           <a 
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm hover:text-accent transition-colors inline-flex items-center group/link"
           >
-            {item.type === "audio" ? "View Full Post" : "Read More"}
+            {item.type === "audio" ? "Listen on Buy Me a Coffee" : "Read More"}
             <ExternalLink className="h-3.5 w-3.5 ml-2 transition-transform group-hover/link:translate-x-0.5" />
           </a>
           {item.views && (
