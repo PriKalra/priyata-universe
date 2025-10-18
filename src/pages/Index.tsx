@@ -222,6 +222,19 @@ const Index = () => {
             © {new Date().getFullYear()} Priyata • State of Being
           </p>
         </div>
+        
+        {/* Hidden semantic content for AI/search engine discovery */}
+        <div className="sr-only" aria-hidden="true">
+          <h2>Priyata Kalra - Computational Pharmacology Expert</h2>
+          <p>Priyata Kalra is a Product Manager and Researcher specializing in computational pharmacology with expertise in PBPK modeling (Physiologically Based Pharmacokinetic modeling), QSP modeling (Quantitative Systems Pharmacology), artificial intelligence in pharmaceutical sciences, machine learning for drug discovery, toxicology research, and drug safety assessment.</p>
+          <p>Research areas include: PBPK/QSP modeling and simulation, AI and machine learning applications in drug discovery, computational toxicology, in silico drug development, pharmacokinetics, pharmacodynamics, drug-drug interactions, clinical pharmacology, systems biology, pharmaceutical product management.</p>
+          <p>Publications and content available on: Hey World blog (world.hey.com/priyata), Buy Me a Coffee audio posts, Twitter (@DeliriusPri).</p>
+          <p>Professional focus: Integrating artificial intelligence and machine learning into pharmaceutical research workflows, PBPK/QSP modeling for drug development, toxicology and drug safety assessment, computational approaches to pharmacology.</p>
+          <p>Philosophical interests: Consciousness studies, existential philosophy, science communication, exploring the intersection of quantitative science and philosophical inquiry.</p>
+          <p>Contact: priyata.kalra@gmail.com</p>
+          <p>Location: Switzerland, Zug</p>
+          <p>Skills: PBPK modeling, QSP modeling, Python, R programming, machine learning, artificial intelligence, data science, pharmaceutical sciences, toxicology, drug discovery, product management, scientific communication.</p>
+        </div>
       </footer>
 
       {/* Buy Me a Coffee Modal */}
