@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
 import { ContentCard } from "@/components/ContentCard";
+import { FractalSubtitle } from "@/components/FractalSubtitle";
 
 interface ContentItem {
   type: string;
@@ -154,9 +155,9 @@ const Index = () => {
             State of<br />Being
           </h1>
           
-          <p className="text-base md:text-lg text-zinc-300 mb-16 font-light max-w-xl mx-auto tracking-wide uppercase">
-            Priyata • Scientist • Explorer of In-Betweens
-          </p>
+          <div className="mb-16">
+            <FractalSubtitle />
+          </div>
           
           <div className="flex flex-wrap gap-4 justify-center">
             <Button 
@@ -260,13 +261,8 @@ const Index = () => {
           
           <Card className="p-8 md:p-12 max-w-3xl mx-auto hover-lift">
             <div className="calendly-inline-widget" 
-              data-url="https://calendly.com/priyata?hide_gdpr_banner=1&primary_color=16b8bd" 
+              data-url="https://calendly.com/priyata?hide_gdpr_banner=1&primary_color=16b8bd&email=priyata.kalra@gmail.com" 
               style={{ minWidth: '320px', height: '700px' }}
-            />
-            <script 
-              type="text/javascript" 
-              src="https://assets.calendly.com/assets/external/widget.js" 
-              async
             />
           </Card>
         </div>
