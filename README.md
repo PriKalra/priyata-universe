@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
+# Priyata • State of Being
 
-## Project info
+Live site: https://prikalra.github.io/priyata-universe/
 
-**URL**: https://lovable.dev/projects/a8562bb1-3840-4485-b30d-047151a61233
+A minimalist, cosmic-themed personal site for my work at the intersection of computational pharmacology (PBPK/QSP), AI in pharma, and philosophy of being. Built with Vite + React + Tailwind and optimized for GitHub Pages.
 
-## How can I edit this code?
+## Features
+- Latest Work section combining:
+  - Hey World blog posts (auto-fetched via RSS)
+  - Buy Me a Coffee audio posts (manual/semi-automated due to no public API)
+- Beautiful, responsive UI with subtle animations
+- Hash-based routing for reliable GitHub Pages hosting
+- SEO-friendly metadata and canonical URLs
 
-There are several ways of editing your application.
+## Content sources
+- Hey World: https://world.hey.com/priyata
+- Buy Me a Coffee: https://buymeacoffee.com/priyata
 
-**Use Lovable**
+### How Hey World posts are fetched
+Client-side RSS fetch with a CORS-safe proxy.
+- Code: src/utils/rssParser.ts and src/hooks/useContentFeed.ts
+- If HEY changes its feed or a proxy rate-limits, the site gracefully falls back to showing the audio posts.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a8562bb1-3840-4485-b30d-047151a61233) and start prompting.
+### How to update Buy Me a Coffee posts
+Because there’s no public API, these are manually curated.
+- File: src/hooks/useContentFeed.ts (BMC_POSTS array)
+- Add/update entries with title, link, date (YYYY-MM-DD), image, and optional audio metadata
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+## Local development
+```bash
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Deployment (GitHub Pages)
+This repo deploys automatically via GitHub Actions to:
+https://prikalra.github.io/priyata-universe/
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+What’s already set up:
+- Vite base path configured for the repo: vite.config.ts → base: '/priyata-universe/'
+- HashRouter for robust Pages routing: src/App.tsx
+- GitHub Actions workflow: .github/workflows/deploy.yml
+- Jekyll workflow removed (not needed for React/Vite)
 
-**Use GitHub Codespaces**
+If you rename the repository, update:
+- vite.config.ts → base: '/<new-repo-name>/'
+- index.html → canonical link to your new Pages URL
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Troubleshooting
+- Blank page on Pages: ensure HashRouter is used and the base path matches the repo name
+- Latest posts missing HEY items: temporary proxy/RSS issue; will fall back to audio posts; try a hard refresh or check browser console
 
-## What technologies are used for this project?
+## Tech stack
+- React 18, TypeScript, Vite
+- Tailwind CSS, shadcn/ui components
+- @tanstack/react-query for future data needs
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/a8562bb1-3840-4485-b30d-047151a61233) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## License
+MIT — feel free to use and adapt with attribution.
