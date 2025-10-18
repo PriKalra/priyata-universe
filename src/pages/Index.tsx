@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Twitter, Mail, Coffee, Calendar, Mic } from "lucide-react";
+import { Twitter, Mail, Coffee, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
@@ -157,50 +157,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Mentoring Section */}
-      <section id="mentoring" className="py-32 md:py-40 bg-background">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
-              Mentoring Sessions
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl mx-auto">
-              1-hour mentoring sessions for early career scientists on pivoting, identifying strengths, and navigating your research career
-            </p>
-            <div className="mt-8 inline-flex items-center gap-3 text-2xl font-light">
-              <Calendar className="h-8 w-8 text-accent" />
-              <span className="text-accent">€30</span>
-              <span className="text-muted-foreground">/</span>
-              <span>1 hour</span>
-            </div>
-          </div>
-          
-          <Card className="p-8 md:p-12 max-w-3xl mx-auto hover-lift">
-            <div className="calendly-inline-widget" 
-              data-url="https://calendly.com/priyata-kalra/1-hour-mentoring-session?hide_gdpr_banner=1&primary_color=16b8bd" 
-              style={{ minWidth: '320px', height: '700px' }}
-            />
-          </Card>
-          
-          <div className="text-center mt-8">
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
-            >
-              <a 
-                href="https://calendly.com/priyata-kalra/1-hour-mentoring-session" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Calendar className="h-4 w-4 mr-2" />
-                Open in Calendly
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
 
       {/* Support Section */}
       <section id="support" className="py-32 md:py-40 bg-[hsl(var(--cosmic-dark))] text-white">
@@ -265,9 +221,6 @@ const Index = () => {
             </button>
             <a href="https://twitter.com/DeliriusPri" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
               Twitter
-            </a>
-            <a href="#mentoring" className="text-muted-foreground hover:text-foreground transition-colors">
-              Mentoring
             </a>
           </div>
           <p className="text-muted-foreground text-sm">
