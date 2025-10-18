@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
 import { ContentCard } from "@/components/ContentCard";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
+import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
 
 interface ContentItem {
   type: string;
@@ -23,6 +24,7 @@ interface ContentItem {
 const Index = () => {
   const [content, setContent] = useState<ContentItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showBMCModal, setShowBMCModal] = useState(false);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -227,15 +229,25 @@ const Index = () => {
             </div>
           )}
 
-          <div className="text-center mt-16 flex gap-4 justify-center">
+          <div className="text-center mt-16 flex gap-4 justify-center flex-wrap">
             <Button 
               asChild
               size="lg"
               variant="outline"
+              className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
             >
               <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
-                All Posts
+                All Blog Posts
               </a>
+            </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              onClick={() => setShowBMCModal(true)}
+              className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
+            >
+              <Coffee className="h-4 w-4 mr-2" />
+              Browse All Audio Posts
             </Button>
           </div>
         </div>
@@ -319,13 +331,16 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-background py-16 border-t">
         <div className="container mx-auto px-6 text-center">
-          <div className="flex gap-8 justify-center mb-8 text-sm">
+          <div className="flex gap-8 justify-center mb-8 text-sm flex-wrap">
             <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
               Blog
             </a>
-            <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              Coffee
-            </a>
+            <button 
+              onClick={() => setShowBMCModal(true)}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Audio Posts
+            </button>
             <a href="https://twitter.com/DeliriusPri" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
               Twitter
             </a>
@@ -338,6 +353,9 @@ const Index = () => {
           </p>
         </div>
       </footer>
+
+      {/* Buy Me a Coffee Modal */}
+      <BuyMeACoffeeModal isOpen={showBMCModal} onClose={() => setShowBMCModal(false)} />
     </div>
   );
 };
