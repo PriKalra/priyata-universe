@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Twitter, Mail, Coffee, Calendar, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -6,143 +6,11 @@ import { CosmicBackground } from "@/components/CosmicBackground";
 import { ContentCard } from "@/components/ContentCard";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
-
-interface ContentItem {
-  type: string;
-  title: string;
-  excerpt: string;
-  link: string;
-  source: string;
-  date: string;
-  size?: string;
-  audioLength?: string;
-  audioUrl?: string;
-  image?: string;
-  views?: number;
-}
+import { useContentFeed } from "@/hooks/useContentFeed";
 
 const Index = () => {
-  const [content, setContent] = useState<ContentItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { content, loading } = useContentFeed();
   const [showBMCModal, setShowBMCModal] = useState(false);
-
-  useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        // TODO: Implement real-time fetching from:
-        // - Hey World RSS/API: https://world.hey.com/priyata
-        // - Buy Me a Coffee API: https://buymeacoffee.com/priyata
-        
-        const staticContent: ContentItem[] = [
-          {
-            type: "blog",
-            title: "Fall in Love with the Starting Line",
-            excerpt: "Holding on to the identity that we have narrated to ourselves is rather obvious. Whenever we are put in the position of start over, there is a lot of friction.",
-            link: "https://world.hey.com/priyata/fall-in-love-with-the-starting-line-cc9771b4",
-            source: "Hey World",
-            date: "2025-10-14",
-            size: "large"
-          },
-          {
-            type: "audio",
-            title: "Paper2Agent: Reimagining Research Papers",
-            excerpt: "Exploring how research papers can be transformed into interactive and reliable AI agents.",
-            link: "https://buymeacoffee.com/priyata/paper2agent-reimagining-research-papers-as-interactive-reliable-ai-agents",
-            source: "Buy Me a Coffee",
-            audioLength: "34:00",
-            audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2025/10/30d206c46073aac17f7c86b0e3c17b45.mp3",
-            image: "https://cdn.buymeacoffee.com/uploads/project_updates/2025/10/30d206c46073aac17f7c86b0e3c17b45.jpg",
-            date: "2025-10-06",
-            views: 54,
-            size: "medium"
-          },
-          {
-            type: "blog",
-            title: "The Universal Reach of Creating",
-            excerpt: "Recently, I have pivoted into the role of Product manager and wow, the clichés about my role are popping up left and right.",
-            link: "https://world.hey.com/priyata/the-universal-reach-of-creating-490a7fd6",
-            source: "Hey World",
-            date: "2025-09-28",
-            size: "small"
-          },
-          {
-            type: "audio",
-            title: "LLMs for Data Extraction in Toxicology",
-            excerpt: "Implications and lessons learned from using LLMs in toxicology data extraction.",
-            link: "https://buymeacoffee.com/priyata/large-language-models-data-extraction-toxicology-implications-lessons-learned",
-            source: "Buy Me a Coffee",
-            audioLength: "18:54",
-            audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2025/09/203b4664c1490ef46d800870a959b3c5.mp3",
-            image: "https://cdn.buymeacoffee.com/uploads/project_updates/2025/09/203b4664c1490ef46d800870a959b3c5.jpg",
-            date: "2025-09-09",
-            views: 84,
-            size: "medium"
-          },
-          {
-            type: "blog",
-            title: "Why Are We Living Longer but Feeling Worse?",
-            excerpt: "The Paradox of Longevity: What if living to 85 means spending your last decade unwell? At Eurotox 2025, a striking paradox was unveiled.",
-            link: "https://world.hey.com/priyata/why-are-we-living-longer-but-feeling-worse-734d3778",
-            source: "Hey World",
-            date: "2025-09-05",
-            size: "large"
-          },
-          {
-            type: "blog",
-            title: "Ego, Control, and Sincerity in Pharma Science",
-            excerpt: "Sometimes, when I notice carefully, the environment in Pharma, I realize than more than being about truth, the entire industry is about memes.",
-            link: "https://world.hey.com/priyata/ego-control-and-sincerity-in-pharma-science-an-epistemological-dissection-cef99a5d",
-            source: "Hey World",
-            date: "2025-08-22",
-            size: "small"
-          },
-          {
-            type: "audio",
-            title: "Machine Learning Automation of PKPD Modelling",
-            excerpt: "Exploring the intersection of machine learning and pharmacokinetic-pharmacodynamic modeling.",
-            link: "https://buymeacoffee.com/priyata/machine-learning-automation-pkpd-modelling",
-            source: "Buy Me a Coffee",
-            audioLength: "20:09",
-            audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2025/08/4a7ec3e8b391f35c0a4ded98a734b078.mp3",
-            image: "https://cdn.buymeacoffee.com/uploads/project_updates/2025/08/4a7ec3e8b391f35c0a4ded98a734b078.jpg",
-            date: "2025-08-07",
-            views: 148,
-            size: "medium"
-          },
-          {
-            type: "blog",
-            title: "The Nano Banana Experiment",
-            excerpt: "Could an AI model like Nano Banana take raw biological reference images and turn them into something better?",
-            link: "https://world.hey.com/priyata/the-nano-banana-experiment-ai-s-creative-power-in-biology-2b8c184b",
-            source: "Hey World",
-            date: "2025-07-18",
-            size: "small"
-          },
-          {
-            type: "blog",
-            title: "AI in Pharma: 10x Revolution",
-            excerpt: "The universe bows to those who dare, who push past the ordinary and chase what others deem impossible.",
-            link: "https://world.hey.com/priyata/ai-in-pharma-10x-revolution-fdabcd1b",
-            source: "Hey World",
-            date: "2025-07-01",
-            size: "small"
-          }
-        ];
-
-        const sortedContent = staticContent.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
-        
-        setContent(sortedContent);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching content:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchContent();
-  }, []);
 
   return (
     <div className="min-h-screen">
