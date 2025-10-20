@@ -30,11 +30,13 @@ export function useContentFeed() {
 
     async function loadContent() {
       try {
+        // Cache-bust the static JSON fetch
+        const url = new URL(`${import.meta.env.BASE_URL}content-feed.json`, location.origin);
+        url.searchParams.set("v", __APP_VERSION__ || Date.now().toString());
+        
         // Fetch both sources in parallel for efficiency
         const [staticFeed, heyPosts] = await Promise.allSettled([
-          fetch(`${import.meta.env.BASE_URL}content-feed.json?t=${Date.now()}`, { 
-            cache: 'no-cache' 
-          }).then(res => res.ok ? res.json() : null),
+          fetch(url.toString(), { cache: 'no-store' }).then(res => res.ok ? res.json() : null),
           fetchHeyWorldRSS('priyata')
         ]);
 

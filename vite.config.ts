@@ -17,6 +17,9 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  define: {
+    __APP_VERSION__: JSON.stringify(process.env.GITHUB_SHA || process.env.npm_package_version || "dev")
+  },
   build: {
     // Optimize for GitHub Pages
     outDir: 'dist',
