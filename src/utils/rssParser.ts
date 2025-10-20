@@ -4,6 +4,7 @@ interface RSSItem {
   pubDate: string;
   description: string;
   content?: string;
+  image?: string;
 }
 
 export async function fetchHeyWorldRSS(username: string): Promise<RSSItem[]> {
@@ -67,10 +68,12 @@ export async function fetchHeyWorldRSS(username: string): Promise<RSSItem[]> {
       const content = entry.querySelector('content')?.textContent || '';
       const summary = entry.querySelector('summary')?.textContent || '';
 
-      // Extract plain text from HTML content
+      // Extract plain text and first image from HTML content
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = content || summary;
-      const description = (tempDiv.textContent || tempDiv.innerText || '').trim();
+      const description = (tempDiv.textContent || (tempDiv as any).innerText || '').trim();
+      const imgEl = tempDiv.querySelector('img');
+      const image = imgEl ? imgEl.getAttribute('src') || undefined : undefined;
 
       items.push({
         title,
@@ -78,6 +81,7 @@ export async function fetchHeyWorldRSS(username: string): Promise<RSSItem[]> {
         pubDate,
         description: description.substring(0, 200) + (description.length > 200 ? '…' : ''),
         content,
+        image,
       });
     });
 

@@ -32,7 +32,7 @@ export const ContentCard = ({ item }: ContentCardProps) => {
       }`}
     >
       <div className="p-8 md:p-10 h-full flex flex-col">
-        {item.type === "audio" && item.image && (
+        {item.image && (
           <div className="relative w-full aspect-video mb-6 overflow-hidden rounded-xl bg-muted">
             <img 
               src={item.image} 
@@ -40,12 +40,14 @@ export const ContentCard = ({ item }: ContentCardProps) => {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            <div className="absolute top-4 right-4">
-              <Badge className="bg-white/90 text-zinc-900 border-0 backdrop-blur-sm">
-                <Mic className="h-3 w-3 mr-1" />
-                Audio
-              </Badge>
-            </div>
+            {item.type === 'audio' && (
+              <div className="absolute top-4 right-4">
+                <Badge className="bg-white/90 text-zinc-900 border-0 backdrop-blur-sm">
+                  <Mic className="h-3 w-3 mr-1" />
+                  Audio
+                </Badge>
+              </div>
+            )}
           </div>
         )}
         

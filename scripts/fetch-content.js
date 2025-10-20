@@ -87,17 +87,21 @@ async function fetchHeyWorldRSS(username) {
       const content = entry.getElementsByTagName('content')[0]?.textContent || '';
       const summary = entry.getElementsByTagName('summary')[0]?.textContent || '';
 
-      // Strip HTML tags for description
-      const description = (content || summary)
+      // Strip HTML tags for description and extract first image
+      const rawHtml = content || summary;
+      const description = rawHtml
         .replace(/<[^>]*>/g, '')
         .trim()
         .substring(0, 200);
+      const imgMatch = rawHtml.match(/<img[^>]+src=["']([^"']+)["']/i);
+      const image = imgMatch ? imgMatch[1] : undefined;
 
       items.push({
         title,
         link,
         pubDate: published,
         description: description + (description.length >= 200 ? '…' : ''),
+        image,
       });
     });
 
@@ -128,7 +132,8 @@ async function main() {
     link: post.link,
     source: "Hey World",
     date: convertRSSDateToISO(post.pubDate),
-    size: index === 0 ? "large" : "small"
+    size: index === 0 ? "large" : "small",
+    image: post.image,
   }));
 
   console.log(`Fetched ${heyWorldContent.length} Hey World posts`);
