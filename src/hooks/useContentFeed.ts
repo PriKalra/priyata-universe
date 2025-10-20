@@ -28,59 +28,70 @@ export function useContentFeed() {
   useEffect(() => {
     let isMounted = true;
 
-    async function loadStaticFeed() {
+    async function loadContent() {
       try {
-        const feedUrl = `${import.meta.env.BASE_URL}content-feed.json`;
-        const res = await fetch(feedUrl, { cache: 'no-cache' });
-        if (!res.ok) throw new Error('Static feed not found');
-        const data: ContentFeed = await res.json();
-        if (!isMounted) return;
-        setContent(data.content || []);
-        setLoading(false); // Show static content immediately for fast load
-      } catch (e) {
-        // If static feed is missing, keep loading state until fallback finishes
-        console.warn('Static content-feed.json not available yet. Falling back to live fetch.');
-      }
-    }
-
-    async function enrichWithHeyPosts() {
-      try {
-        const hey = await fetchHeyWorldRSS('priyata');
-        const heyContent: ContentItem[] = hey.slice(0, 5).map((post, index) => ({
-          type: 'blog',
-          title: post.title,
-          excerpt: post.description,
-          link: post.link,
-          source: 'Hey World',
-          date: convertRSSDateToISO(post.pubDate),
-          size: index === 0 ? 'large' : 'small',
-          image: (post as any).image,
-        }));
+        // Fetch both sources in parallel for efficiency
+        const [staticFeed, heyPosts] = await Promise.allSettled([
+          fetch(`${import.meta.env.BASE_URL}content-feed.json?t=${Date.now()}`, { 
+            cache: 'no-cache' 
+          }).then(res => res.ok ? res.json() : null),
+          fetchHeyWorldRSS('priyata')
+        ]);
 
         if (!isMounted) return;
 
-        // Merge without duplicates (by link)
+        // Collect all content items
+        const allItems: ContentItem[] = [];
+
+        // Add static feed content (BMC posts)
+        if (staticFeed.status === 'fulfilled' && staticFeed.value?.content) {
+          allItems.push(...staticFeed.value.content);
+        }
+
+        // Add fresh Hey World posts
+        if (heyPosts.status === 'fulfilled' && heyPosts.value.length > 0) {
+          const heyContent: ContentItem[] = heyPosts.value.slice(0, 5).map((post, index) => ({
+            type: 'blog',
+            title: post.title,
+            excerpt: post.description,
+            link: post.link,
+            source: 'Hey World',
+            date: convertRSSDateToISO(post.pubDate),
+            size: index === 0 ? 'large' : 'small',
+            image: post.image,
+          }));
+          allItems.push(...heyContent);
+        }
+
+        // Deduplicate by link and sort by date
         const byLink = new Map<string, ContentItem>();
-        [...heyContent, ...content].forEach((it) => byLink.set(it.link, it));
-        const merged = Array.from(byLink.values()).sort(
+        allItems.forEach(item => {
+          if (!byLink.has(item.link) || new Date(item.date) > new Date(byLink.get(item.link)!.date)) {
+            byLink.set(item.link, item);
+          }
+        });
+
+        const sortedContent = Array.from(byLink.values()).sort(
           (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
         );
-        setContent(merged);
-        setLoading(false);
+
+        if (sortedContent.length === 0) {
+          throw new Error('No content available');
+        }
+
+        setContent(sortedContent);
+        setError(null);
       } catch (err) {
-        console.error('Error enriching with Hey posts:', err);
-        if (isMounted && content.length === 0) {
-          setError('Failed to load content');
+        console.error('Error loading content:', err);
+        setError('Unable to load latest work. Please try again later.');
+      } finally {
+        if (isMounted) {
           setLoading(false);
         }
       }
     }
 
-    // 1) Load static feed quickly
-    loadStaticFeed().finally(() => {
-      // 2) In background, fetch Hey posts to ensure blog items appear even before cron runs
-      enrichWithHeyPosts();
-    });
+    loadContent();
 
     return () => {
       isMounted = false;
