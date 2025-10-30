@@ -6,6 +6,7 @@ import { CosmicBackground } from "@/components/CosmicBackground";
 import { ContentCard } from "@/components/ContentCard";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
+import { MentorshipContactForm } from "@/components/MentorshipContactForm";
 import { useContentFeed } from "@/hooks/useContentFeed";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
@@ -251,16 +252,20 @@ const Index = () => {
                   Schedule a 30-minute conversation by supporting with €20 or more on Buy Me a Coffee. After your donation, send me a message there with your availability and topics you'd like to discuss.
                 </p>
 
-                <Button 
-                  asChild
-                  size="lg"
-                  className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-                >
-                  <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                    <Coffee className="h-5 w-5 mr-2" />
-                    Schedule a Mentorship Session
-                  </a>
-                </Button>
+                <div className="space-y-3">
+                  <Button 
+                    asChild
+                    size="lg"
+                    className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
+                  >
+                    <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
+                      <Coffee className="h-5 w-5 mr-2" />
+                      Schedule a Mentorship Session
+                    </a>
+                  </Button>
+                  
+                  <MentorshipContactForm />
+                </div>
               </div>
             </div>
           </Card>
