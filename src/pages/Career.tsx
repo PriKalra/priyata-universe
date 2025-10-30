@@ -596,6 +596,22 @@ const Career = () => {
             <div className="space-y-6">
               <div className="border-l-2 border-accent pl-6">
                 <p className="text-muted-foreground mb-2">
+                  <span className="font-medium text-foreground">Kalra P, Kister B, Fendt R, Köster M, Pulverer J, Sahle S, et al.</span> (2025). 
+                  A comparative computational analysis of IFN-alpha pharmacokinetics and its induced cellular response in mice and humans. 
+                  <em className="text-accent"> PLoS Computational Biology</em>, 21(9): e1013509.
+                </p>
+                <a 
+                  href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1013509" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                >
+                  View Publication <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+
+              <div className="border-l-2 border-muted pl-6">
+                <p className="text-muted-foreground mb-2">
                   <span className="font-medium text-foreground">Botham P, Holland D, Fuart Gatnik M, et al.</span> (2025). 
                   Framework for classifying chemicals for repeat dose toxicity using New Approach Methodologies (NAMs) data. 
                   <em className="text-accent"> Archives of Toxicology</em>, 99(8), 3223-3246.
