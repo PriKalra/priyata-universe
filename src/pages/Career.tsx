@@ -543,6 +543,52 @@ const Career = () => {
             </div>
           </div>
 
+          {/* Professional Development & Certifications */}
+          <div className="mt-24 pt-16 border-t">
+            <h2 className="text-4xl md:text-5xl font-light mb-12 tracking-tight">Professional Development & Certifications</h2>
+            
+            <div className="space-y-4">
+              <div className="flex items-start gap-3 border-l-2 border-accent pl-6 py-2">
+                <Award className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-foreground">AI Evals for Product Managers and Engineers</p>
+                  <p className="text-sm text-muted-foreground">2025</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 border-l-2 border-accent pl-6 py-2">
+                <Award className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-foreground">Oxford Saïd Business School - Women Leadership Development Programme</p>
+                  <p className="text-sm text-muted-foreground">Distinction, 2023</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 border-l-2 border-muted pl-6 py-2">
+                <Award className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-foreground">Microsoft - AI Skills 4 Women Certification</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 border-l-2 border-muted pl-6 py-2">
+                <Award className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-foreground">Coursera - Machine Learning with Python</p>
+                  <p className="text-sm text-muted-foreground">2022</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 border-l-2 border-muted pl-6 py-2">
+                <Award className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-foreground">Certara SimCyp - Advanced PBPK Modeling</p>
+                  <p className="text-sm text-muted-foreground">2019</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Publications Section */}
           <div className="mt-24 pt-16 border-t">
             <h2 className="text-4xl md:text-5xl font-light mb-12 tracking-tight">Selected Publications</h2>
