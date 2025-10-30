@@ -143,7 +143,7 @@ const Career = () => {
             <div className="flex items-start gap-4 mb-4">
               <Rocket className="h-8 w-8 text-accent flex-shrink-0 mt-1" />
               <div>
-                <h2 className="text-2xl md:text-3xl font-light mb-4 text-foreground">Strong Pharmacometric, PBPK, and QSP Modeler</h2>
+                <h2 className="text-2xl md:text-3xl font-light mb-4 text-foreground">AI Product Manager & Scientist Bridging PKPD/PBPK/QSP with Scalable AI Solutions</h2>
                 <p className="text-lg text-foreground leading-relaxed mb-4">
                   <strong className="text-accent">10+ years</strong> of expertise in physiologically-based pharmacokinetic modeling, quantitative systems pharmacology, and AI/ML product management in pharmaceutical sciences. Specialized in translating complex scientific challenges into scalable products and methodologies.
                 </p>
