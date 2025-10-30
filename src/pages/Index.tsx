@@ -81,10 +81,11 @@ const Index = () => {
 
       {/* About Section */}
       <section className="py-32 md:py-40 bg-background">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <h2 className="text-4xl md:text-5xl font-light mb-16 tracking-tight">About Me</h2>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-start mb-20">
             <div>
-              <h2 className="text-4xl md:text-5xl font-light mb-8 tracking-tight">About</h2>
               <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-6">
                 I am a poet-scientist navigating the liminal spaces between quantitative rigor and existential wonder. My work lives at the intersection of computational pharmacology and philosophical inquiry—where PBPK/QSP models meet questions of consciousness and being.
               </p>
@@ -110,6 +111,60 @@ const Index = () => {
                   <li>• Poetry & Narrative</li>
                   <li>• Science Communication</li>
                 </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Career Journey */}
+          <div>
+            <h3 className="text-3xl md:text-4xl font-light mb-12 tracking-tight">Career Journey</h3>
+            <div className="space-y-8">
+              <div className="border-l-2 border-accent pl-6 pb-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <h4 className="text-xl font-light">Product Manager AI & Automation</h4>
+                  <span className="text-sm text-muted-foreground">Oct 2021 - Present</span>
+                </div>
+                <p className="text-accent font-light mb-3">Simulations Plus Inc, Lancaster USA</p>
+                <ul className="space-y-1 text-muted-foreground text-sm">
+                  <li>• Own product strategy and roadmap for AI/automation across scientific software suite</li>
+                  <li>• Spearheaded end-to-end development of GPX automation platform</li>
+                  <li>• Drove integration of AI/ML workflows into pharmaceutical modeling</li>
+                </ul>
+              </div>
+
+              <div className="border-l-2 border-muted pl-6 pb-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <h4 className="text-xl font-light">Data Scientist with PBPK Expertise</h4>
+                  <span className="text-sm text-muted-foreground">Mar 2020 - Aug 2021</span>
+                </div>
+                <p className="text-accent font-light mb-3">Bayer AG, Frankfurt</p>
+                <ul className="space-y-1 text-muted-foreground text-sm">
+                  <li>• AI for bioavailability prediction across Crop Science & Pharma divisions</li>
+                  <li>• PBPK modeling and automation pipeline for design of experiments</li>
+                  <li>• Led Plant AI-PBPK activities and cheminformatic analysis</li>
+                </ul>
+              </div>
+
+              <div className="border-l-2 border-muted pl-6 pb-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <h4 className="text-xl font-light">Postdoctoral Researcher</h4>
+                  <span className="text-sm text-muted-foreground">Jan 2019 - Feb 2020</span>
+                </div>
+                <p className="text-accent font-light mb-3">BASF SE, Germany</p>
+                <ul className="space-y-1 text-muted-foreground text-sm">
+                  <li>• IVIVE and reverse dosimetry research</li>
+                  <li>• PBPK for preclinical species & QST for thyroid</li>
+                </ul>
+              </div>
+
+              <div className="border-l-2 border-muted pl-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <h4 className="text-xl font-light">PhD Natural Sciences</h4>
+                  <span className="text-sm text-muted-foreground">2014 - 2018</span>
+                </div>
+                <p className="text-accent font-light mb-3">University of Heidelberg & Bayer Technology Services</p>
+                <p className="text-muted-foreground text-sm mb-2">Quantitative systems pharmacology models of IFN-α signaling in mice and humans</p>
+                <p className="text-sm text-muted-foreground italic">Cum Laude</p>
               </div>
             </div>
           </div>
@@ -159,6 +214,78 @@ const Index = () => {
         </div>
       </section>
 
+
+      {/* Be My Mentee Section */}
+      <section className="py-32 md:py-40 bg-gradient-to-b from-muted/30 to-background">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
+              Be My Mentee
+            </h2>
+            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto">
+              30-minute conversations at the intersection of science, philosophy, and career development
+            </p>
+          </div>
+
+          <Card className="p-10 md:p-12 max-w-2xl mx-auto bg-card border-2 hover:border-accent transition-all">
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-light mb-4">What We'll Explore</h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <span>Navigating careers in computational pharmacology and AI/ML in pharma</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <span>PBPK/QSP modeling approaches and applications</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <span>Transitioning between research and product management</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <span>Integrating science with philosophical inquiry</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <span>Your specific questions and challenges</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="border-t pt-6">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Duration</p>
+                    <p className="text-2xl font-light">30 minutes</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Support Level</p>
+                    <p className="text-2xl font-light">€20+</p>
+                  </div>
+                </div>
+
+                <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                  Schedule a 30-minute conversation by supporting with €20 or more on Buy Me a Coffee. After your donation, send me a message there with your availability and topics you'd like to discuss.
+                </p>
+
+                <Button 
+                  asChild
+                  size="lg"
+                  className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
+                >
+                  <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
+                    <Coffee className="h-5 w-5 mr-2" />
+                    Schedule a Mentorship Session
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
 
       {/* Support Section */}
       <section id="support" className="py-32 md:py-40 bg-[hsl(var(--cosmic-dark))] text-white">
