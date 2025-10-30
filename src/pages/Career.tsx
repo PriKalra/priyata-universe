@@ -145,7 +145,7 @@ const Career = () => {
               <div>
                 <h2 className="text-2xl md:text-3xl font-light mb-4 text-foreground">AI Product Manager & Scientist Bridging PKPD/PBPK/QSP with Scalable AI Solutions</h2>
                 <p className="text-lg text-foreground leading-relaxed mb-4">
-                  <strong className="text-accent">10+ years</strong> of expertise in physiologically-based pharmacokinetic modeling, quantitative systems pharmacology, and AI/ML product management in pharmaceutical sciences. Specialized in translating complex scientific challenges into scalable products and methodologies.
+                  Expert PBPK/QSP Scientist with <strong className="text-accent">10+ years</strong> of expertise in AI driven PBPK and QSP modeling. Strong domain expertise in systems pharmacology, Non animal methods (NAMs). Proven track record of translating complex scientific challenges into scalable, impactful products. Currently driving AI automation strategy at Simulations Plus, with previous experience at Bayer AG and BASF SE with entrepreneurial background in healthcare blockchain.
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 text-muted-foreground">
                   <div className="flex items-start gap-2">
