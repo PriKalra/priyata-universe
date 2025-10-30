@@ -1,4 +1,4 @@
-import { Twitter, Mail, Coffee, ArrowLeft, Target, Briefcase, Rocket, Award } from "lucide-react";
+import { Twitter, Mail, Coffee, ArrowLeft, Target, Briefcase, Rocket, Award, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -360,6 +360,152 @@ const Career = () => {
                   </div>
                   <p className="text-sm text-accent">Indian Institute of Technology, Mumbai, India</p>
                   <p className="text-sm text-muted-foreground mt-1">Systems level analysis of osmotic effect on the growth of Saccharomyces Cerevisiae</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Leadership & Mentorship Section */}
+          <div className="mt-24 pt-16 border-t">
+            <h2 className="text-4xl md:text-5xl font-light mb-12 tracking-tight">Leadership & Mentorship</h2>
+            
+            <div className="space-y-10">
+              {/* Leadership Programs */}
+              <div>
+                <h3 className="text-2xl font-light mb-6 text-accent">Leadership Development</h3>
+                <div className="space-y-6">
+                  <div className="border-l-2 border-accent pl-6">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-2">
+                      <h4 className="text-lg font-light">Women Leadership Development Programme</h4>
+                      <span className="text-sm text-muted-foreground">May 2023</span>
+                    </div>
+                    <p className="text-accent mb-2">Oxford Saïd Business School</p>
+                    <p className="text-muted-foreground">Certified course • Distinction</p>
+                  </div>
+                  
+                  <div className="border-l-2 border-muted pl-6">
+                    <h4 className="text-lg font-light mb-2">AI Skills 4 Women</h4>
+                    <p className="text-accent">Microsoft</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mentorship & Community Engagement */}
+              <div>
+                <h3 className="text-2xl font-light mb-6 text-accent">Mentorship & Community Leadership</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <div>
+                      <p className="font-light"><strong>Mentor</strong> • Life Science Accelerator Baden-Württemberg</p>
+                      <p className="text-sm text-muted-foreground">May 2021 - Present</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <div>
+                      <p className="font-light"><strong>Spearhead</strong> • Oxford Women Leadership Programme Alumni Network</p>
+                      <p className="text-sm text-muted-foreground">May 2023 - Present</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <div>
+                      <p className="font-light"><strong>Volunteer, German Chapter</strong> • Women in AI</p>
+                      <p className="text-sm text-muted-foreground">Jan 2020 - Present</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <span className="text-accent mt-1">•</span>
+                    <div>
+                      <p className="font-light"><strong>Spearhead</strong> • University Heidelberg Systems Biology Alumni Network</p>
+                      <p className="text-sm text-muted-foreground">Dec 2019 - Present</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Conference Presentations & Talks */}
+              <div>
+                <h3 className="text-2xl font-light mb-6 text-accent">Selected Presentations & Talks</h3>
+                
+                <div className="space-y-6">
+                  {/* AAPS 2024 */}
+                  <div className="border-l-2 border-accent pl-6">
+                    <h4 className="text-lg font-light mb-3">AAPS PharmSci 360, October 2024</h4>
+                    <div className="space-y-3 text-muted-foreground">
+                      <div>
+                        <p className="font-medium text-foreground mb-1">Career Development Speaker</p>
+                        <p className="text-sm">"Practical Skills to Use GenAI in Biomedicine"</p>
+                        <a 
+                          href="https://www.aaps.org" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-accent hover:underline text-sm inline-flex items-center gap-1 mt-1"
+                        >
+                          AAPS Conference Info →
+                        </a>
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground mb-1">Poster Presentations (2)</p>
+                        <ul className="text-sm space-y-2 ml-4">
+                          <li>• Mechanistic Model of in vitro Intraoral Absorption of Buprenorphine for the Buccal and Gingival Mucosa</li>
+                          <li>• Mechanistic in vitro Oral Absorption Model to Predict Mucosal Permeability of Oral Cavity Drug Products</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Solvo Conference 2024 */}
+                  <div className="border-l-2 border-muted pl-6">
+                    <h4 className="text-lg font-light mb-3">Solvo Transporters and ADME Conference, 2024</h4>
+                    <p className="text-muted-foreground text-sm">
+                      <span className="font-medium text-foreground">Invited Speaker:</span> "Development and Application of PBPK Models to Support Transporter-mediated Drug-Drug Interaction (tDDI) Assessment"
+                    </p>
+                    <a 
+                      href="https://www.solvobio.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline text-sm inline-flex items-center gap-1 mt-2"
+                    >
+                      Solvo Conference →
+                    </a>
+                  </div>
+
+                  {/* EuroTox 2024 */}
+                  <div className="border-l-2 border-muted pl-6">
+                    <h4 className="text-lg font-light mb-3">EuroTox, 2024</h4>
+                    <p className="text-muted-foreground text-sm">
+                      <span className="font-medium text-foreground">Poster:</span> "Predictive Performance of Physiologically Based Kinetic (PBK) Models Based on In-Silico/In Vitro-In Vivo Extrapolation (IS/IVIVE)"
+                    </p>
+                  </div>
+
+                  {/* AAPS 2023 */}
+                  <div className="border-l-2 border-muted pl-6">
+                    <h4 className="text-lg font-light mb-3">AAPS PharmSci 360, October 2023</h4>
+                    <p className="text-muted-foreground text-sm">
+                      <span className="font-medium text-foreground">Poster:</span> "Physiologically Based Pharmacokinetic (PBPK) Oral Absorption Model to Predict Mucosal Permeability of Oral Cavity Drug Products"
+                    </p>
+                  </div>
+
+                  {/* SOT 2020 */}
+                  <div className="border-l-2 border-muted pl-6">
+                    <h4 className="text-lg font-light mb-3">SOT 59th Annual Meeting and ToxExpo, March 2020</h4>
+                    <p className="text-muted-foreground text-sm">
+                      <span className="font-medium text-foreground">Poster:</span> "qIVIVE Empirical PBTK Model vs Physiological 26 Compartment PBTK Model Exposure Extrapolation"
+                    </p>
+                    <a 
+                      href="https://www.toxicology.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline text-sm inline-flex items-center gap-1 mt-2"
+                    >
+                      Society of Toxicology →
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
