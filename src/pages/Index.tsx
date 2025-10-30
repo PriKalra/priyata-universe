@@ -9,6 +9,7 @@ import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
 import { useContentFeed } from "@/hooks/useContentFeed";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import sufferingImage from "@/assets/suffering.jpg";
 
 const Index = () => {
   const { content, loading } = useContentFeed();
@@ -127,8 +128,33 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Content Grid */}
+      {/* Featured Image Section */}
       <section className="py-24 md:py-32 bg-muted/30">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-light mb-4 tracking-tight">
+              Latest Reflection
+            </h2>
+            <p className="text-muted-foreground text-lg">From my visual explorations</p>
+          </div>
+          
+          <div className="relative group overflow-hidden rounded-2xl shadow-2xl hover-lift">
+            <img 
+              src={sufferingImage} 
+              alt="Suffering - Latest reflection" 
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-0 left-0 right-0 p-8 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <h3 className="text-2xl font-light mb-2">Suffering</h3>
+              <p className="text-sm text-zinc-300">October 19, 2025</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Content Grid */}
+      <section className="py-24 md:py-32 bg-background">
         <div className="container mx-auto px-6 max-w-7xl">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-20 tracking-tight">
             Latest Work
@@ -169,10 +195,8 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-
       {/* Be My Mentee Section */}
-      <section className="py-32 md:py-40 bg-gradient-to-b from-muted/30 to-background">
+      <section className="py-32 md:py-40 bg-muted/30">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
@@ -246,55 +270,57 @@ const Index = () => {
       {/* Support Section */}
       <section id="support" className="py-32 md:py-40 bg-[hsl(var(--cosmic-dark))] text-white">
         <div className="container mx-auto px-6 max-w-5xl">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-16 tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-16 tracking-tight cosmic-glow">
             Support
           </h2>
           
-          <Card className="p-10 md:p-12 max-w-2xl mx-auto mb-12 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
-            <h3 className="text-2xl font-light mb-6 text-white">Bitcoin</h3>
-            <div 
-              className="bg-black/50 p-6 text-xs font-mono break-all mb-6 cursor-pointer hover:bg-black/70 transition-colors text-zinc-300 rounded"
-              onClick={() => {
-                navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
-                toast({
-                  title: "Bitcoin address copied!",
-                  description: "The Bitcoin address has been copied to your clipboard.",
-                });
-              }}
-              title="Click to copy"
-            >
-              3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5
-            </div>
-            <Button 
-              className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-              size="lg"
-              onClick={() => {
-                navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
-                toast({
-                  title: "Bitcoin address copied!",
-                  description: "The Bitcoin address has been copied to your clipboard.",
-                });
-              }}
-            >
-              Copy Address
-            </Button>
-          </Card>
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <Card className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
+              <h3 className="text-2xl font-light mb-6 text-white">Bitcoin</h3>
+              <div 
+                className="bg-black/50 p-6 text-xs font-mono break-all mb-6 cursor-pointer hover:bg-black/70 transition-colors text-zinc-300 rounded"
+                onClick={() => {
+                  navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
+                  toast({
+                    title: "Bitcoin address copied!",
+                    description: "The Bitcoin address has been copied to your clipboard.",
+                  });
+                }}
+                title="Click to copy"
+              >
+                3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5
+              </div>
+              <Button 
+                className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
+                size="lg"
+                onClick={() => {
+                  navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
+                  toast({
+                    title: "Bitcoin address copied!",
+                    description: "The Bitcoin address has been copied to your clipboard.",
+                  });
+                }}
+              >
+                Copy Address
+              </Button>
+            </Card>
 
-          <Card className="p-10 md:p-12 max-w-2xl mx-auto bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
-            <h3 className="text-2xl font-light mb-6 text-white">Buy Me a Coffee</h3>
-            <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
-              One-time or recurring support with card or PayPal
-            </p>
-            <Button 
-              asChild
-              size="lg"
-              className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-            >
-              <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                Support Now
-              </a>
-            </Button>
-          </Card>
+            <Card className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
+              <h3 className="text-2xl font-light mb-6 text-white">Buy Me a Coffee</h3>
+              <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
+                One-time or recurring support with card or PayPal
+              </p>
+              <Button 
+                asChild
+                size="lg"
+                className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
+              >
+                <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
+                  Support Now
+                </a>
+              </Button>
+            </Card>
+          </div>
         </div>
       </section>
 
