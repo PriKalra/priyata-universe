@@ -439,14 +439,14 @@ const Career = () => {
                     <div className="space-y-3 text-muted-foreground">
                       <div>
                         <p className="font-medium text-foreground mb-1">Career Development Speaker</p>
-                        <p className="text-sm">"Practical Skills to Use GenAI in Biomedicine"</p>
+                        <p className="text-sm">"Practical Tips for Using GenAI in Biomedicine"</p>
                         <a 
-                          href="https://www.aaps.org" 
+                          href="https://science360.aaps.org/science360/2024/webinars-2024/4151243/priyata.kalra.practical.tips.for.using.genai.in.biomedicine.html?f=menu%3D24%2Ac_id%3D4151243%2Afeatured%3D19338%2Ashow_banner_in_top_panel%3D1" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-accent hover:underline text-sm inline-flex items-center gap-1 mt-1"
                         >
-                          AAPS Conference Info →
+                          Watch Talk <ExternalLink className="h-3 w-3" />
                         </a>
                       </div>
                       <div>
@@ -458,29 +458,61 @@ const Career = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Bioanalysis Zone Podcast */}
+                  <div className="border-l-2 border-accent pl-6">
+                    <h4 className="text-lg font-light mb-3">Bioanalysis Zone Podcast, 2024</h4>
+                    <p className="text-muted-foreground text-sm mb-2">
+                      <span className="font-medium text-foreground">Featured Interview:</span> "The Use of GenAI in Bioanalysis"
+                    </p>
+                    <a 
+                      href="https://www.bioanalysis-zone.com/podcasts/the-use-of-genai-in-bioanalysis-an-interview-with-priyata-kalra/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                    >
+                      Listen to Podcast <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
 
                   {/* Solvo Conference 2024 */}
                   <div className="border-l-2 border-muted pl-6">
-                    <h4 className="text-lg font-light mb-3">Solvo Transporters and ADME Conference, 2024</h4>
-                    <p className="text-muted-foreground text-sm">
+                    <h4 className="text-lg font-light mb-3">Solvo Transporters and ADME Conference, Budapest 2024</h4>
+                    <p className="text-muted-foreground text-sm mb-2">
                       <span className="font-medium text-foreground">Invited Speaker:</span> "Development and Application of PBPK Models to Support Transporter-mediated Drug-Drug Interaction (tDDI) Assessment"
                     </p>
                     <a 
-                      href="https://www.solvobio.com" 
+                      href="https://www.solvobiotech.com/meex/budapest-2024" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-accent hover:underline text-sm inline-flex items-center gap-1 mt-2"
+                      className="text-accent hover:underline text-sm inline-flex items-center gap-1"
                     >
-                      Solvo Conference →
+                      Conference Details <ExternalLink className="h-3 w-3" />
                     </a>
                   </div>
 
                   {/* EuroTox 2024 */}
                   <div className="border-l-2 border-muted pl-6">
-                    <h4 className="text-lg font-light mb-3">EuroTox, 2024</h4>
+                    <h4 className="text-lg font-light mb-3">EuroTox Congress, Copenhagen 2024</h4>
                     <p className="text-muted-foreground text-sm">
                       <span className="font-medium text-foreground">Poster:</span> "Predictive Performance of Physiologically Based Kinetic (PBK) Models Based on In-Silico/In Vitro-In Vivo Extrapolation (IS/IVIVE)"
                     </p>
+                  </div>
+                  
+                  {/* EPAA Designathon */}
+                  <div className="border-l-2 border-muted pl-6">
+                    <h4 className="text-lg font-light mb-3">EPAA NAMs Designathon, 2024</h4>
+                    <p className="text-muted-foreground text-sm mb-2">
+                      <span className="font-medium text-foreground">Expert Modeller:</span> European Commission Designathon for Human Systemic Toxicity
+                    </p>
+                    <a 
+                      href="https://single-market-economy.ec.europa.eu/calls-expression-interest/epaa-designathon-human-systemic-toxicity_en" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                    >
+                      EPAA Designathon Info <ExternalLink className="h-3 w-3" />
+                    </a>
                   </div>
 
                   {/* AAPS 2023 */}
@@ -507,6 +539,61 @@ const Career = () => {
                     </a>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Publications Section */}
+          <div className="mt-24 pt-16 border-t">
+            <h2 className="text-4xl md:text-5xl font-light mb-12 tracking-tight">Selected Publications</h2>
+            
+            <div className="space-y-6">
+              <div className="border-l-2 border-accent pl-6">
+                <p className="text-muted-foreground mb-2">
+                  <span className="font-medium text-foreground">Botham P, Holland D, Fuart Gatnik M, et al.</span> (2025). 
+                  Framework for classifying chemicals for repeat dose toxicity using New Approach Methodologies (NAMs) data. 
+                  <em className="text-accent"> Archives of Toxicology</em>, 99(8), 3223-3246.
+                </p>
+                <a 
+                  href="https://pubmed.ncbi.nlm.nih.gov/40411533/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                >
+                  View on PubMed <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+
+              <div className="border-l-2 border-muted pl-6">
+                <p className="text-muted-foreground mb-2">
+                  <span className="font-medium text-foreground">Kalra P, et al.</span> (2022). 
+                  Stochastic dynamics of Type-I interferon responses. 
+                  <em className="text-accent"> PLOS Computational Biology</em>.
+                </p>
+                <a 
+                  href="https://pubmed.ncbi.nlm.nih.gov/36269758/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                >
+                  View on PubMed <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+
+              <div className="border-l-2 border-muted pl-6">
+                <p className="text-muted-foreground mb-2">
+                  <span className="font-medium text-foreground">Kalra P, et al.</span> (2019). 
+                  Quantitative systems pharmacology of interferon alpha administration: A multi-scale approach. 
+                  <em className="text-accent"> PLOS ONE</em>.
+                </p>
+                <a 
+                  href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6374012/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                >
+                  View on PMC <ExternalLink className="h-3 w-3" />
+                </a>
               </div>
             </div>
           </div>
