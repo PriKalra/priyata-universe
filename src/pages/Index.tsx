@@ -8,6 +8,7 @@ import { FractalSubtitle } from "@/components/FractalSubtitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
 import { useContentFeed } from "@/hooks/useContentFeed";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const { content, loading } = useContentFeed();
@@ -81,17 +82,26 @@ const Index = () => {
 
       {/* About Section */}
       <section className="py-32 md:py-40 bg-background">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <h2 className="text-4xl md:text-5xl font-light mb-16 tracking-tight">About Me</h2>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-start mb-20">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
+              <h2 className="text-4xl md:text-5xl font-light mb-8 tracking-tight">About</h2>
               <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-6">
                 I am a poet-scientist navigating the liminal spaces between quantitative rigor and existential wonder. My work lives at the intersection of computational pharmacology and philosophical inquiry—where PBPK/QSP models meet questions of consciousness and being.
               </p>
-              <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light">
+              <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-8">
                 As a product manager and researcher in pharmaceutical sciences, I explore how AI and machine learning can transform drug discovery, while never losing sight of the deeper questions: What does it mean to exist? How do we navigate uncertainty? What emerges in the in-betweens?
               </p>
+              <Button 
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all"
+              >
+                <Link to="/career">
+                  View Career Journey
+                </Link>
+              </Button>
             </div>
             <div className="space-y-6">
               <div className="p-6 bg-muted/30 rounded-lg">
@@ -111,60 +121,6 @@ const Index = () => {
                   <li>• Poetry & Narrative</li>
                   <li>• Science Communication</li>
                 </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Career Journey */}
-          <div>
-            <h3 className="text-3xl md:text-4xl font-light mb-12 tracking-tight">Career Journey</h3>
-            <div className="space-y-8">
-              <div className="border-l-2 border-accent pl-6 pb-8">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h4 className="text-xl font-light">Product Manager AI & Automation</h4>
-                  <span className="text-sm text-muted-foreground">Oct 2021 - Present</span>
-                </div>
-                <p className="text-accent font-light mb-3">Simulations Plus Inc, Lancaster USA</p>
-                <ul className="space-y-1 text-muted-foreground text-sm">
-                  <li>• Own product strategy and roadmap for AI/automation across scientific software suite</li>
-                  <li>• Spearheaded end-to-end development of GPX automation platform</li>
-                  <li>• Drove integration of AI/ML workflows into pharmaceutical modeling</li>
-                </ul>
-              </div>
-
-              <div className="border-l-2 border-muted pl-6 pb-8">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h4 className="text-xl font-light">Data Scientist with PBPK Expertise</h4>
-                  <span className="text-sm text-muted-foreground">Mar 2020 - Aug 2021</span>
-                </div>
-                <p className="text-accent font-light mb-3">Bayer AG, Frankfurt</p>
-                <ul className="space-y-1 text-muted-foreground text-sm">
-                  <li>• AI for bioavailability prediction across Crop Science & Pharma divisions</li>
-                  <li>• PBPK modeling and automation pipeline for design of experiments</li>
-                  <li>• Led Plant AI-PBPK activities and cheminformatic analysis</li>
-                </ul>
-              </div>
-
-              <div className="border-l-2 border-muted pl-6 pb-8">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h4 className="text-xl font-light">Postdoctoral Researcher</h4>
-                  <span className="text-sm text-muted-foreground">Jan 2019 - Feb 2020</span>
-                </div>
-                <p className="text-accent font-light mb-3">BASF SE, Germany</p>
-                <ul className="space-y-1 text-muted-foreground text-sm">
-                  <li>• IVIVE and reverse dosimetry research</li>
-                  <li>• PBPK for preclinical species & QST for thyroid</li>
-                </ul>
-              </div>
-
-              <div className="border-l-2 border-muted pl-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h4 className="text-xl font-light">PhD Natural Sciences</h4>
-                  <span className="text-sm text-muted-foreground">2014 - 2018</span>
-                </div>
-                <p className="text-accent font-light mb-3">University of Heidelberg & Bayer Technology Services</p>
-                <p className="text-muted-foreground text-sm mb-2">Quantitative systems pharmacology models of IFN-α signaling in mice and humans</p>
-                <p className="text-sm text-muted-foreground italic">Cum Laude</p>
               </div>
             </div>
           </div>
@@ -358,6 +314,9 @@ const Index = () => {
             <a href="https://twitter.com/DeliriusPri" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
               Twitter
             </a>
+            <Link to="/career" className="text-muted-foreground hover:text-foreground transition-colors">
+              Career
+            </Link>
           </div>
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} Priyata • State of Being
