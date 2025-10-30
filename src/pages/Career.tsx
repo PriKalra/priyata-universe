@@ -1,11 +1,13 @@
-import { Twitter, Mail, Coffee, ArrowLeft, Target, Briefcase, Rocket, Award, ExternalLink } from "lucide-react";
+import { Twitter, Mail, Coffee, ArrowLeft, Target, Briefcase, Rocket, Award, ExternalLink, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { CosmicBackground } from "@/components/CosmicBackground";
+import { FractalSubtitle } from "@/components/FractalSubtitle";
 
 const Career = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Helmet>
         <title>Priyata Kalra - PBPK & QSP Modeling Expert | AI Product Manager | Career Journey</title>
         <meta name="description" content="Strong pharmacometric, PBPK, and QSP modeler with 10+ years of experience in physiologically-based pharmacokinetic modeling, quantitative systems pharmacology, and AI/ML product management. Career spans Simulations Plus, Bayer AG, BASF SE." />
@@ -99,32 +101,64 @@ const Career = () => {
         <h3>Publications and Presentations</h3>
         <p>Published research on oral cavity permeability assessment and NAMs framework for toxicity classification. Presented at AAPS on mechanistic oral cavity absorption models. Speaker at Solvo Transporters conference on PBPK models for transporter-mediated drug-drug interactions. Career development speaker on GenAI in Biomedicine at AAPS 2024.</p>
       </div>
-      {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
-          <div className="flex gap-4">
+
+      {/* Hero Section */}
+      <header className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[hsl(var(--cosmic-dark))]">
+        <CosmicBackground />
+        
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80 pointer-events-none" />
+        
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 text-center">
+          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-lato font-light tracking-tight mb-16 md:mb-20 text-white leading-none cosmic-glow">
+            Career Journey
+          </h1>
+          
+          <div className="mb-20 md:mb-24">
+            <FractalSubtitle />
+          </div>
+          
+          <div className="flex flex-wrap gap-4 justify-center">
             <Button 
               asChild
-              size="sm"
+              size="lg"
               variant="outline"
+              className="border-zinc-600 bg-zinc-900/50 backdrop-blur-sm text-zinc-200 hover:bg-zinc-800/70 hover:text-white hover:border-accent transition-all"
             >
-              <a href="https://twitter.com/DeliriusPri" target="_blank" rel="noopener noreferrer">
-                <Twitter className="h-4 w-4" />
+              <a href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT" target="_blank" rel="noopener noreferrer">
+                <Mic className="h-4 w-4 mr-2" />
+                Listen to my occasional conversations
               </a>
             </Button>
             <Button 
               asChild
-              size="sm"
+              size="lg"
               variant="outline"
+              className="border-zinc-600 bg-zinc-900/50 backdrop-blur-sm text-zinc-200 hover:bg-zinc-800/70 hover:text-white hover:border-accent transition-all"
+            >
+              <a href="https://twitter.com/DeliriusPri" target="_blank" rel="noopener noreferrer">
+                <Twitter className="h-4 w-4 mr-2" />
+                Twitter
+              </a>
+            </Button>
+            <Button 
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-zinc-600 bg-zinc-900/50 backdrop-blur-sm text-zinc-200 hover:bg-zinc-800/70 hover:text-white hover:border-accent transition-all"
             >
               <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
-                <Mail className="h-4 w-4" />
+                <Mail className="h-4 w-4 mr-2" />
+                Blog
+              </a>
+            </Button>
+            <Button 
+              asChild
+              size="lg"
+              className="bg-accent text-white hover:bg-accent/90 transition-all"
+            >
+              <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
+                <Coffee className="h-4 w-4 mr-2" />
+                Support
               </a>
             </Button>
           </div>
