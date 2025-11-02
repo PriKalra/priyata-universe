@@ -183,4 +183,69 @@ All colors MUST be HSL.
       font-size: 1rem;
     }
   }
+
+  /* Scroll Reveal Animations */
+  .scroll-reveal {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+  }
+
+  .scroll-reveal-up {
+    transform: translateY(30px);
+  }
+
+  .scroll-reveal-up.visible {
+    transform: translateY(0);
+  }
+
+  .scroll-reveal-down {
+    transform: translateY(-30px);
+  }
+
+  .scroll-reveal-down.visible {
+    transform: translateY(0);
+  }
+
+  .scroll-reveal-left {
+    transform: translateX(30px);
+  }
+
+  .scroll-reveal-left.visible {
+    transform: translateX(0);
+  }
+
+  .scroll-reveal-right {
+    transform: translateX(-30px);
+  }
+
+  .scroll-reveal-right.visible {
+    transform: translateX(0);
+  }
+
+  .scroll-reveal-scale {
+    transform: scale(0.95);
+  }
+
+  .scroll-reveal-scale.visible {
+    transform: scale(1);
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal,
+    .scroll-reveal-up,
+    .scroll-reveal-down,
+    .scroll-reveal-left,
+    .scroll-reveal-right,
+    .scroll-reveal-scale {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }

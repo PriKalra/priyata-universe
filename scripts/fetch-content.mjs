@@ -137,6 +137,16 @@ async function fetchHey(state) {
 function getBMCPosts() {
   return [
     {
+      type: "image",
+      title: "Suffering",
+      excerpt: "A visual reflection on the intersection of computational science and human experience",
+      link: "https://buymeacoffee.com/priyata",
+      source: "Buy Me a Coffee",
+      image: "/src/assets/suffering.jpg",
+      date: "2025-10-19",
+      size: "large"
+    },
+    {
       type: "audio",
       title: "Paper2Agent: Reimagining Research Papers",
       excerpt: "Exploring how research papers can be transformed into interactive and reliable AI agents.",

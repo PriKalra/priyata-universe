@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Twitter, Mail, Coffee, Mic } from "lucide-react";
+import { Twitter, Mail, Coffee, Mic, Copy, Bitcoin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
@@ -7,21 +7,27 @@ import { ContentCard } from "@/components/ContentCard";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
 import { MentorshipContactForm } from "@/components/MentorshipContactForm";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { useContentFeed } from "@/hooks/useContentFeed";
+import { useParallax } from "@/hooks/useParallax";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-import sufferingImage from "@/assets/suffering.jpg";
 
 const Index = () => {
   const { content, loading } = useContentFeed();
   const [showBMCModal, setShowBMCModal] = useState(false);
   const { toast } = useToast();
+  const parallaxRef = useParallax(0.3);
 
-  return (
+  // Get latest visual reflection
+  const latestVisualReflection = content.find(item => item.type === 'image');
+
     <div className="min-h-screen">
       {/* Hero Section */}
       <header className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[hsl(var(--cosmic-dark))]">
-        <CosmicBackground />
+        <div ref={parallaxRef}>
+          <CosmicBackground />
+        </div>
         
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80 pointer-events-none" />
         
@@ -87,79 +93,108 @@ const Index = () => {
         <div className="container mx-auto px-6 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-4xl md:text-5xl font-light mb-8 tracking-tight">About</h2>
-              <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-6">
-                I am a poet-scientist navigating the liminal spaces between quantitative rigor and existential wonder. My work lives at the intersection of computational pharmacology and philosophical inquiry—where PBPK/QSP models meet questions of consciousness and being.
-              </p>
-              <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-8">
-                As a product manager and researcher in pharmaceutical sciences, I explore how AI and machine learning can transform drug discovery, while never losing sight of the deeper questions: What does it mean to exist? How do we navigate uncertainty? What emerges in the in-betweens?
-              </p>
-              <Button 
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all"
-              >
-                <Link to="/career">
-                  View Career Journey
-                </Link>
-              </Button>
+              <ScrollReveal direction="up">
+                <h2 className="text-4xl md:text-5xl font-light mb-8 tracking-tight">About</h2>
+              </ScrollReveal>
+              <ScrollReveal direction="left" delay={100}>
+                <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-6">
+                  I am a poet-scientist navigating the liminal spaces between quantitative rigor and existential wonder. My work lives at the intersection of computational pharmacology and philosophical inquiry—where PBPK/QSP models meet questions of consciousness and being.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal direction="left" delay={200}>
+                <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-8">
+                  As a product manager and researcher in pharmaceutical sciences, I explore how AI and machine learning can transform drug discovery, while never losing sight of the deeper questions: What does it mean to exist? How do we navigate uncertainty? What emerges in the in-betweens?
+                </p>
+              </ScrollReveal>
+              <ScrollReveal direction="scale" delay={300}>
+                <Button 
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all"
+                >
+                  <Link to="/career">
+                    View Career Journey
+                  </Link>
+                </Button>
+              </ScrollReveal>
             </div>
             <div className="space-y-6">
-              <div className="p-6 bg-muted/30 rounded-lg">
-                <h3 className="text-xl font-light mb-3">Research Focus</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• PBPK/QSP Modeling & Simulation</li>
-                  <li>• AI in Pharmaceutical Sciences</li>
-                  <li>• Toxicology & Drug Safety</li>
-                  <li>• Machine Learning for Drug Discovery</li>
-                </ul>
-              </div>
-              <div className="p-6 bg-muted/30 rounded-lg">
-                <h3 className="text-xl font-light mb-3">Philosophy & Writing</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Existential Philosophy</li>
-                  <li>• Consciousness Studies</li>
-                  <li>• Poetry & Narrative</li>
-                  <li>• Science Communication</li>
-                </ul>
-              </div>
+              <ScrollReveal direction="right" delay={200}>
+                <div className="p-6 bg-muted/30 rounded-lg">
+                  <h3 className="text-xl font-light mb-3">Research Focus</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• PBPK/QSP Modeling & Simulation</li>
+                    <li>• AI in Pharmaceutical Sciences</li>
+                    <li>• Toxicology & Drug Safety</li>
+                    <li>• Machine Learning for Drug Discovery</li>
+                  </ul>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal direction="right" delay={300}>
+                <div className="p-6 bg-muted/30 rounded-lg">
+                  <h3 className="text-xl font-light mb-3">Philosophy & Writing</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>• Existential Philosophy</li>
+                    <li>• Consciousness Studies</li>
+                    <li>• Poetry & Narrative</li>
+                    <li>• Science Communication</li>
+                  </ul>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Image Section */}
-      <section className="py-24 md:py-32 bg-muted/30">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-light mb-4 tracking-tight">
-              Latest Reflection
-            </h2>
-            <p className="text-muted-foreground text-lg">From my visual explorations</p>
-          </div>
-          
-          <div className="relative group overflow-hidden rounded-2xl shadow-2xl hover-lift">
-            <img 
-              src={sufferingImage} 
-              alt="Suffering - Latest reflection" 
-              className="w-full h-auto object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-              <h3 className="text-2xl font-light mb-2">Suffering</h3>
-              <p className="text-sm text-zinc-300">October 19, 2025</p>
+      {/* Featured Visual Reflection Section */}
+      {latestVisualReflection && (
+        <section className="py-24 md:py-32 bg-muted/30">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <div className="text-center mb-12">
+              <ScrollReveal direction="up">
+                <h2 className="text-4xl md:text-5xl font-light mb-4 tracking-tight">
+                  Latest Reflection
+                </h2>
+                <p className="text-muted-foreground text-lg">From my visual explorations</p>
+              </ScrollReveal>
             </div>
+            
+            <ScrollReveal direction="scale" delay={100}>
+              <div className="relative group overflow-hidden rounded-xl shadow-2xl hover-lift">
+                <div className="relative aspect-[16/9] max-h-[600px]">
+                  <img 
+                    src={latestVisualReflection.image}
+                    alt={latestVisualReflection.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 className="text-2xl font-light mb-2">{latestVisualReflection.title}</h3>
+                  <p className="text-sm text-zinc-300">
+                    {latestVisualReflection.date && new Date(latestVisualReflection.date).toLocaleDateString('en-US', { 
+                      month: 'long', 
+                      day: 'numeric', 
+                      year: 'numeric' 
+                    })}
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Content Grid */}
       <section className="py-24 md:py-32 bg-background">
         <div className="container mx-auto px-6 max-w-7xl">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-20 tracking-tight">
-            Latest Work
-          </h2>
+          <ScrollReveal direction="up">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-20 tracking-tight">
+              Latest Work
+            </h2>
+          </ScrollReveal>
           
           {loading ? (
             <div className="text-center py-20">
@@ -168,7 +203,9 @@ const Index = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {content.map((item, index) => (
-                <ContentCard key={index} item={item} />
+                <ScrollReveal key={index} direction="scale" delay={index * 100}>
+                  <ContentCard item={item} />
+                </ScrollReveal>
               ))}
             </div>
           )}
@@ -200,15 +237,18 @@ const Index = () => {
       <section className="py-32 md:py-40 bg-muted/30">
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
-              Be My Mentee
-            </h2>
-            <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto">
-              30-minute conversations at the intersection of science, philosophy, and career development
-            </p>
+            <ScrollReveal direction="up">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
+                Be My Mentee
+              </h2>
+              <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto">
+                30-minute conversations at the intersection of science, philosophy, and career development
+              </p>
+            </ScrollReveal>
           </div>
 
-          <Card className="p-10 md:p-12 max-w-2xl mx-auto bg-card border-2 hover:border-accent transition-all">
+          <ScrollReveal direction="scale" delay={100}>
+            <Card className="p-10 md:p-12 max-w-2xl mx-auto bg-card border-2 hover:border-accent transition-all">
             <div className="space-y-6">
               <div>
                 <h3 className="text-2xl font-light mb-4">What We'll Explore</h3>
@@ -269,62 +309,69 @@ const Index = () => {
               </div>
             </div>
           </Card>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Support Section */}
       <section id="support" className="py-32 md:py-40 bg-[hsl(var(--cosmic-dark))] text-white">
         <div className="container mx-auto px-6 max-w-5xl">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-16 tracking-tight cosmic-glow">
-            Support
-          </h2>
+          <ScrollReveal direction="up">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-16 tracking-tight cosmic-glow">
+              Support
+            </h2>
+          </ScrollReveal>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            <Card className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
-              <h3 className="text-2xl font-light mb-6 text-white">Bitcoin</h3>
-              <div 
-                className="bg-black/50 p-6 text-xs font-mono break-all mb-6 cursor-pointer hover:bg-black/70 transition-colors text-zinc-300 rounded"
-                onClick={() => {
-                  navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
-                  toast({
-                    title: "Bitcoin address copied!",
-                    description: "The Bitcoin address has been copied to your clipboard.",
-                  });
-                }}
-                title="Click to copy"
-              >
-                3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5
-              </div>
-              <Button 
-                className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-                size="lg"
-                onClick={() => {
-                  navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
-                  toast({
-                    title: "Bitcoin address copied!",
-                    description: "The Bitcoin address has been copied to your clipboard.",
-                  });
-                }}
-              >
-                Copy Address
-              </Button>
-            </Card>
+            <ScrollReveal direction="right" delay={100}>
+              <Card className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
+                <h3 className="text-2xl font-light mb-6 text-white">Bitcoin</h3>
+                <div 
+                  className="bg-black/50 p-6 text-xs font-mono break-all mb-6 cursor-pointer hover:bg-black/70 transition-colors text-zinc-300 rounded"
+                  onClick={() => {
+                    navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
+                    toast({
+                      title: "Bitcoin address copied!",
+                      description: "The Bitcoin address has been copied to your clipboard.",
+                    });
+                  }}
+                  title="Click to copy"
+                >
+                  3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5
+                </div>
+                <Button 
+                  className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
+                  size="lg"
+                  onClick={() => {
+                    navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
+                    toast({
+                      title: "Bitcoin address copied!",
+                      description: "The Bitcoin address has been copied to your clipboard.",
+                    });
+                  }}
+                >
+                  Copy Address
+                </Button>
+              </Card>
+            </ScrollReveal>
 
-            <Card className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
-              <h3 className="text-2xl font-light mb-6 text-white">Buy Me a Coffee</h3>
-              <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
-                One-time or recurring support with card or PayPal
-              </p>
-              <Button 
-                asChild
-                size="lg"
-                className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-              >
-                <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                  Support Now
-                </a>
-              </Button>
-            </Card>
+            <ScrollReveal direction="left" delay={100}>
+              <Card className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
+                <h3 className="text-2xl font-light mb-6 text-white">Buy Me a Coffee</h3>
+                <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
+                  One-time or recurring support with card or PayPal
+                </p>
+                <Button 
+                  asChild
+                  size="lg"
+                  className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
+                >
+                  <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
+                    Support Now
+                  </a>
+                </Button>
+              </Card>
+            </ScrollReveal>
           </div>
         </div>
       </section>
