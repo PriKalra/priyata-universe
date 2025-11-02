@@ -3,13 +3,14 @@ import { Twitter, Mail, Coffee, Mic, Copy, Bitcoin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
-import { ContentCard } from "@/components/ContentCard";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
 import { MentorshipContactForm } from "@/components/MentorshipContactForm";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { StickyScrollSection } from "@/components/StickyScrollSection";
+import { FullBleedSection } from "@/components/FullBleedSection";
+import { ImmersiveContentCard } from "@/components/ImmersiveContentCard";
 import { useContentFeed } from "@/hooks/useContentFeed";
-import { useParallax } from "@/hooks/useParallax";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 
@@ -17,22 +18,23 @@ const Index = () => {
   const { content, loading } = useContentFeed();
   const [showBMCModal, setShowBMCModal] = useState(false);
   const { toast } = useToast();
-  const parallaxRef = useParallax(0.3);
 
-  // Get latest visual reflection
+  // Separate content by type for better presentation
   const latestVisualReflection = content.find(item => item.type === 'image');
+  const audioContent = content.filter(item => item.type === 'audio').slice(0, 3);
+  const writtenContent = content.filter(item => item.type === 'article' || item.type === 'blog').slice(0, 6);
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section - Full Immersive Cosmic Background */}
       <header className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[hsl(var(--cosmic-dark))]">
-        {/* Background layer - z-0 */}
-        <div ref={parallaxRef} className="absolute inset-0 z-0">
+        {/* Cosmic Background - fills entire header */}
+        <div className="absolute inset-0 z-0">
           <CosmicBackground />
         </div>
         
-        {/* Gradient overlay - z-1 */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-black/40 to-black/80 pointer-events-none" />
+        {/* Subtle gradient overlay for text readability */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-black/30 to-black/70 pointer-events-none" />
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 text-center">
           <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-lato font-light tracking-tight mb-16 md:mb-20 text-white leading-none cosmic-glow">
@@ -91,151 +93,172 @@ const Index = () => {
         </div>
       </header>
 
-      {/* About Section */}
-      <section className="py-32 md:py-40 bg-background">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div>
-              <ScrollReveal direction="up">
-                <h2 className="text-4xl md:text-5xl font-light mb-8 tracking-tight">About</h2>
-              </ScrollReveal>
-              <ScrollReveal direction="left" delay={100}>
-                <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-6">
-                  I am a poet-scientist navigating the liminal spaces between quantitative rigor and existential wonder. My work lives at the intersection of computational pharmacology and philosophical inquiry—where PBPK/QSP models meet questions of consciousness and being.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal direction="left" delay={200}>
-                <p className="text-lg md:text-xl leading-relaxed text-muted-foreground font-light mb-8">
-                  As a product manager and researcher in pharmaceutical sciences, I explore how AI and machine learning can transform drug discovery, while never losing sight of the deeper questions: What does it mean to exist? How do we navigate uncertainty? What emerges in the in-betweens?
-                </p>
-              </ScrollReveal>
-              <ScrollReveal direction="scale" delay={300}>
-                <Button 
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all"
-                >
-                  <Link to="/career">
-                    View Career Journey
-                  </Link>
-                </Button>
-              </ScrollReveal>
-            </div>
-            <div className="space-y-6">
-              <ScrollReveal direction="right" delay={200}>
-                <div className="p-6 bg-muted/30 rounded-lg">
-                  <h3 className="text-xl font-light mb-3">Research Focus</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• PBPK/QSP Modeling & Simulation</li>
-                    <li>• AI in Pharmaceutical Sciences</li>
-                    <li>• Toxicology & Drug Safety</li>
-                    <li>• Machine Learning for Drug Discovery</li>
-                  </ul>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal direction="right" delay={300}>
-                <div className="p-6 bg-muted/30 rounded-lg">
-                  <h3 className="text-xl font-light mb-3">Philosophy & Writing</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li>• Existential Philosophy</li>
-                    <li>• Consciousness Studies</li>
-                    <li>• Poetry & Narrative</li>
-                    <li>• Science Communication</li>
-                  </ul>
-                </div>
-              </ScrollReveal>
+      {/* About Section - Sticky Scroll */}
+      <StickyScrollSection
+        minHeight="150vh"
+        stickyContent={
+          <div className="w-full h-full flex items-center justify-center bg-muted/30 rounded-2xl p-8">
+            <div className="text-center space-y-6">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">
+                State of Being
+              </h2>
+              <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl">
+                Where quantitative rigor meets existential wonder
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        }
+      >
+        <ScrollReveal direction="up">
+          <h3 className="text-3xl md:text-4xl font-light mb-6">
+            Poet • Scientist • Explorer
+          </h3>
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+            I exist at the intersection of computational pharmacology, AI research, and philosophical inquiry — exploring liminal spaces where algorithms decode biological mysteries and consciousness contemplates its own emergence.
+          </p>
+        </ScrollReveal>
 
-      {/* Featured Visual Reflection Section */}
-      {latestVisualReflection && (
-        <section className="py-24 md:py-32 bg-muted/30">
-          <div className="container mx-auto px-6 max-w-4xl">
-            <div className="text-center mb-12">
-              <ScrollReveal direction="up">
-                <h2 className="text-4xl md:text-5xl font-light mb-4 tracking-tight">
-                  Latest Reflection
-                </h2>
-                <p className="text-muted-foreground text-lg">From my visual explorations</p>
-              </ScrollReveal>
+        <ScrollReveal direction="up" delay={100}>
+          <h4 className="text-2xl font-light mb-4 mt-12">Research Focus</h4>
+          <div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed">
+            <div className="flex items-start gap-3">
+              <span className="text-accent text-xl mt-1">•</span>
+              <span><strong>PBPK/QSP Modeling</strong> — Simulating drug behavior through computational frameworks</span>
             </div>
-            
-            <ScrollReveal direction="scale" delay={100}>
-              <div className="relative group overflow-hidden rounded-xl shadow-2xl hover-lift">
-                <div className="relative aspect-[16/9] max-h-[600px]">
-                  <img 
-                    src={latestVisualReflection.image}
-                    alt={latestVisualReflection.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <h3 className="text-2xl font-light mb-2">{latestVisualReflection.title}</h3>
-                  <p className="text-sm text-zinc-300">
-                    {latestVisualReflection.date && new Date(latestVisualReflection.date).toLocaleDateString('en-US', { 
-                      month: 'long', 
-                      day: 'numeric', 
-                      year: 'numeric' 
-                    })}
-                  </p>
-                </div>
+            <div className="flex items-start gap-3">
+              <span className="text-accent text-xl mt-1">•</span>
+              <span><strong>AI in Pharma</strong> — Machine learning applications in drug discovery and toxicology</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-accent text-xl mt-1">•</span>
+              <span><strong>Philosophy & Science</strong> — Exploring consciousness, emergence, and the nature of being</span>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal direction="up" delay={200}>
+          <div className="mt-12">
+            <Button 
+              asChild 
+              size="lg"
+              className="bg-foreground text-background hover:bg-foreground/90 transition-all"
+            >
+              <Link to="/career">
+                View Career Journey
+              </Link>
+            </Button>
+          </div>
+        </ScrollReveal>
+      </StickyScrollSection>
+
+      {/* Featured Visual Reflection - Full Bleed Immersive */}
+      {latestVisualReflection && (
+        <FullBleedSection 
+          backgroundImage={latestVisualReflection.image}
+          overlay={true}
+          overlayOpacity={0.5}
+          minHeight="100vh"
+        >
+          <ScrollReveal direction="scale">
+            <div className="text-center">
+              <p className="text-sm uppercase tracking-widest mb-4 text-white/80">Latest Visual Reflection</p>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight">
+                {latestVisualReflection.title}
+              </h2>
+              <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+                {latestVisualReflection.excerpt}
+              </p>
+              {latestVisualReflection.date && (
+                <p className="text-sm text-white/70">
+                  {new Date(latestVisualReflection.date).toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                  })}
+                </p>
+              )}
+            </div>
+          </ScrollReveal>
+        </FullBleedSection>
+      )}
+
+      {/* Audio Content Section */}
+      {audioContent.length > 0 && (
+        <section className="py-24 md:py-32 bg-muted/20">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <ScrollReveal direction="up">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
+                  Audio Reflections
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Listen to conversations exploring the intersections of science, philosophy, and consciousness
+                </p>
               </div>
             </ScrollReveal>
+
+            <div className="space-y-8 max-w-4xl mx-auto">
+              {audioContent.map((item, index) => (
+                <ImmersiveContentCard 
+                  key={index} 
+                  item={item} 
+                  layout={index === 0 ? 'full' : 'card'}
+                />
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Button 
+                size="lg"
+                variant="outline"
+                onClick={() => setShowBMCModal(true)}
+                className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
+              >
+                <Coffee className="h-4 w-4 mr-2" />
+                Browse All Audio Posts
+              </Button>
+            </div>
           </div>
         </section>
       )}
 
-      {/* Content Grid */}
-      <section className="py-24 md:py-32 bg-background">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <ScrollReveal direction="up">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-20 tracking-tight">
-              Latest Work
-            </h2>
-          </ScrollReveal>
-          
-          {loading ? (
-            <div className="text-center py-20">
-              <p className="text-muted-foreground">Loading content...</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {content.map((item, index) => (
-                <ScrollReveal key={index} direction="scale" delay={index * 100}>
-                  <ContentCard item={item} />
-                </ScrollReveal>
-              ))}
-            </div>
-          )}
+      {/* Written Content Section */}
+      {writtenContent.length > 0 && (
+        <section className="py-24 md:py-32 bg-background">
+          <div className="container mx-auto px-6 max-w-7xl">
+            <ScrollReveal direction="up">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-20 tracking-tight">
+                Written Work
+              </h2>
+            </ScrollReveal>
+            
+            {loading ? (
+              <div className="text-center py-20">
+                <p className="text-muted-foreground">Loading content...</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {writtenContent.map((item, index) => (
+                  <ImmersiveContentCard key={index} item={item} layout="card" />
+                ))}
+              </div>
+            )}
 
-          <div className="text-center mt-16 flex gap-4 justify-center flex-wrap">
-            <Button 
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
-            >
-              <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
-                All Blog Posts
-              </a>
-            </Button>
-            <Button 
-              size="lg"
-              variant="outline"
-              onClick={() => setShowBMCModal(true)}
-              className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
-            >
-              <Coffee className="h-4 w-4 mr-2" />
-              Browse All Audio Posts
-            </Button>
+            <div className="text-center mt-16">
+              <Button 
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
+              >
+                <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
+                  All Blog Posts
+                </a>
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       {/* Be My Mentee Section */}
       <section className="py-32 md:py-40 bg-muted/30">
         <div className="container mx-auto px-6 max-w-4xl">

@@ -234,18 +234,45 @@ All colors MUST be HSL.
     transform: scale(1);
   }
 
-  /* Respect reduced motion preference */
-  @media (prefers-reduced-motion: reduce) {
-    .scroll-reveal,
-    .scroll-reveal-up,
-    .scroll-reveal-down,
-    .scroll-reveal-left,
-    .scroll-reveal-right,
-    .scroll-reveal-scale {
-      animation: none !important;
-      transition: none !important;
-      opacity: 1 !important;
-      transform: none !important;
+  /* Scrollytelling enhancements */
+  .story-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Smooth parallax scrolling */
+  @supports (background-attachment: fixed) {
+    .parallax-bg {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
+  }
+
+  /* Progress indicator for scroll */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, hsl(var(--accent)), hsl(var(--cosmic-glow-secondary)));
+    transform-origin: left;
+    z-index: 1000;
+  }
+
+  /* Immersive text overlays */
+  .text-overlay {
+    position: relative;
+    z-index: 10;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Responsive vertical rhythm */
+  .story-rhythm > * + * {
+    margin-top: clamp(2rem, 5vw, 4rem);
   }
 }
