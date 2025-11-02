@@ -3,13 +3,59 @@
   "content": [
     {
       "type": "image",
+      "title": "Recursive Surrender (Seed: 12345)",
+      "excerpt": "A quantum emergence visualization exploring the intersection of computational science and consciousness",
+      "link": "https://buymeacoffee.com/priyata/recursive-surrender-seed-12345",
+      "source": "Buy Me a Coffee",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2025/10/30/163350_1761842041931_quantum_emergence_1.jpg.jpeg",
+      "date": "2025-10-30",
+      "size": "large"
+    },
+    {
+      "type": "image",
       "title": "Suffering",
       "excerpt": "A visual reflection on the intersection of computational science and human experience",
-      "link": "https://buymeacoffee.com/priyata",
+      "link": "https://buymeacoffee.com/priyata/suffering-4118280",
       "source": "Buy Me a Coffee",
-      "image": "/priyata-universe/assets/suffering.jpg",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2025/10/19/162258_1760890979453_1000118344.jpg.jpeg",
       "date": "2025-10-19",
       "size": "large"
+    },
+    {
+      "type": "blog",
+      "title": "Fall in love with the starting line",
+      "excerpt": "Holding on to the identity that we have narrated to ourselves- is rather obvious. Whenever we are put in the position of start over- there is a lot of friction which further reflects in the slowness of an organization at accepting change.",
+      "link": "https://world.hey.com/priyata/fall-in-love-with-the-starting-line-cc9771b4",
+      "source": "Hey World",
+      "date": "2025-10-28",
+      "size": "small"
+    },
+    {
+      "type": "blog",
+      "title": "The universal reach of creating",
+      "excerpt": "Recently, I have pivoted into the role of Product manager and wow, the clichés about my role are popping up left and right, turning into real conversations! One being that Product manager and Project manager are the same- the janitors and herders of people.",
+      "link": "https://world.hey.com/priyata/the-universal-reach-of-creating-490a7fd6",
+      "source": "Hey World",
+      "date": "2025-10-25",
+      "size": "small"
+    },
+    {
+      "type": "blog",
+      "title": "Why are we living longer but feeling worse",
+      "excerpt": "The Paradox of Longevity: What if living to 85, like the average Japanese citizen, means spending your last decade unwell? At Eurotox 2025, George P. Chrousos unveiled a striking paradox: we're gaining years but losing vitality. Could mastering stress hold the key?",
+      "link": "https://world.hey.com/priyata/why-are-we-living-longer-but-feeling-worse-734d3778",
+      "source": "Hey World",
+      "date": "2025-10-22",
+      "size": "small"
+    },
+    {
+      "type": "blog",
+      "title": "Ego control and sincerity in pharma science: an epistemological dissection",
+      "excerpt": "Sometimes, when I notice carefully, the environment in Pharma, I realize than more than being about truth, the entire industry is about memes. Step inside any scientific team, alongside lab protocols and data dashboards, subtler games are a part of the scenario.",
+      "link": "https://world.hey.com/priyata/ego-control-and-sincerity-in-pharma-science-an-epistemological-dissection-cef99a5d",
+      "source": "Hey World",
+      "date": "2025-10-20",
+      "size": "small"
     },
     {
       "type": "audio",
@@ -18,10 +64,10 @@
       "link": "https://buymeacoffee.com/priyata/paper2agent-reimagining-research-papers-as-interactive-reliable-ai-agents",
       "source": "Buy Me a Coffee",
       "audioLength": "34:00",
-      "audioUrl": "https://cdn.buymeacoffee.com/uploads/project_updates/2025/10/30d206c46073aac17f7c86b0e3c17b45.mp3",
-      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2025/10/30d206c46073aac17f7c86b0e3c17b45.jpg",
-      "date": "2025-10-06",
-      "views": 54,
+      "audioUrl": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17f7c86b0e3c17b45.mp3",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17f7c86b0e3c17b45.jpg",
+      "date": "2024-10-06",
+      "views": 111,
       "size": "medium"
     },
     {
@@ -31,9 +77,9 @@
       "link": "https://buymeacoffee.com/priyata/large-language-models-data-extraction-toxicology-implications-lessons-learned",
       "source": "Buy Me a Coffee",
       "audioLength": "18:54",
-      "audioUrl": "https://cdn.buymeacoffee.com/uploads/project_updates/2025/09/203b4664c1490ef46d800870a959b3c5.mp3",
-      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2025/09/203b4664c1490ef46d800870a959b3c5.jpg",
-      "date": "2025-09-09",
+      "audioUrl": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/09/203b4664c1490ef46d800870a959b3c5.mp3",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/09/203b4664c1490ef46d800870a959b3c5.jpg",
+      "date": "2024-09-09",
       "views": 84,
       "size": "medium"
     },
@@ -44,9 +90,9 @@
       "link": "https://buymeacoffee.com/priyata/machine-learning-automation-pkpd-modelling",
       "source": "Buy Me a Coffee",
       "audioLength": "20:09",
-      "audioUrl": "https://cdn.buymeacoffee.com/uploads/project_updates/2025/08/4a7ec3e8b391f35c0a4ded98a734b078.mp3",
-      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2025/08/4a7ec3e8b391f35c0a4ded98a734b078.jpg",
-      "date": "2025-08-07",
+      "audioUrl": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/08/4a7ec3e8b391f35c0a4ded98a734b078.mp3",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/08/4a7ec3e8b391f35c0a4ded98a734b078.jpg",
+      "date": "2024-08-07",
       "views": 148,
       "size": "medium"
     }

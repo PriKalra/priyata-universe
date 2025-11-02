@@ -138,11 +138,21 @@ function getBMCPosts() {
   return [
     {
       type: "image",
+      title: "Recursive Surrender (Seed: 12345)",
+      excerpt: "A quantum emergence visualization exploring the intersection of computational science and consciousness",
+      link: "https://buymeacoffee.com/priyata/recursive-surrender-seed-12345",
+      source: "Buy Me a Coffee",
+      image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2025/10/30/163350_1761842041931_quantum_emergence_1.jpg.jpeg",
+      date: "2025-10-30",
+      size: "large"
+    },
+    {
+      type: "image",
       title: "Suffering",
       excerpt: "A visual reflection on the intersection of computational science and human experience",
-      link: "https://buymeacoffee.com/priyata",
+      link: "https://buymeacoffee.com/priyata/suffering-4118280",
       source: "Buy Me a Coffee",
-      image: "/priyata-universe/assets/suffering.jpg",
+      image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2025/10/19/162258_1760890979453_1000118344.jpg.jpeg",
       date: "2025-10-19",
       size: "large"
     },
@@ -154,9 +164,9 @@ function getBMCPosts() {
       source: "Buy Me a Coffee",
       audioLength: "34:00",
       audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17f7c86b0e3c17b45.mp3",
-      image: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17f7c86b0e3c17b45.jpg",
+      image: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17b7c86b0e3c17b45.jpg",
       date: "2024-10-06",
-      views: 54,
+      views: 111,
       size: "medium"
     },
     {
