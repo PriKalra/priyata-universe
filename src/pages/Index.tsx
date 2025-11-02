@@ -22,7 +22,8 @@ const Index = () => {
   // Separate content by type for better presentation
   const latestVisualReflection = content.find(item => item.type === 'image');
   const audioContent = content.filter(item => item.type === 'audio').slice(0, 3);
-  const writtenContent = content.filter(item => item.type === 'article' || item.type === 'blog').slice(0, 6);
+  const blogPosts = content.filter(item => item.type === 'blog').slice(0, 6);
+  const articles = content.filter(item => item.type === 'article').slice(0, 3);
 
   return (
     <div className="min-h-screen">
@@ -222,13 +223,54 @@ const Index = () => {
         </section>
       )}
 
-      {/* Written Content Section */}
-      {writtenContent.length > 0 && (
+      {/* Blog Posts Section - Hey World */}
+      {blogPosts.length > 0 && (
         <section className="py-24 md:py-32 bg-background">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <ScrollReveal direction="up">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
+                  Latest from Hey World
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Reflections on science, philosophy, and the human condition
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="space-y-6 max-w-4xl mx-auto">
+              {blogPosts.map((item, index) => (
+                <ImmersiveContentCard 
+                  key={index} 
+                  item={item} 
+                  layout="minimal"
+                />
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Button 
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
+              >
+                <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
+                  Read All Blog Posts
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Articles Section (if any exist) */}
+      {articles.length > 0 && (
+        <section className="py-24 md:py-32 bg-muted/20">
           <div className="container mx-auto px-6 max-w-7xl">
             <ScrollReveal direction="up">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-20 tracking-tight">
-                Written Work
+                Research & Articles
               </h2>
             </ScrollReveal>
             
@@ -238,24 +280,11 @@ const Index = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {writtenContent.map((item, index) => (
+                {articles.map((item, index) => (
                   <ImmersiveContentCard key={index} item={item} layout="card" />
                 ))}
               </div>
             )}
-
-            <div className="text-center mt-16">
-              <Button 
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-zinc-300 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-200"
-              >
-                <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
-                  All Blog Posts
-                </a>
-              </Button>
-            </div>
           </div>
         </section>
       )}

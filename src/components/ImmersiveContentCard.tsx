@@ -1,7 +1,6 @@
 import { ExternalLink, Mic, Image as ImageIcon } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AudioPlayer } from "./AudioPlayer";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface ContentItem {
@@ -71,20 +70,21 @@ export const ImmersiveContentCard = ({
               {item.excerpt}
             </p>
 
-            {item.type === 'audio' && item.audioUrl && (
-              <div className="max-w-md mb-6">
-                <AudioPlayer audioUrl={item.audioUrl} title={item.title} />
-              </div>
-            )}
-
             <a 
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-white hover:text-accent transition-colors text-lg group"
+              className="inline-flex items-center gap-2 text-white hover:text-accent transition-all duration-200 text-xl font-medium border border-white/30 hover:border-accent px-6 py-3 rounded-lg hover:scale-105 group"
             >
-              {item.type === 'audio' ? 'Listen on Buy Me a Coffee' : 'Read Full Article'}
-              <ExternalLink className="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1" />
+              {item.type === 'audio' ? (
+                <>
+                  <Mic className="h-5 w-5" />
+                  Listen on Buy Me a Coffee
+                </>
+              ) : (
+                'Read Full Article'
+              )}
+              <ExternalLink className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </div>
@@ -92,25 +92,25 @@ export const ImmersiveContentCard = ({
     );
   }
 
-  // Minimal layout for inline content
+  // Minimal layout for inline content (optimized for blog posts)
   if (layout === 'minimal') {
     return (
       <ScrollReveal direction="up">
-        <div className="py-8 border-b border-border last:border-0">
+        <div className="py-8 border-b border-border last:border-0 hover:bg-muted/30 transition-colors rounded-lg px-4 -mx-4">
           <div className="flex items-start justify-between gap-6">
             {item.image && (
-              <div className="w-32 h-32 flex-shrink-0 rounded-lg overflow-hidden">
+              <div className="w-40 h-40 flex-shrink-0 rounded-lg overflow-hidden">
                 <img 
                   src={item.image} 
                   alt={item.title}
                   loading="lazy"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
             )}
             
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-3 mb-3">
                 <Badge variant="secondary" className="text-xs">
                   {item.source}
                 </Badge>
@@ -120,13 +120,22 @@ export const ImmersiveContentCard = ({
                     {item.audioLength}
                   </span>
                 )}
+                {item.date && (
+                  <span className="text-xs text-muted-foreground">
+                    {new Date(item.date).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      day: 'numeric', 
+                      year: 'numeric' 
+                    })}
+                  </span>
+                )}
               </div>
               
-              <h3 className="text-xl font-light mb-2 leading-tight">
+              <h3 className="text-2xl font-light mb-3 leading-tight hover:text-accent transition-colors">
                 {item.title}
               </h3>
               
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+              <p className="text-base text-muted-foreground mb-4 leading-relaxed">
                 {item.excerpt}
               </p>
 
@@ -134,19 +143,20 @@ export const ImmersiveContentCard = ({
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm hover:text-accent transition-colors inline-flex items-center group"
+                className="text-sm font-medium hover:text-accent transition-colors inline-flex items-center gap-2 group"
               >
-                {item.type === 'audio' ? 'Listen' : 'Read'}
-                <ExternalLink className="h-3 w-3 ml-1 transition-transform group-hover:translate-x-0.5" />
+                {item.type === 'audio' ? (
+                  <>
+                    <Mic className="h-4 w-4" />
+                    Listen on Buy Me a Coffee
+                  </>
+                ) : (
+                  'Read Post'
+                )}
+                <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
           </div>
-
-          {item.type === 'audio' && item.audioUrl && layout === 'minimal' && (
-            <div className="mt-4 max-w-md">
-              <AudioPlayer audioUrl={item.audioUrl} title={item.title} />
-            </div>
-          )}
         </div>
       </ScrollReveal>
     );
@@ -198,19 +208,22 @@ export const ImmersiveContentCard = ({
             {item.excerpt}
           </p>
 
-          {item.type === 'audio' && item.audioUrl && (
-            <AudioPlayer audioUrl={item.audioUrl} title={item.title} />
-          )}
-
           <div className="flex items-center justify-between pt-6 border-t mt-6">
             <a 
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm hover:text-accent transition-colors inline-flex items-center group/link"
+              className="text-sm font-medium hover:text-accent transition-colors inline-flex items-center gap-2 group/link"
             >
-              {item.type === 'audio' ? 'Listen on Buy Me a Coffee' : 'Read More'}
-              <ExternalLink className="h-3.5 w-3.5 ml-2 transition-transform group-hover/link:translate-x-0.5" />
+              {item.type === 'audio' ? (
+                <>
+                  <Mic className="h-4 w-4" />
+                  Listen on Buy Me a Coffee
+                </>
+              ) : (
+                'Read More'
+              )}
+              <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
             </a>
           </div>
         </div>
