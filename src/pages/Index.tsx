@@ -22,6 +22,7 @@ const Index = () => {
   // Get latest visual reflection
   const latestVisualReflection = content.find(item => item.type === 'image');
 
+  return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <header className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[hsl(var(--cosmic-dark))]">
