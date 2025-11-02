@@ -1,6 +1,16 @@
 {
-  "lastUpdated": "2025-10-20T00:00:00.000Z",
+  "lastUpdated": "2025-11-02T00:00:00.000Z",
   "content": [
+    {
+      "type": "image",
+      "title": "Suffering",
+      "excerpt": "A visual reflection on the intersection of computational science and human experience",
+      "link": "https://buymeacoffee.com/priyata",
+      "source": "Buy Me a Coffee",
+      "image": "/priyata-universe/assets/suffering.jpg",
+      "date": "2025-10-19",
+      "size": "large"
+    },
     {
       "type": "audio",
       "title": "Paper2Agent: Reimagining Research Papers",

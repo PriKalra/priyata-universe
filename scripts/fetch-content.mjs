@@ -142,7 +142,7 @@ function getBMCPosts() {
       excerpt: "A visual reflection on the intersection of computational science and human experience",
       link: "https://buymeacoffee.com/priyata",
       source: "Buy Me a Coffee",
-      image: "/src/assets/suffering.jpg",
+      image: "/priyata-universe/assets/suffering.jpg",
       date: "2025-10-19",
       size: "large"
     },
