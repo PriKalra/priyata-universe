@@ -627,9 +627,9 @@ const Career = () => {
           <div className="mt-24 pt-16 border-t">
             <h2 className="text-4xl md:text-5xl font-light mb-12 tracking-tight">Selected Publications</h2>
             
-            <div className="space-y-6">
-              <div className="border-l-2 border-accent pl-6">
-                <p className="text-muted-foreground mb-2">
+            <div className="space-y-8 md:space-y-6">
+              <div className="border-l-4 border-accent pl-6 py-4 hover:bg-accent/5 transition-colors rounded-r-lg">
+                <p className="text-foreground/80 mb-3">
                   <span className="font-medium text-foreground">Kalra P, Kister B, Fendt R, Köster M, Pulverer J, Sahle S, et al.</span> (2025). 
                   A comparative computational analysis of IFN-alpha pharmacokinetics and its induced cellular response in mice and humans. 
                   <em className="text-accent"> PLoS Computational Biology</em>, 21(9): e1013509.
@@ -638,14 +638,15 @@ const Career = () => {
                   href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1013509" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                  aria-label="View 2025 PLoS Computational Biology publication"
+                  className="text-accent hover:text-accent/80 hover:underline text-base font-medium inline-flex items-center gap-2 mt-2 transition-colors"
                 >
-                  View Publication <ExternalLink className="h-3 w-3" />
+                  View Publication <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
 
-              <div className="border-l-2 border-muted pl-6">
-                <p className="text-muted-foreground mb-2">
+              <div className="border-l-4 border-accent pl-6 py-4 hover:bg-accent/5 transition-colors rounded-r-lg">
+                <p className="text-foreground/80 mb-3">
                   <span className="font-medium text-foreground">Botham P, Holland D, Fuart Gatnik M, et al.</span> (2025). 
                   Framework for classifying chemicals for repeat dose toxicity using New Approach Methodologies (NAMs) data. 
                   <em className="text-accent"> Archives of Toxicology</em>, 99(8), 3223-3246.
@@ -654,14 +655,15 @@ const Career = () => {
                   href="https://pubmed.ncbi.nlm.nih.gov/40411533/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                  aria-label="View 2025 Archives of Toxicology article on PubMed"
+                  className="text-accent hover:text-accent/80 hover:underline text-base font-medium inline-flex items-center gap-2 mt-2 transition-colors"
                 >
-                  View on PubMed <ExternalLink className="h-3 w-3" />
+                  View on PubMed <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
 
-              <div className="border-l-2 border-muted pl-6">
-                <p className="text-muted-foreground mb-2">
+              <div className="border-l-4 border-accent pl-6 py-4 hover:bg-accent/5 transition-colors rounded-r-lg">
+                <p className="text-foreground/80 mb-3">
                   <span className="font-medium text-foreground">Kalra P, et al.</span> (2022). 
                   Stochastic dynamics of Type-I interferon responses. 
                   <em className="text-accent"> PLOS Computational Biology</em>.
@@ -670,14 +672,15 @@ const Career = () => {
                   href="https://pubmed.ncbi.nlm.nih.gov/36269758/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                  aria-label="View 2022 PLOS Computational Biology article on PubMed"
+                  className="text-accent hover:text-accent/80 hover:underline text-base font-medium inline-flex items-center gap-2 mt-2 transition-colors"
                 >
-                  View on PubMed <ExternalLink className="h-3 w-3" />
+                  View on PubMed <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
 
-              <div className="border-l-2 border-muted pl-6">
-                <p className="text-muted-foreground mb-2">
+              <div className="border-l-4 border-accent pl-6 py-4 hover:bg-accent/5 transition-colors rounded-r-lg">
+                <p className="text-foreground/80 mb-3">
                   <span className="font-medium text-foreground">Kalra P, et al.</span> (2019). 
                   Quantitative systems pharmacology of interferon alpha administration: A multi-scale approach. 
                   <em className="text-accent"> PLOS ONE</em>.
@@ -686,9 +689,10 @@ const Career = () => {
                   href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6374012/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-accent hover:underline text-sm inline-flex items-center gap-1"
+                  aria-label="View 2019 PLOS ONE article on PubMed Central"
+                  className="text-accent hover:text-accent/80 hover:underline text-base font-medium inline-flex items-center gap-2 mt-2 transition-colors"
                 >
-                  View on PMC <ExternalLink className="h-3 w-3" />
+                  View on PMC <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
             </div>
