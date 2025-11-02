@@ -26,11 +26,13 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <header className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[hsl(var(--cosmic-dark))]">
-        <div ref={parallaxRef}>
+        {/* Background layer - z-0 */}
+        <div ref={parallaxRef} className="absolute inset-0 z-0">
           <CosmicBackground />
         </div>
         
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80 pointer-events-none" />
+        {/* Gradient overlay - z-1 */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-black/40 to-black/80 pointer-events-none" />
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 text-center">
           <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-lato font-light tracking-tight mb-16 md:mb-20 text-white leading-none cosmic-glow">
