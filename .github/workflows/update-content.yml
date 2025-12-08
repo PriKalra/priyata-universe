@@ -3,8 +3,8 @@ name: Update Content Feed
 on:
   workflow_dispatch: {}
   schedule:
-    # Runs daily at 08:30 UTC (2:00–2:30 PM IST). Tweak as you like.
-    - cron: "30 8 * * *"
+    # Runs every 3 days at 08:30 UTC
+    - cron: "30 8 */3 * *"
 
 permissions:
   contents: write
