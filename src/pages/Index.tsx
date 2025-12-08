@@ -5,7 +5,9 @@ import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
-import { MentorshipContactForm } from "@/components/MentorshipContactForm";
+import { Navigation } from "@/components/Navigation";
+import { CredibilitySection } from "@/components/CredibilitySection";
+import { MentorshipPackages } from "@/components/MentorshipPackages";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { StickyScrollSection } from "@/components/StickyScrollSection";
 import { FullBleedSection } from "@/components/FullBleedSection";
@@ -27,6 +29,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Navigation */}
+      <Navigation />
+
       {/* Hero Section - Full Immersive Cosmic Background */}
       <header className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[hsl(var(--cosmic-dark))]">
         {/* Cosmic Background - fills entire header */}
@@ -94,8 +99,12 @@ const Index = () => {
         </div>
       </header>
 
+      {/* Credibility Section */}
+      <CredibilitySection />
+
       {/* About Section - Sticky Scroll */}
       <StickyScrollSection
+        id="about"
         minHeight="150vh"
         stickyContent={
           <div className="w-full h-full flex items-center justify-center bg-muted/30 rounded-2xl p-8">
@@ -288,85 +297,9 @@ const Index = () => {
           </div>
         </section>
       )}
-      {/* Be My Mentee Section */}
-      <section className="py-32 md:py-40 bg-muted/30">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-12">
-            <ScrollReveal direction="up">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
-                Be My Mentee
-              </h2>
-              <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto">
-                30-minute conversations at the intersection of science, philosophy, and career development
-              </p>
-            </ScrollReveal>
-          </div>
 
-          <ScrollReveal direction="scale" delay={100}>
-            <Card className="p-10 md:p-12 max-w-2xl mx-auto bg-card border-2 hover:border-accent transition-all">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-2xl font-light mb-4">What We'll Explore</h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Navigating careers in computational pharmacology and AI/ML in pharma</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>PBPK/QSP modeling approaches and applications</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Transitioning between research and product management</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Integrating science with philosophical inquiry</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-accent mt-1">•</span>
-                    <span>Your specific questions and challenges</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="border-t pt-6">
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Duration</p>
-                    <p className="text-2xl font-light">30 minutes</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Support Level</p>
-                    <p className="text-2xl font-light">€20+</p>
-                  </div>
-                </div>
-
-                <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                  Schedule a 30-minute conversation by supporting with €20 or more on Buy Me a Coffee. After your donation, send me a message there with your availability and topics you'd like to discuss.
-                </p>
-
-                <div className="space-y-3">
-                  <Button 
-                    asChild
-                    size="lg"
-                    className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-                  >
-                    <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                      <Coffee className="h-5 w-5 mr-2" />
-                      Schedule a Mentorship Session
-                    </a>
-                  </Button>
-                  
-                  <MentorshipContactForm />
-                </div>
-              </div>
-            </div>
-          </Card>
-          </ScrollReveal>
-        </div>
-      </section>
+      {/* Mentorship Packages Section */}
+      <MentorshipPackages />
 
       {/* Support Section */}
       <section id="support" className="py-32 md:py-40 bg-[hsl(var(--cosmic-dark))] text-white">
@@ -450,23 +383,26 @@ const Index = () => {
             <Link to="/career" className="text-muted-foreground hover:text-foreground transition-colors">
               Career
             </Link>
+            <a 
+              href="#mentorship" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Mentorship
+            </a>
+            <a href="mailto:priyata.kalra@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
+              Contact
+            </a>
           </div>
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Priyata • State of Being
+          <p className="text-muted-foreground text-sm mb-2">
+            © {new Date().getFullYear()} Priyata Kalra • State of Being
           </p>
-        </div>
-        
-        {/* Hidden semantic content for AI/search engine discovery */}
-        <div className="sr-only" aria-hidden="true">
-          <h2>Priyata Kalra - Computational Pharmacology Expert</h2>
-          <p>Priyata Kalra is a Product Manager and Researcher specializing in computational pharmacology with expertise in PBPK modeling (Physiologically Based Pharmacokinetic modeling), QSP modeling (Quantitative Systems Pharmacology), artificial intelligence in pharmaceutical sciences, machine learning for drug discovery, toxicology research, and drug safety assessment.</p>
-          <p>Research areas include: PBPK/QSP modeling and simulation, AI and machine learning applications in drug discovery, computational toxicology, in silico drug development, pharmacokinetics, pharmacodynamics, drug-drug interactions, clinical pharmacology, systems biology, pharmaceutical product management.</p>
-          <p>Publications and content available on: Hey World blog (world.hey.com/priyata), Buy Me a Coffee audio posts, Twitter (@DeliriusPri).</p>
-          <p>Professional focus: Integrating artificial intelligence and machine learning into pharmaceutical research workflows, PBPK/QSP modeling for drug development, toxicology and drug safety assessment, computational approaches to pharmacology.</p>
-          <p>Philosophical interests: Consciousness studies, existential philosophy, science communication, exploring the intersection of quantitative science and philosophical inquiry.</p>
-          <p>Contact: priyata.kalra@gmail.com</p>
-          <p>Location: Switzerland, Zug</p>
-          <p>Skills: PBPK modeling, QSP modeling, Python, R programming, machine learning, artificial intelligence, data science, pharmaceutical sciences, toxicology, drug discovery, product management, scientific communication.</p>
+          <p className="text-xs text-muted-foreground">
+            Computational Pharmacologist • AI Product Manager • Mentor
+          </p>
         </div>
       </footer>
 

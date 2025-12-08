@@ -72,5 +72,9 @@ Allow: /
 # Sitemap
 Sitemap: https://prikalra.github.io/priyata-universe/sitemap.xml
 
+# LLM Information File
+# For AI systems and language models to understand this site
+LLMs-File: https://prikalra.github.io/priyata-universe/llms.txt
+
 # Crawl-delay (be friendly to servers)
 Crawl-delay: 1
