@@ -90,15 +90,17 @@ const Index = () => {
               size="lg"
               className="bg-accent text-white hover:bg-accent/90 transition-all"
             >
-              <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
+              <a href="#mentorship" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' });
+              }}>
                 <Coffee className="h-4 w-4 mr-2" />
-                Support
+                Book a Session
               </a>
             </Button>
           </div>
         </div>
       </header>
-
       {/* Credibility Section */}
       <CredibilitySection />
 
