@@ -4,12 +4,14 @@ interface StickyScrollSectionProps {
   stickyContent: ReactNode;
   children: ReactNode;
   minHeight?: string;
+  id?: string;
 }
 
 export const StickyScrollSection = ({ 
   stickyContent, 
   children,
-  minHeight = "100vh"
+  minHeight = "100vh",
+  id
 }: StickyScrollSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
@@ -41,6 +43,7 @@ export const StickyScrollSection = ({
   return (
     <section 
       ref={sectionRef}
+      id={id}
       className="relative"
       style={{ minHeight }}
     >
