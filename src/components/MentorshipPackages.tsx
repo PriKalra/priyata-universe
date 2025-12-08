@@ -1,8 +1,10 @@
-import { Coffee, Clock, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ScrollReveal } from './ScrollReveal';
 import { MentorshipContactForm } from './MentorshipContactForm';
+import { BookingModal } from './BookingModal';
 
 const packages = [
   {
@@ -54,7 +56,11 @@ const targetAudience = [
 ];
 
 export const MentorshipPackages = () => {
+  const [showBooking, setShowBooking] = useState(false);
+
   return (
+    <>
+      <BookingModal isOpen={showBooking} onClose={() => setShowBooking(false)} />
     <section id="mentorship" className="py-32 md:py-40 bg-background">
       <div className="container mx-auto px-6 max-w-6xl">
         <ScrollReveal direction="up">
@@ -110,17 +116,15 @@ export const MentorshipPackages = () => {
                 </ul>
 
                 <Button
-                  asChild
+                  onClick={() => setShowBooking(true)}
                   className={`w-full ${
                     pkg.popular 
                       ? 'bg-accent text-accent-foreground hover:bg-accent/90' 
                       : 'bg-foreground text-background hover:bg-foreground/90'
                   }`}
                 >
-                  <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                    <Coffee className="h-4 w-4 mr-2" />
-                    Book Now
-                  </a>
+                  <Calendar className="h-4 w-4 mr-2" />
+                  Book Session
                 </Button>
               </Card>
             </ScrollReveal>
@@ -154,6 +158,7 @@ export const MentorshipPackages = () => {
           </div>
         </ScrollReveal>
       </div>
-    </section>
+      </section>
+    </>
   );
 };

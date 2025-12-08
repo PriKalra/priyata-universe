@@ -1,11 +1,28 @@
-import { useState, useEffect } from 'react';
-import { Coffee, Menu, X } from 'lucide-react';
+import { useState, useEffect, createContext, useContext } from 'react';
+import { Calendar, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
+import { BookingModal } from './BookingModal';
+
+// Context to allow opening booking modal from anywhere
+interface BookingContextType {
+  openBooking: () => void;
+}
+
+const BookingContext = createContext<BookingContextType | null>(null);
+
+export const useBooking = () => {
+  const context = useContext(BookingContext);
+  if (!context) {
+    throw new Error('useBooking must be used within BookingProvider');
+  }
+  return context;
+};
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showBooking, setShowBooking] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -29,126 +46,131 @@ export const Navigation = () => {
     }
   };
 
+  const handleBookClick = () => {
+    setIsMobileMenuOpen(false);
+    setShowBooking(true);
+  };
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className={`text-lg font-light tracking-wide transition-colors ${
-              isScrolled ? 'text-foreground' : 'text-white'
-            }`}
-          >
-            Priyata Kalra
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection('about')}
-              className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
-                isScrolled ? 'text-foreground' : 'text-white/90'
+    <>
+      <BookingModal isOpen={showBooking} onClose={() => setShowBooking(false)} />
+      
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link 
+              to="/" 
+              className={`text-lg font-light tracking-wide transition-colors ${
+                isScrolled ? 'text-foreground' : 'text-white'
               }`}
             >
-              About
-            </button>
-            <Link
-              to="/career"
-              className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
-                isScrolled ? 'text-foreground' : 'text-white/90'
-              }`}
-            >
-              Career
+              Priyata Kalra
             </Link>
-            <button
-              onClick={() => scrollToSection('mentorship')}
-              className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
-                isScrolled ? 'text-foreground' : 'text-white/90'
-              }`}
-            >
-              Mentorship
-            </button>
-            <button
-              onClick={() => scrollToSection('support')}
-              className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
-                isScrolled ? 'text-foreground' : 'text-white/90'
-              }`}
-            >
-              Contact
-            </button>
-            <Button
-              asChild
-              size="sm"
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
-            >
-              <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                <Coffee className="h-4 w-4 mr-2" />
-                Book a Session
-              </a>
-            </Button>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 transition-colors ${
-              isScrolled ? 'text-foreground' : 'text-white'
-            }`}
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border/50 bg-background/95 backdrop-blur-md">
-            <div className="flex flex-col gap-4">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
               <button
                 onClick={() => scrollToSection('about')}
-                className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
+                  isScrolled ? 'text-foreground' : 'text-white/90'
+                }`}
               >
                 About
               </button>
               <Link
                 to="/career"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm font-light tracking-wide text-foreground hover:text-accent px-2 py-2"
+                className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
+                  isScrolled ? 'text-foreground' : 'text-white/90'
+                }`}
               >
                 Career
               </Link>
               <button
                 onClick={() => scrollToSection('mentorship')}
-                className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
+                  isScrolled ? 'text-foreground' : 'text-white/90'
+                }`}
               >
                 Mentorship
               </button>
               <button
                 onClick={() => scrollToSection('support')}
-                className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
+                  isScrolled ? 'text-foreground' : 'text-white/90'
+                }`}
               >
-                Contact
+                Support
               </button>
               <Button
-                asChild
+                onClick={handleBookClick}
                 size="sm"
-                className="bg-accent text-accent-foreground hover:bg-accent/90 w-full"
+                className="bg-accent text-accent-foreground hover:bg-accent/90"
               >
-                <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                  <Coffee className="h-4 w-4 mr-2" />
-                  Book a Session
-                </a>
+                <Calendar className="h-4 w-4 mr-2" />
+                Book a Session
               </Button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`md:hidden p-2 transition-colors ${
+                isScrolled ? 'text-foreground' : 'text-white'
+              }`}
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
-        )}
-      </div>
-    </nav>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden py-4 border-t border-border/50 bg-background/95 backdrop-blur-md">
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                >
+                  About
+                </button>
+                <Link
+                  to="/career"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-sm font-light tracking-wide text-foreground hover:text-accent px-2 py-2"
+                >
+                  Career
+                </Link>
+                <button
+                  onClick={() => scrollToSection('mentorship')}
+                  className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                >
+                  Mentorship
+                </button>
+                <button
+                  onClick={() => scrollToSection('support')}
+                  className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                >
+                  Support
+                </button>
+                <Button
+                  onClick={handleBookClick}
+                  size="sm"
+                  className="bg-accent text-accent-foreground hover:bg-accent/90 w-full"
+                >
+                  <Calendar className="h-4 w-4 mr-2" />
+                  Book a Session
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+    </>
   );
 };
