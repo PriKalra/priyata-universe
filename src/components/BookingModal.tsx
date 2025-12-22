@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X, Coffee, Bitcoin, CreditCard, Calendar, Check, ExternalLink } from "lucide-react";
+import { X, Coffee, Bitcoin, Mail, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -43,7 +43,7 @@ const packages: Package[] = [
 
 const BITCOIN_ADDRESS = "bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq";
 const BUYMEACOFFEE_URL = "https://buymeacoffee.com/priyata";
-const CALENDLY_URL = "https://calendly.com/priyata"; // User can update this
+const CONTACT_EMAIL = "priyata.kalra@gmail.com";
 
 export const BookingModal = ({ isOpen, onClose, selectedPackage }: BookingModalProps) => {
   const [step, setStep] = useState<'package' | 'payment'>('package');
@@ -74,8 +74,16 @@ export const BookingModal = ({ isOpen, onClose, selectedPackage }: BookingModalP
     });
   };
 
-  const handleCalendly = () => {
-    window.open(CALENDLY_URL, '_blank');
+  const handleEmailSchedule = () => {
+    const subject = encodeURIComponent(`Mentorship Session Request: ${chosen?.name}`);
+    const body = encodeURIComponent(
+      `Hi Priyata,\n\nI would like to book a ${chosen?.name} session (${chosen?.duration}, ${chosen?.price}).\n\nPlease let me know your available times.\n\nThank you!`
+    );
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    toast({
+      title: "Opening email client",
+      description: "Your email client will open with a pre-filled message to schedule your session."
+    });
   };
 
   const handleBack = () => {
@@ -178,19 +186,19 @@ export const BookingModal = ({ isOpen, onClose, selectedPackage }: BookingModalP
                 <span className="text-xs bg-muted px-2 py-1 rounded">Copy</span>
               </button>
 
-              {/* Schedule First */}
+              {/* Email to Schedule */}
               <button
-                onClick={handleCalendly}
+                onClick={handleEmailSchedule}
                 className="w-full p-4 rounded-xl border border-border hover:border-primary/50 hover:bg-primary/5 transition-all text-left group flex items-center gap-4"
               >
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-primary" />
+                  <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-medium text-foreground group-hover:text-primary transition-colors">
-                    Schedule First, Pay Later
+                    Email to Schedule
                   </h4>
-                  <p className="text-sm text-muted-foreground">Book a time, then arrange payment</p>
+                  <p className="text-sm text-muted-foreground">Send a message to arrange your session</p>
                 </div>
                 <ExternalLink className="w-4 h-4 text-muted-foreground" />
               </button>
