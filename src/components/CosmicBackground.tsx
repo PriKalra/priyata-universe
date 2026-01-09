@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-// Golden Ratio constants
-const PHI = 1.618033988749895;
-const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5)); // ~137.5 degrees in radians
-const FIBONACCI = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610];
-
 export const CosmicBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 });
@@ -37,363 +32,351 @@ export const CosmicBackground = () => {
     canvas.width = width;
     canvas.height = height;
 
-    // Golden ratio based spiral galaxies
-    const goldenSpirals: Array<{
-      cx: number;
-      cy: number;
-      size: number;
-      rotation: number;
-      rotationSpeed: number;
-      hue: number;
-      direction: number;
-    }> = [];
+    // Fractal star clusters
+    const starClusters = [];
+    const numClusters = 8;
     
-    // Distribute spirals using golden ratio positioning
-    const numSpirals = 5;
-    for (let i = 0; i < numSpirals; i++) {
-      const angle = i * GOLDEN_ANGLE;
-      const radius = Math.sqrt(i + 1) * (Math.min(width, height) / 4);
-      goldenSpirals.push({
-        cx: width / 2 + Math.cos(angle) * radius * 0.5,
-        cy: height / 2 + Math.sin(angle) * radius * 0.4,
-        size: FIBONACCI[6 + (i % 4)] * 0.8,
+    for (let i = 0; i < numClusters; i++) {
+      starClusters.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: 50 + Math.random() * 150,
         rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.0003 / PHI,
-        hue: 180 + i * (60 / PHI),
-        direction: i % 2 === 0 ? 1 : -1,
+        rotationSpeed: (Math.random() - 0.5) * 0.001,
+        hue: Math.random() * 60 + 180,
       });
     }
 
-    // Fibonacci-distributed neural nodes
-    const neurons: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      hue: number;
-      pulsePhase: number;
-      pulseSpeed: number;
-      fibIndex: number;
-    }> = [];
+    // Neural nodes (neurons)
+    const neurons = [];
+    const numNeurons = 40;
     
-    const numNeurons = FIBONACCI[7]; // 21 neurons
     for (let i = 0; i < numNeurons; i++) {
-      const angle = i * GOLDEN_ANGLE;
-      const radius = Math.sqrt(i) * (Math.min(width, height) / 15);
       neurons.push({
-        x: width / 2 + Math.cos(angle) * radius,
-        y: height / 2 + Math.sin(angle) * radius,
-        vx: Math.cos(angle + Math.PI / 2) * 0.08,
-        vy: Math.sin(angle + Math.PI / 2) * 0.08,
-        radius: 2 + (FIBONACCI[i % 8] / FIBONACCI[7]) * 5,
-        hue: 180 + (i / numNeurons) * 60,
-        pulsePhase: (i / numNeurons) * Math.PI * 2,
-        pulseSpeed: 0.015 / PHI,
-        fibIndex: i % FIBONACCI.length,
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        radius: 3 + Math.random() * 4,
+        hue: 180 + Math.random() * 60,
+        pulsePhase: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.02 + Math.random() * 0.02,
       });
     }
 
-    // Golden-angle distributed particles
-    const particles: Array<{
-      x: number;
-      y: number;
-      baseX: number;
-      baseY: number;
-      size: number;
-      orbitRadius: number;
-      orbitSpeed: number;
-      orbitPhase: number;
-      hue: number;
-      alpha: number;
-      pulsePhase: number;
-      pulseSpeed: number;
-    }> = [];
+    // Particles
+    const particles = [];
+    const numParticles = 250;
     
-    const numParticles = FIBONACCI[10]; // 89 particles - cleaner, more intentional
     for (let i = 0; i < numParticles; i++) {
-      const angle = i * GOLDEN_ANGLE;
-      const radius = Math.sqrt(i) * (Math.min(width, height) / 12);
-      const baseX = width / 2 + Math.cos(angle) * radius;
-      const baseY = height / 2 + Math.sin(angle) * radius;
-      
       particles.push({
-        x: baseX,
-        y: baseY,
-        baseX,
-        baseY,
-        size: 0.5 + (Math.sqrt(i + 1) / Math.sqrt(numParticles)) * 2.5,
-        orbitRadius: FIBONACCI[i % 7] * 0.3,
-        orbitSpeed: 0.008 / (1 + (i % 5) * 0.2),
-        orbitPhase: angle,
-        hue: 170 + (i / numParticles) * 80,
-        alpha: 0.3 + (1 - i / numParticles) * 0.5,
-        pulsePhase: (i / numParticles) * Math.PI * 2,
-        pulseSpeed: 0.01 + (1 / PHI) * 0.005,
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 2.5 + 0.8,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        hue: Math.random() * 360,
+        alpha: Math.random() * 0.5 + 0.3,
+        pulsePhase: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.02 + 0.01,
       });
     }
 
-    // Comets following golden spiral paths
-    const comets: Array<{
-      angle: number;
-      distance: number;
-      speed: number;
-      hue: number;
-      tailLength: number;
-      size: number;
-      spiralTightness: number;
-    }> = [];
+    // Comets
+    const comets = [];
+    const numComets = 3;
     
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < numComets; i++) {
       comets.push({
-        angle: Math.random() * Math.PI * 2,
-        distance: FIBONACCI[8 + i] * 2,
-        speed: 0.003 + i * 0.001,
-        hue: 190 + i * 40,
-        tailLength: FIBONACCI[6 + i],
-        size: 2 + i,
-        spiralTightness: 0.2 + i * 0.1,
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 2 + 1.5,
+        vy: (Math.random() - 0.5) * 2 + 1.5,
+        hue: 180 + Math.random() * 80,
+        tailLength: 30 + Math.random() * 20,
+        size: 2 + Math.random() * 2,
       });
     }
 
-    // Draw golden spiral (Fibonacci spiral)
-    const drawGoldenSpiral = (
-      cx: number, 
-      cy: number, 
-      size: number, 
-      rotation: number, 
-      hue: number,
-      direction: number
-    ) => {
-      const arms = FIBONACCI[3]; // 3 arms for golden aesthetic
-      const pointsPerArm = FIBONACCI[8]; // 34 points per arm
+    // Draw a fractal branch (recursive)
+    const drawFractalBranch = (x: number, y: number, length: number, angle: number, depth: number, hue: number) => {
+      if (depth === 0 || length < 2) return;
+
+      const endX = x + Math.cos(angle) * length;
+      const endY = y + Math.sin(angle) * length;
+
+      const gradient = ctx.createLinearGradient(x, y, endX, endY);
+      gradient.addColorStop(0, `hsla(${hue}, 80%, 60%, 0.4)`);
+      gradient.addColorStop(1, `hsla(${hue + 30}, 90%, 70%, 0.7)`);
+
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = depth * 0.5;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(endX, endY);
+      ctx.stroke();
+
+      const newLength = length * 0.7;
+      const angleOffset = Math.PI / 6;
+      
+      drawFractalBranch(endX, endY, newLength, angle - angleOffset, depth - 1, hue + 10);
+      drawFractalBranch(endX, endY, newLength, angle + angleOffset, depth - 1, hue + 10);
+    };
+
+    // Draw spiral galaxy pattern
+    const drawSpiralGalaxy = (cx: number, cy: number, size: number, rotation: number, hue: number) => {
+      const arms = 5;
+      const pointsPerArm = 50;
       
       for (let arm = 0; arm < arms; arm++) {
         const armAngle = (arm / arms) * Math.PI * 2 + rotation;
         
         for (let i = 0; i < pointsPerArm; i++) {
           const t = i / pointsPerArm;
-          // Golden spiral: r = a * e^(b * theta)
-          const b = Math.log(PHI) / (Math.PI / 2);
-          const theta = t * Math.PI * 3 * direction;
-          const distance = size * Math.pow(PHI, theta / (Math.PI * 2)) * 0.15;
-          const angle = armAngle + theta;
+          const distance = t * size;
+          const angle = armAngle + t * Math.PI * 4;
           
           const x = cx + Math.cos(angle) * distance;
           const y = cy + Math.sin(angle) * distance;
           
-          // Particle size follows inverse golden ratio for organic falloff
-          const particleSize = (1 - t) * 2.5 + 0.3;
-          const alpha = Math.pow(1 - t, 1 / PHI) * 0.7;
+          const particleSize = (1 - t) * 3 + 0.5;
+          const alpha = (1 - t) * 0.6;
           
-          // Color shift along spiral using golden ratio
-          const colorShift = t * 40 / PHI;
-          
-          ctx.fillStyle = `hsla(${hue + colorShift}, 75%, ${55 + t * 25}%, ${alpha})`;
+          ctx.fillStyle = `hsla(${hue + t * 40}, 80%, ${60 + t * 20}%, ${alpha})`;
           ctx.beginPath();
           ctx.arc(x, y, particleSize, 0, Math.PI * 2);
           ctx.fill();
           
-          // Subtle glow for larger particles
-          if (particleSize > 1.5) {
-            ctx.shadowBlur = particleSize * 4;
-            ctx.shadowColor = `hsla(${hue}, 90%, 65%, ${alpha * 0.4})`;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-          }
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = `hsla(${hue}, 100%, 70%, ${alpha * 0.5})`;
+          ctx.fill();
+          ctx.shadowBlur = 0;
         }
       }
-      
-      // Draw central glow
-      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, size * 0.3);
-      gradient.addColorStop(0, `hsla(${hue}, 80%, 75%, 0.4)`);
-      gradient.addColorStop(0.5 / PHI, `hsla(${hue + 20}, 70%, 60%, 0.15)`);
-      gradient.addColorStop(1, 'transparent');
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(cx, cy, size * 0.3, 0, Math.PI * 2);
-      ctx.fill();
     };
 
-    // Draw neuron with golden ratio proportions
-    const drawNeuron = (neuron: typeof neurons[0], pulse: number) => {
-      const radius = neuron.radius * (0.85 + pulse * 0.3);
+    // Draw neuron with glow
+    const drawNeuron = (neuron: any, pulse: number) => {
+      const radius = neuron.radius * (0.8 + pulse * 0.4);
       
-      // Outer glow using phi proportions
-      const glowRadius = radius * (1 + PHI);
-      const gradient = ctx.createRadialGradient(
-        neuron.x, neuron.y, 0,
-        neuron.x, neuron.y, glowRadius
-      );
-      gradient.addColorStop(0, `hsla(${neuron.hue}, 85%, 70%, 0.7)`);
-      gradient.addColorStop(1 / PHI, `hsla(${neuron.hue + 15}, 80%, 60%, 0.25)`);
-      gradient.addColorStop(1, 'transparent');
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(neuron.x, neuron.y, glowRadius, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Core
-      ctx.fillStyle = `hsla(${neuron.hue}, 90%, 75%, 0.95)`;
+      // Nucleus
+      ctx.fillStyle = `hsla(${neuron.hue}, 90%, 70%, 0.9)`;
       ctx.beginPath();
       ctx.arc(neuron.x, neuron.y, radius, 0, Math.PI * 2);
       ctx.fill();
       
-      // Inner highlight at golden ratio position
-      ctx.fillStyle = `hsla(${neuron.hue}, 100%, 92%, 0.85)`;
-      ctx.beginPath();
-      ctx.arc(
-        neuron.x - radius / PHI, 
-        neuron.y - radius / PHI, 
-        radius / (PHI * 2), 
-        0, Math.PI * 2
+      // Glow
+      const gradient = ctx.createRadialGradient(
+        neuron.x, neuron.y, 0,
+        neuron.x, neuron.y, radius * 3
       );
+      gradient.addColorStop(0, `hsla(${neuron.hue}, 100%, 80%, 0.6)`);
+      gradient.addColorStop(0.5, `hsla(${neuron.hue}, 100%, 70%, 0.3)`);
+      gradient.addColorStop(1, 'transparent');
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(neuron.x, neuron.y, radius * 3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Core highlight
+      ctx.fillStyle = `hsla(${neuron.hue}, 100%, 95%, 0.8)`;
+      ctx.beginPath();
+      ctx.arc(neuron.x - radius * 0.3, neuron.y - radius * 0.3, radius * 0.4, 0, Math.PI * 2);
       ctx.fill();
     };
 
-    // Draw comet following golden spiral path
-    const drawGoldenComet = (comet: typeof comets[0], frame: number) => {
-      const b = Math.log(PHI) / (Math.PI / 2) * comet.spiralTightness;
-      const r = comet.distance * Math.pow(Math.E, b * comet.angle * 0.1);
+    // Draw comet with tail
+    const drawComet = (comet: any) => {
+      const tailPoints = 15;
       
-      const x = width / 2 + Math.cos(comet.angle) * r;
-      const y = height / 2 + Math.sin(comet.angle) * r;
-      
-      // Direction for tail
-      const prevAngle = comet.angle - comet.speed * 10;
-      const prevR = comet.distance * Math.pow(Math.E, b * prevAngle * 0.1);
-      const dx = Math.cos(comet.angle) * r - Math.cos(prevAngle) * prevR;
-      const dy = Math.sin(comet.angle) * r - Math.sin(prevAngle) * prevR;
-      const len = Math.sqrt(dx * dx + dy * dy) || 1;
-      
-      // Draw tail with Fibonacci-based segments
-      const tailSegments = FIBONACCI[5]; // 8 segments
-      for (let i = 0; i < tailSegments; i++) {
-        const t = i / tailSegments;
-        const tailDist = t * comet.tailLength;
-        const tailX = x - (dx / len) * tailDist * 3;
-        const tailY = y - (dy / len) * tailDist * 3;
-        const tailSize = comet.size * Math.pow(1 - t, 1 / PHI) * 1.5;
-        const tailAlpha = Math.pow(1 - t, PHI) * 0.7;
+      // Draw tail
+      for (let i = 0; i < tailPoints; i++) {
+        const t = i / tailPoints;
+        const tailX = comet.x - comet.vx * t * comet.tailLength;
+        const tailY = comet.y - comet.vy * t * comet.tailLength;
+        const tailSize = comet.size * (1 - t) * 1.5;
+        const tailAlpha = (1 - t) * 0.6;
         
-        ctx.fillStyle = `hsla(${comet.hue + t * 30}, 75%, 70%, ${tailAlpha})`;
+        ctx.fillStyle = `hsla(${comet.hue}, 80%, 70%, ${tailAlpha})`;
         ctx.beginPath();
         ctx.arc(tailX, tailY, tailSize, 0, Math.PI * 2);
         ctx.fill();
+        
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `hsla(${comet.hue}, 100%, 80%, ${tailAlpha * 0.5})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
       }
       
-      // Comet head with glow
-      const headGlow = ctx.createRadialGradient(x, y, 0, x, y, comet.size * PHI * 2);
-      headGlow.addColorStop(0, `hsla(${comet.hue}, 100%, 95%, 1)`);
-      headGlow.addColorStop(0.5, `hsla(${comet.hue}, 90%, 80%, 0.6)`);
-      headGlow.addColorStop(1, 'transparent');
-      ctx.fillStyle = headGlow;
+      // Draw comet head
+      ctx.fillStyle = `hsla(${comet.hue}, 100%, 90%, 0.95)`;
       ctx.beginPath();
-      ctx.arc(x, y, comet.size * PHI * 2, 0, Math.PI * 2);
+      ctx.arc(comet.x, comet.y, comet.size * 1.5, 0, Math.PI * 2);
       ctx.fill();
       
       // Bright core
-      ctx.fillStyle = `hsla(${comet.hue + 20}, 100%, 98%, 1)`;
+      ctx.fillStyle = `hsla(${comet.hue + 20}, 100%, 95%, 1)`;
       ctx.beginPath();
-      ctx.arc(x, y, comet.size, 0, Math.PI * 2);
+      ctx.arc(comet.x, comet.y, comet.size, 0, Math.PI * 2);
       ctx.fill();
-    };
-
-    // Draw organic nebula clouds with golden ratio fade
-    const drawNebula = (frame: number) => {
-      const numClouds = FIBONACCI[3]; // 3 nebula clouds
       
-      for (let i = 0; i < numClouds; i++) {
-        const phase = frame * 0.0003 + (i * Math.PI * 2) / numClouds;
-        const x = width / 2 + Math.sin(phase * PHI) * (width / 4);
-        const y = height / 2 + Math.cos(phase) * (height / 5);
-        const size = FIBONACCI[8 + i] * 3;
-        
-        const gradient = ctx.createRadialGradient(x, y, 0, x, y, size);
-        const hue = 200 + i * (50 / PHI);
-        gradient.addColorStop(0, `hsla(${hue}, 60%, 45%, 0.04)`);
-        gradient.addColorStop(1 / PHI, `hsla(${hue + 30}, 50%, 35%, 0.015)`);
-        gradient.addColorStop(1, 'transparent');
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.shadowBlur = 25;
+      ctx.shadowColor = `hsla(${comet.hue}, 100%, 90%, 0.8)`;
+      ctx.fill();
+      ctx.shadowBlur = 0;
     };
 
     // Animation loop
     let frame = 0;
-    let animationId: number;
-    
     const animate = () => {
-      // Deep space background with subtle gradient
-      const bgGradient = ctx.createRadialGradient(
-        width / 2, height / 2, 0, 
-        width / 2, height / 2, Math.max(width, height) / PHI
-      );
-      bgGradient.addColorStop(0, '#0c0c1a');
-      bgGradient.addColorStop(1 / PHI, '#060610');
-      bgGradient.addColorStop(1, '#020204');
+      // Create deep space background
+      const bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
+      bgGradient.addColorStop(0, '#0a0a1f');
+      bgGradient.addColorStop(0.5, '#050510');
+      bgGradient.addColorStop(1, '#000005');
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
 
       frame++;
 
-      // Draw nebulae
-      drawNebula(frame);
+      // Draw cosmic nebula
+      for (let i = 0; i < 5; i++) {
+        const x = width / 2 + Math.sin(frame * 0.001 + i) * 300;
+        const y = height / 2 + Math.cos(frame * 0.001 + i) * 200;
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, 200);
+        gradient.addColorStop(0, `hsla(${200 + i * 30}, 70%, 40%, 0.05)`);
+        gradient.addColorStop(1, 'transparent');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+      }
 
-      // Draw and update golden spirals
-      goldenSpirals.forEach((spiral) => {
-        spiral.rotation += spiral.rotationSpeed;
-        const pulse = Math.sin(frame * 0.008) * 0.08 + 1;
-        drawGoldenSpiral(
-          spiral.cx, 
-          spiral.cy, 
-          spiral.size * pulse, 
-          spiral.rotation, 
-          spiral.hue,
-          spiral.direction
-        );
+      // Draw star clusters
+      starClusters.forEach((cluster, idx) => {
+        cluster.rotation += cluster.rotationSpeed;
+        const pulse = Math.sin(frame * 0.02 + idx) * 0.3 + 1;
+        
+        drawSpiralGalaxy(cluster.x, cluster.y, cluster.size * pulse, cluster.rotation, cluster.hue);
+
+        if (idx % 2 === 0) {
+          for (let i = 0; i < 6; i++) {
+            const angle = (i / 6) * Math.PI * 2 + cluster.rotation;
+            drawFractalBranch(cluster.x, cluster.y, 40, angle, 4, cluster.hue);
+          }
+        }
       });
 
-      // Update and draw particles with orbital motion
-      particles.forEach((p) => {
-        p.orbitPhase += p.orbitSpeed;
-        p.pulsePhase += p.pulseSpeed;
-        
-        // Gentle orbital motion around base position
-        p.x = p.baseX + Math.cos(p.orbitPhase) * p.orbitRadius;
-        p.y = p.baseY + Math.sin(p.orbitPhase * PHI) * p.orbitRadius;
-        
-        const pulse = Math.sin(p.pulsePhase) * 0.3 + 0.7;
-        const currentSize = p.size * pulse;
-        const currentAlpha = p.alpha * (0.6 + pulse * 0.4);
+      // Update and draw neurons
+      neurons.forEach((neuron) => {
+        neuron.x += neuron.vx;
+        neuron.y += neuron.vy;
+        neuron.pulsePhase += neuron.pulseSpeed;
 
-        ctx.fillStyle = `hsla(${p.hue}, 85%, 70%, ${currentAlpha})`;
+        if (neuron.x < 0) neuron.x = width;
+        if (neuron.x > width) neuron.x = 0;
+        if (neuron.y < 0) neuron.y = height;
+        if (neuron.y > height) neuron.y = 0;
+
+        const pulse = Math.sin(neuron.pulsePhase) * 0.5 + 0.5;
+        drawNeuron(neuron, pulse);
+      });
+
+      // Draw neural connections
+      for (let i = 0; i < neurons.length; i++) {
+        for (let j = i + 1; j < neurons.length; j++) {
+          const dx = neurons[i].x - neurons[j].x;
+          const dy = neurons[i].y - neurons[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 150) {
+            const alpha = (1 - distance / 150) * 0.5;
+            const gradient = ctx.createLinearGradient(
+              neurons[i].x, neurons[i].y,
+              neurons[j].x, neurons[j].y
+            );
+            gradient.addColorStop(0, `hsla(${neurons[i].hue}, 80%, 60%, ${alpha})`);
+            gradient.addColorStop(1, `hsla(${neurons[j].hue}, 80%, 60%, ${alpha})`);
+            
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(neurons[i].x, neurons[i].y);
+            ctx.lineTo(neurons[j].x, neurons[j].y);
+            ctx.stroke();
+            
+            // Signal pulse
+            const signalPos = (frame * 0.02) % 1;
+            const signalX = neurons[i].x - dx * signalPos;
+            const signalY = neurons[i].y - dy * signalPos;
+            
+            ctx.fillStyle = `hsla(200, 100%, 80%, ${0.8 * (1 - signalPos)})`;
+            ctx.beginPath();
+            ctx.arc(signalX, signalY, 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+
+      // Update and draw comets
+      comets.forEach((comet) => {
+        comet.x += comet.vx;
+        comet.y += comet.vy;
+
+        if (comet.x < -100) {
+          comet.x = width + 100;
+          comet.y = Math.random() * height;
+        }
+        if (comet.x > width + 100) {
+          comet.x = -100;
+          comet.y = Math.random() * height;
+        }
+        if (comet.y < -100) {
+          comet.y = height + 100;
+          comet.x = Math.random() * width;
+        }
+        if (comet.y > height + 100) {
+          comet.y = -100;
+          comet.x = Math.random() * width;
+        }
+
+        drawComet(comet);
+      });
+
+      // Update and draw particles
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.pulsePhase += p.pulseSpeed;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        const pulse = Math.sin(p.pulsePhase) * 0.5 + 0.5;
+        const currentSize = p.size * (0.5 + pulse);
+        const currentAlpha = p.alpha * (0.5 + pulse);
+
+        ctx.fillStyle = `hsla(${p.hue}, 100%, 70%, ${currentAlpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
         ctx.fill();
 
-        if (currentSize > 1.2) {
-          ctx.shadowBlur = currentSize * 5;
-          ctx.shadowColor = `hsla(${p.hue}, 100%, 60%, ${currentAlpha * 0.5})`;
-          ctx.fill();
-          ctx.shadowBlur = 0;
-        }
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `hsla(${p.hue}, 100%, 60%, ${currentAlpha})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
       });
 
-      // Draw particle connections (constellation effect) - only nearby particles
-      ctx.globalAlpha = 0.6;
+      // Draw constellation connections
       for (let i = 0; i < particles.length; i++) {
-        const connectLimit = Math.min(i + FIBONACCI[4], particles.length); // Connect only to nearby in sequence
-        for (let j = i + 1; j < connectLimit; j++) {
+        for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < FIBONACCI[7] * 4) { // 84px max connection
-            const alpha = Math.pow(1 - distance / (FIBONACCI[7] * 4), PHI) * 0.2;
-            ctx.strokeStyle = `hsla(195, 70%, 55%, ${alpha})`;
+          if (distance < 100) {
+            const alpha = (1 - distance / 100) * 0.15;
+            ctx.strokeStyle = `hsla(200, 80%, 60%, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -402,105 +385,18 @@ export const CosmicBackground = () => {
           }
         }
       }
-      ctx.globalAlpha = 1;
 
-      // Update and draw neurons
-      neurons.forEach((neuron) => {
-        neuron.x += neuron.vx;
-        neuron.y += neuron.vy;
-        neuron.pulsePhase += neuron.pulseSpeed;
-
-        // Soft boundary wrapping
-        if (neuron.x < -50) neuron.x = width + 50;
-        if (neuron.x > width + 50) neuron.x = -50;
-        if (neuron.y < -50) neuron.y = height + 50;
-        if (neuron.y > height + 50) neuron.y = -50;
-
-        const pulse = (Math.sin(neuron.pulsePhase) + 1) / 2;
-        drawNeuron(neuron, pulse);
-      });
-
-      // Draw neural connections with organic curves
-      ctx.globalAlpha = 0.7;
-      for (let i = 0; i < neurons.length; i++) {
-        for (let j = i + 1; j < neurons.length; j++) {
-          const dx = neurons[i].x - neurons[j].x;
-          const dy = neurons[i].y - neurons[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          const maxDist = FIBONACCI[8] * 5; // ~170px
-          if (distance < maxDist) {
-            const alpha = Math.pow(1 - distance / maxDist, PHI) * 0.4;
-            
-            // Curved connection using quadratic bezier
-            const midX = (neurons[i].x + neurons[j].x) / 2;
-            const midY = (neurons[i].y + neurons[j].y) / 2;
-            const perpX = -dy / distance * 15;
-            const perpY = dx / distance * 15;
-            
-            const gradient = ctx.createLinearGradient(
-              neurons[i].x, neurons[i].y,
-              neurons[j].x, neurons[j].y
-            );
-            gradient.addColorStop(0, `hsla(${neurons[i].hue}, 75%, 60%, ${alpha})`);
-            gradient.addColorStop(1, `hsla(${neurons[j].hue}, 75%, 60%, ${alpha})`);
-            
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(neurons[i].x, neurons[i].y);
-            ctx.quadraticCurveTo(midX + perpX, midY + perpY, neurons[j].x, neurons[j].y);
-            ctx.stroke();
-            
-            // Signal pulse traveling along connection
-            const signalPos = (frame * 0.012 + i * 0.1) % 1;
-            const t = signalPos;
-            const signalX = Math.pow(1-t, 2) * neurons[i].x + 
-                           2 * (1-t) * t * (midX + perpX) + 
-                           Math.pow(t, 2) * neurons[j].x;
-            const signalY = Math.pow(1-t, 2) * neurons[i].y + 
-                           2 * (1-t) * t * (midY + perpY) + 
-                           Math.pow(t, 2) * neurons[j].y;
-            
-            const signalAlpha = Math.sin(signalPos * Math.PI) * 0.8;
-            ctx.fillStyle = `hsla(195, 100%, 80%, ${signalAlpha})`;
-            ctx.beginPath();
-            ctx.arc(signalX, signalY, 1.5, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-      }
-      ctx.globalAlpha = 1;
-
-      // Update and draw comets
-      comets.forEach((comet) => {
-        comet.angle += comet.speed;
-        comet.distance += Math.sin(frame * 0.01) * 0.5;
-        
-        // Reset when too far
-        if (comet.distance > Math.max(width, height)) {
-          comet.distance = FIBONACCI[6] * 2;
-          comet.angle = Math.random() * Math.PI * 2;
-        }
-        
-        drawGoldenComet(comet, frame);
-      });
-
-      animationId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     };
 
     animate();
-    
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
   }, [dimensions]);
 
   return (
     <div 
       ref={containerRef}
       className="absolute inset-0 overflow-hidden"
-      style={{ backgroundColor: '#020204' }}>
+      style={{ backgroundColor: '#000' }}>
       <canvas 
         ref={canvasRef}
         className="block w-full h-full"
