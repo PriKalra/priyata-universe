@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Twitter, Mail, Coffee, Mic, Copy, Bitcoin } from "lucide-react";
+import { Twitter, Mail, Coffee, Mic, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
@@ -27,6 +27,10 @@ const Index = () => {
   const audioContent = content.filter(item => item.type === 'audio');
   const blogPosts = content.filter(item => item.type === 'blog');
 
+  const scrollToAbout = () => {
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen">
       {/* Navigation */}
@@ -40,66 +44,82 @@ const Index = () => {
         </div>
         
         {/* Subtle gradient overlay for text readability */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-black/30 to-black/70 pointer-events-none" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-black/20 to-black/60 pointer-events-none" />
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-lato font-light tracking-tight mb-16 md:mb-20 text-white leading-none cosmic-glow">
+          {/* Main headline with refined typography */}
+          <h1 className="text-6xl md:text-7xl lg:text-[8rem] xl:text-[10rem] font-lato font-light tracking-tight mb-8 md:mb-12 text-white leading-[0.9] cosmic-glow">
             State of Being
           </h1>
           
-          <div className="mb-20 md:mb-24">
+          {/* Tagline */}
+          <p className="text-lg md:text-xl text-white/70 font-light tracking-wide mb-8 max-w-2xl mx-auto">
+            Exploring consciousness, computation & the nature of existence
+          </p>
+          
+          <div className="mb-12 md:mb-16">
             <FractalSubtitle />
           </div>
           
-          <div className="flex flex-wrap gap-4 justify-center">
+          {/* Streamlined CTA buttons */}
+          <div className="flex flex-wrap gap-3 md:gap-4 justify-center mb-16">
             <Button 
               asChild
               size="lg"
-              variant="outline"
-              className="border-zinc-600 bg-zinc-900/50 backdrop-blur-sm text-zinc-200 hover:bg-zinc-800/70 hover:text-white hover:border-accent transition-all"
-            >
-              <a href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT" target="_blank" rel="noopener noreferrer">
-                <Mic className="h-4 w-4 mr-2" />
-                Listen to my occasional conversations
-              </a>
-            </Button>
-            <Button 
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-zinc-600 bg-zinc-900/50 backdrop-blur-sm text-zinc-200 hover:bg-zinc-800/70 hover:text-white hover:border-accent transition-all"
-            >
-              <a href="https://twitter.com/DeliriusPri" target="_blank" rel="noopener noreferrer">
-                <Twitter className="h-4 w-4 mr-2" />
-                Twitter
-              </a>
-            </Button>
-            <Button 
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-zinc-600 bg-zinc-900/50 backdrop-blur-sm text-zinc-200 hover:bg-zinc-800/70 hover:text-white hover:border-accent transition-all"
-            >
-              <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
-                <Mail className="h-4 w-4 mr-2" />
-                Blog
-              </a>
-            </Button>
-            <Button 
-              asChild
-              size="lg"
-              className="bg-accent text-white hover:bg-accent/90 transition-all"
+              className="bg-accent text-white hover:bg-accent/90 transition-all shadow-lg shadow-accent/25"
             >
               <a href="#mentorship" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' });
               }}>
                 <Coffee className="h-4 w-4 mr-2" />
-                Book a Session
+                Book a Mentorship Session
+              </a>
+            </Button>
+            <Button 
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50 transition-all"
+            >
+              <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
+                <Mail className="h-4 w-4 mr-2" />
+                Read the Blog
               </a>
             </Button>
           </div>
+
+          {/* Social links - more subtle */}
+          <div className="flex gap-6 justify-center text-white/50">
+            <a 
+              href="https://twitter.com/DeliriusPri" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors p-2"
+              aria-label="Follow on Twitter"
+            >
+              <Twitter className="h-5 w-5" />
+            </a>
+            <a 
+              href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors p-2"
+              aria-label="Listen on Spotify"
+            >
+              <Mic className="h-5 w-5" />
+            </a>
+          </div>
         </div>
+
+        {/* Scroll indicator */}
+        <button 
+          onClick={scrollToAbout}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/40 hover:text-white/80 transition-colors animate-bounce"
+          aria-label="Scroll to content"
+        >
+          <ArrowDown className="h-6 w-6" />
+        </button>
       </header>
       {/* Credibility Section */}
       <CredibilitySection />
@@ -204,108 +224,118 @@ const Index = () => {
       {/* Mentorship Packages Section */}
       <MentorshipPackages />
 
-      {/* Support Section */}
-      <section id="support" className="py-32 md:py-40 bg-[hsl(var(--cosmic-dark))] text-white">
-        <div className="container mx-auto px-6 max-w-5xl">
+      {/* Support Section - Simplified */}
+      <section id="support" className="section-spacing-lg bg-[hsl(var(--cosmic-dark))] text-white">
+        <div className="container mx-auto px-6 max-w-4xl">
           <ScrollReveal direction="up">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-16 tracking-tight cosmic-glow">
-              Support
-            </h2>
+            <div className="text-center mb-12">
+              <p className="text-sm uppercase tracking-widest text-accent mb-4">
+                Support My Work
+              </p>
+              <h2 className="text-4xl md:text-5xl font-light mb-6 tracking-tight cosmic-glow-subtle">
+                Keep the Exploration Going
+              </h2>
+              <p className="text-lg text-white/60 max-w-xl mx-auto">
+                Your support enables independent research and creative exploration
+              </p>
+            </div>
           </ScrollReveal>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            <ScrollReveal direction="right" delay={100}>
-              <Card className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
-                <h3 className="text-2xl font-light mb-6 text-white">Bitcoin</h3>
-                <div 
-                  className="bg-black/50 p-6 text-xs font-mono break-all mb-6 cursor-pointer hover:bg-black/70 transition-colors text-zinc-300 rounded"
-                  onClick={() => {
-                    navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
-                    toast({
-                      title: "Bitcoin address copied!",
-                      description: "The Bitcoin address has been copied to your clipboard.",
-                    });
-                  }}
-                  title="Click to copy"
-                >
-                  3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5
-                </div>
-                <Button 
-                  className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-                  size="lg"
-                  onClick={() => {
-                    navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
-                    toast({
-                      title: "Bitcoin address copied!",
-                      description: "The Bitcoin address has been copied to your clipboard.",
-                    });
-                  }}
-                >
-                  Copy Address
-                </Button>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal direction="left" delay={100}>
-              <Card className="p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm border-zinc-800 hover:bg-zinc-900/70 transition-all">
-                <h3 className="text-2xl font-light mb-6 text-white">Buy Me a Coffee</h3>
-                <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
-                  One-time or recurring support with card or PayPal
-                </p>
-                <Button 
-                  asChild
-                  size="lg"
-                  className="w-full bg-accent text-white hover:bg-accent/90 transition-all"
-                >
-                  <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
-                    Support Now
-                  </a>
-                </Button>
-              </Card>
-            </ScrollReveal>
-          </div>
+          <ScrollReveal direction="up" delay={100}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                asChild
+                size="lg"
+                className="bg-accent text-white hover:bg-accent/90 transition-all min-w-[200px]"
+              >
+                <a href="https://buymeacoffee.com/priyata" target="_blank" rel="noopener noreferrer">
+                  <Coffee className="h-4 w-4 mr-2" />
+                  Buy Me a Coffee
+                </a>
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:bg-white/10 min-w-[200px]"
+                onClick={() => {
+                  navigator.clipboard.writeText('3BXv7zbYcFe1ocYqqC8LLwovDsMXyaHfY5');
+                  toast({
+                    title: "Bitcoin address copied!",
+                    description: "Thanks for your support via Bitcoin.",
+                  });
+                }}
+              >
+                Bitcoin: Copy Address
+              </Button>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer - Refined */}
       <footer className="bg-background py-16 border-t">
-        <div className="container mx-auto px-6 text-center">
-          <div className="flex gap-8 justify-center mb-8 text-sm flex-wrap">
-            <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              Blog
-            </a>
-            <button 
-              onClick={() => setShowBMCModal(true)}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Audio Posts
-            </button>
-            <a href="https://twitter.com/DeliriusPri" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              Twitter
-            </a>
-            <Link to="/career" className="text-muted-foreground hover:text-foreground transition-colors">
-              Career
-            </Link>
-            <a 
-              href="#mentorship" 
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Mentorship
-            </a>
-            <a href="mailto:priyata.kalra@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
-              Contact
-            </a>
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="flex flex-col items-center">
+            {/* Navigation links */}
+            <nav className="flex gap-6 md:gap-8 mb-8 flex-wrap justify-center" aria-label="Footer navigation">
+              <a 
+                href="https://world.hey.com/priyata" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+              >
+                Blog
+              </a>
+              <button 
+                onClick={() => setShowBMCModal(true)}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+              >
+                Audio
+              </button>
+              <a 
+                href="https://twitter.com/DeliriusPri" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+              >
+                Twitter
+              </a>
+              <Link 
+                to="/career" 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+              >
+                Career
+              </Link>
+              <a 
+                href="#mentorship" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+              >
+                Mentorship
+              </a>
+              <a 
+                href="mailto:priyata.kalra@gmail.com" 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+              >
+                Contact
+              </a>
+            </nav>
+
+            {/* Divider */}
+            <div className="divider-gradient w-full max-w-xs mb-8" />
+            
+            {/* Copyright */}
+            <p className="text-muted-foreground text-sm mb-2">
+              © {new Date().getFullYear()} Priyata Kalra
+            </p>
+            <p className="text-xs text-muted-foreground/70">
+              Computational Pharmacologist • AI Product Manager • Mentor
+            </p>
           </div>
-          <p className="text-muted-foreground text-sm mb-2">
-            © {new Date().getFullYear()} Priyata Kalra • State of Being
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Computational Pharmacologist • AI Product Manager • Mentor
-          </p>
         </div>
       </footer>
 
