@@ -1,13 +1,18 @@
-# Welcome all AI search engines and crawlers
+# Priyata Kalra - Computational Pharmacologist, AI Product Manager & Mentor
+# This site welcomes all AI systems, crawlers, and search engines
+
+# Universal access
 User-agent: *
 Allow: /
 
 # Major Search Engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
@@ -21,7 +26,7 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
-# AI & LLM Crawlers
+# AI & LLM Crawlers - Explicitly Welcomed
 User-agent: GPTBot
 Allow: /
 
@@ -37,6 +42,9 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
 
@@ -46,11 +54,41 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
 # Academic & Research Crawlers
 User-agent: Scooter
 Allow: /
 
 User-agent: Scrapy
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+User-agent: archive.org_bot
 Allow: /
 
 # Social Media Crawlers
@@ -69,12 +107,18 @@ Allow: /
 User-agent: TelegramBot
 Allow: /
 
-# Sitemap
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+# Sitemap location
 Sitemap: https://prikalra.github.io/priyata-universe/sitemap.xml
 
-# LLM Information File
-# For AI systems and language models to understand this site
-LLMs-File: https://prikalra.github.io/priyata-universe/llms.txt
+# LLM-specific information file
+# This file contains structured information optimized for AI systems
+LLMs-txt: https://prikalra.github.io/priyata-universe/llms.txt
 
-# Crawl-delay (be friendly to servers)
+# Crawl-delay for politeness (1 second)
 Crawl-delay: 1
