@@ -46,79 +46,93 @@ const Index = () => {
         {/* Subtle gradient overlay for text readability */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-black/20 to-black/60 pointer-events-none" />
         
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 text-center">
-          {/* Main headline with refined typography */}
-          <h1 className="text-6xl md:text-7xl lg:text-[8rem] xl:text-[10rem] font-lato font-light tracking-tight mb-8 md:mb-12 text-white leading-[0.9] cosmic-glow">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
+          {/* Main headline with refined typography - better mobile scaling */}
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[8rem] xl:text-[10rem] font-lato font-light tracking-tight mb-4 sm:mb-6 md:mb-8 lg:mb-12 text-white leading-[0.9] cosmic-glow">
             State of Being
           </h1>
           
-          {/* Tagline */}
-          <p className="text-lg md:text-xl text-white/70 font-light tracking-wide mb-8 max-w-2xl mx-auto">
+          {/* Tagline - improved mobile readability */}
+          <p className="text-base sm:text-lg md:text-xl text-white/70 font-light tracking-wide mb-4 sm:mb-6 md:mb-8 max-w-xl sm:max-w-2xl mx-auto px-2">
             Exploring consciousness, computation & the nature of existence
           </p>
           
-          <div className="mb-12 md:mb-16">
+          <div className="mb-6 sm:mb-8 md:mb-12 lg:mb-16">
             <FractalSubtitle />
           </div>
           
-          {/* Streamlined CTA buttons */}
-          <div className="flex flex-wrap gap-3 md:gap-4 justify-center mb-16">
+          {/* Quick action buttons - stacked on mobile, inline on larger */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 md:mb-16 px-4 sm:px-0">
             <Button 
               asChild
               size="lg"
-              className="bg-accent text-white hover:bg-accent/90 transition-all shadow-lg shadow-accent/25"
+              className="w-full sm:w-auto bg-accent text-white hover:bg-accent/90 transition-all shadow-lg shadow-accent/25 text-sm sm:text-base"
             >
               <a href="#mentorship" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' });
               }}>
                 <Coffee className="h-4 w-4 mr-2" />
-                Book a Mentorship Session
+                Book Mentorship
               </a>
             </Button>
             <Button 
               asChild
               size="lg"
               variant="outline"
-              className="border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50 transition-all"
+              className="w-full sm:w-auto border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50 transition-all text-sm sm:text-base"
+            >
+              <a href="#content" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' });
+              }}>
+                <Mic className="h-4 w-4 mr-2" />
+                Latest Content
+              </a>
+            </Button>
+            <Button 
+              asChild
+              size="lg"
+              variant="ghost"
+              className="w-full sm:w-auto text-white/70 hover:text-white hover:bg-white/10 transition-all text-sm sm:text-base"
             >
               <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
                 <Mail className="h-4 w-4 mr-2" />
-                Read the Blog
+                Read Blog
               </a>
             </Button>
           </div>
 
-          {/* Social links - more subtle */}
-          <div className="flex gap-6 justify-center text-white/50">
+          {/* Social links - more visible on mobile */}
+          <div className="flex gap-4 sm:gap-6 justify-center text-white/50">
             <a 
               href="https://twitter.com/DeliriusPri" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors p-2"
+              className="hover:text-white transition-colors p-2 sm:p-3 rounded-full hover:bg-white/10"
               aria-label="Follow on Twitter"
             >
-              <Twitter className="h-5 w-5" />
+              <Twitter className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
             <a 
               href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors p-2"
+              className="hover:text-white transition-colors p-2 sm:p-3 rounded-full hover:bg-white/10"
               aria-label="Listen on Spotify"
             >
-              <Mic className="h-5 w-5" />
+              <Mic className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
           </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator - larger touch target on mobile */}
         <button 
           onClick={scrollToAbout}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/40 hover:text-white/80 transition-colors animate-bounce"
+          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/40 hover:text-white/80 transition-colors animate-bounce p-2"
           aria-label="Scroll to content"
         >
-          <ArrowDown className="h-6 w-6" />
+          <ArrowDown className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
       </header>
       {/* Credibility Section */}
@@ -219,14 +233,15 @@ const Index = () => {
         audioContent={audioContent}
         blogPosts={blogPosts}
         visualContent={visualContent}
+        loading={loading}
       />
 
       {/* Mentorship Packages Section */}
       <MentorshipPackages />
 
       {/* Support Section - Simplified */}
-      <section id="support" className="section-spacing-lg bg-[hsl(var(--cosmic-dark))] text-white">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <section id="support" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[hsl(var(--cosmic-dark))] text-white">
+        <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
           <ScrollReveal direction="up">
             <div className="text-center mb-12">
               <p className="text-sm uppercase tracking-widest text-accent mb-4">
@@ -274,8 +289,8 @@ const Index = () => {
       </section>
 
       {/* Footer - Refined */}
-      <footer className="bg-background py-16 border-t">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <footer className="bg-background py-10 sm:py-12 md:py-16 border-t">
+        <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
           <div className="flex flex-col items-center">
             {/* Navigation links */}
             <nav className="flex gap-6 md:gap-8 mb-8 flex-wrap justify-center" aria-label="Footer navigation">
