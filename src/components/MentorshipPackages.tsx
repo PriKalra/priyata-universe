@@ -61,55 +61,55 @@ export const MentorshipPackages = () => {
   return (
     <>
       <BookingModal isOpen={showBooking} onClose={() => setShowBooking(false)} />
-      <section id="mentorship" className="section-spacing bg-background">
-        <div className="container mx-auto px-6 max-w-6xl">
+      <section id="mentorship" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <ScrollReveal direction="up">
-            <div className="text-center mb-16">
-              <p className="text-sm uppercase tracking-widest text-accent mb-4">
+            <div className="text-center mb-10 sm:mb-12 md:mb-16">
+              <p className="text-xs sm:text-sm uppercase tracking-widest text-accent mb-3 sm:mb-4">
                 Mentorship
               </p>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-4 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-3 sm:mb-4 tracking-tight">
                 Learn With Me
               </h2>
-              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+              <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto px-2">
                 One-on-one guidance at the intersection of science, technology, and career growth
               </p>
             </div>
           </ScrollReveal>
 
-          {/* Packages Grid */}
-          <div className="grid md:grid-cols-3 gap-5 mb-16">
+          {/* Packages Grid - single column on mobile, 3 on desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 mb-10 sm:mb-12 md:mb-16">
             {packages.map((pkg, index) => (
               <ScrollReveal key={index} direction="up" delay={index * 80}>
                 <Card 
-                  className={`p-6 md:p-8 h-full flex flex-col relative group ${
+                  className={`p-4 sm:p-6 md:p-8 h-full flex flex-col relative group ${
                     pkg.popular 
                       ? 'border-2 border-accent bg-accent/5 shadow-lg shadow-accent/10' 
                       : 'border hover:border-accent/40'
                   } transition-all hover-lift`}
                 >
                   {pkg.popular && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent text-accent-foreground text-xs font-medium rounded-full shadow-md">
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-0.5 sm:py-1 bg-accent text-accent-foreground text-[10px] sm:text-xs font-medium rounded-full shadow-md">
                       Popular
                     </span>
                   )}
                   
-                  <div className="mb-6">
-                    <h3 className="text-lg font-medium mb-2">{pkg.name}</h3>
-                    <div className="flex items-baseline gap-2 mb-3">
-                      <span className="text-3xl font-light">{pkg.price}</span>
-                      <span className="text-sm text-muted-foreground flex items-center gap-1">
+                  <div className="mb-4 sm:mb-6">
+                    <h3 className="text-base sm:text-lg font-medium mb-1.5 sm:mb-2">{pkg.name}</h3>
+                    <div className="flex items-baseline gap-2 mb-2 sm:mb-3">
+                      <span className="text-2xl sm:text-3xl font-light">{pkg.price}</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         {pkg.duration}
                       </span>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{pkg.description}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{pkg.description}</p>
                   </div>
 
-                  <ul className="space-y-2.5 mb-8 flex-grow">
+                  <ul className="space-y-2 sm:space-y-2.5 mb-6 sm:mb-8 flex-grow">
                     {pkg.topics.map((topic, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <ArrowRight className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start gap-2 text-xs sm:text-sm">
+                        <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent shrink-0 mt-0.5" />
                         <span>{topic}</span>
                       </li>
                     ))}
@@ -117,7 +117,8 @@ export const MentorshipPackages = () => {
 
                   <Button
                     onClick={() => setShowBooking(true)}
-                    className={`w-full ${
+                    size="lg"
+                    className={`w-full text-sm sm:text-base ${
                       pkg.popular 
                         ? 'bg-accent text-accent-foreground hover:bg-accent/90 shadow-md shadow-accent/20' 
                         : 'bg-foreground text-background hover:bg-foreground/90'
@@ -133,15 +134,15 @@ export const MentorshipPackages = () => {
 
           {/* Who This Is For - Streamlined */}
           <ScrollReveal direction="up">
-            <div className="text-center mb-12">
-              <p className="text-sm uppercase tracking-widest text-muted-foreground mb-6">
+            <div className="text-center mb-8 sm:mb-12">
+              <p className="text-xs sm:text-sm uppercase tracking-widest text-muted-foreground mb-4 sm:mb-6">
                 Ideal For
               </p>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
                 {targetAudience.map((audience, index) => (
                   <span 
                     key={index}
-                    className="badge-pill"
+                    className="badge-pill text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4"
                   >
                     {audience}
                   </span>
@@ -152,8 +153,8 @@ export const MentorshipPackages = () => {
 
           {/* Contact Form */}
           <ScrollReveal direction="up">
-            <div className="max-w-xl mx-auto text-center">
-              <p className="text-muted-foreground mb-6">
+            <div className="max-w-xl mx-auto text-center px-2">
+              <p className="text-muted-foreground mb-4 sm:mb-6 text-sm sm:text-base">
                 Questions before booking?
               </p>
               <MentorshipContactForm />

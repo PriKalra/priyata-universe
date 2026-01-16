@@ -47,9 +47,9 @@ export const StickyScrollSection = ({
       className="relative"
       style={{ minHeight }}
     >
-      <div className="grid lg:grid-cols-2 gap-0 lg:gap-12">
-        {/* Sticky content on the left */}
-        <div className="lg:sticky lg:top-0 lg:h-screen flex items-center justify-center p-6 lg:p-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-12">
+        {/* Sticky content on the left - hidden on very small screens, visible on md+ */}
+        <div className="hidden md:flex lg:sticky lg:top-0 lg:h-screen items-center justify-center p-4 sm:p-6 lg:p-12">
           <div 
             ref={stickyRef}
             className="w-full"
@@ -63,7 +63,7 @@ export const StickyScrollSection = ({
         </div>
 
         {/* Scrolling content on the right */}
-        <div className="flex flex-col justify-center space-y-8 p-6 lg:p-12 lg:py-24">
+        <div className="flex flex-col justify-center space-y-6 sm:space-y-8 p-4 sm:p-6 lg:p-12 lg:py-24 md:col-span-1 col-span-full">
           {children}
         </div>
       </div>
