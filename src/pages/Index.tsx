@@ -42,97 +42,106 @@ const Index = () => {
         <div className="absolute inset-0 z-0">
           <CosmicBackground />
         </div>
-        
+
         {/* Subtle gradient overlay for text readability */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-black/20 to-black/60 pointer-events-none" />
-        
+
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
           {/* Main headline with refined typography - better mobile scaling */}
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[8rem] xl:text-[10rem] font-lato font-light tracking-tight mb-4 sm:mb-6 md:mb-8 lg:mb-12 text-white leading-[0.9] cosmic-glow">
+          <h1 className="font-lato font-light tracking-tight text-white leading-[0.9] cosmic-glow
+                         text-[2.75rem] sm:text-5xl md:text-7xl lg:text-[8rem] xl:text-[10rem]
+                         mb-4 sm:mb-6 md:mb-8 lg:mb-12
+                         px-2 sm:px-0">
             State of Being
           </h1>
-          
+
+
           {/* Tagline - improved mobile readability */}
-          <p className="text-base sm:text-lg md:text-xl text-white/70 font-light tracking-wide mb-4 sm:mb-6 md:mb-8 max-w-xl sm:max-w-2xl mx-auto px-2">
+          <p className="font-lato font-light tracking-wide text-white/80
+                        text-base sm:text-lg md:text-xl lg:text-2xl
+                        mb-4 sm:mb-6 md:mb-8
+                        max-w-sm sm:max-w-xl md:max-w-2xl mx-auto
+                        px-4 sm:px-2
+                        leading-relaxed">
             Exploring consciousness, computation & the nature of existence
           </p>
-          
+
           <div className="mb-6 sm:mb-8 md:mb-12 lg:mb-16">
             <FractalSubtitle />
           </div>
           
           {/* Quick action buttons - stacked on mobile, inline on larger */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 md:mb-16 px-4 sm:px-0">
-            <Button 
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-8 sm:mb-12 md:mb-16 px-4 sm:px-0 w-full sm:w-auto max-w-md sm:max-w-none mx-auto">
+            <Button
               asChild
               size="lg"
-              className="w-full sm:w-auto bg-accent text-white hover:bg-accent/90 transition-all shadow-lg shadow-accent/25 text-sm sm:text-base"
+              className="font-lato w-full sm:w-auto bg-accent text-white hover:bg-accent/90 transition-all shadow-lg shadow-accent/25 text-base sm:text-base md:text-lg py-6 sm:py-3"
             >
               <a href="#mentorship" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('mentorship')?.scrollIntoView({ behavior: 'smooth' });
               }}>
-                <Coffee className="h-4 w-4 mr-2" />
+                <Coffee className="h-5 w-5 mr-2" />
                 Book Mentorship
               </a>
             </Button>
-            <Button 
+            <Button
               asChild
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50 transition-all text-sm sm:text-base"
+              className="font-lato w-full sm:w-auto border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50 transition-all text-base sm:text-base md:text-lg py-6 sm:py-3"
             >
               <a href="#content" onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' });
               }}>
-                <Mic className="h-4 w-4 mr-2" />
+                <Mic className="h-5 w-5 mr-2" />
                 Latest Content
               </a>
             </Button>
-            <Button 
+            <Button
               asChild
               size="lg"
               variant="ghost"
-              className="w-full sm:w-auto text-white/70 hover:text-white hover:bg-white/10 transition-all text-sm sm:text-base"
+              className="font-lato w-full sm:w-auto text-white/70 hover:text-white hover:bg-white/10 transition-all text-base sm:text-base md:text-lg py-6 sm:py-3"
             >
               <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
-                <Mail className="h-4 w-4 mr-2" />
+                <Mail className="h-5 w-5 mr-2" />
                 Read Blog
               </a>
             </Button>
           </div>
 
           {/* Social links - more visible on mobile */}
-          <div className="flex gap-4 sm:gap-6 justify-center text-white/50">
-            <a 
-              href="https://twitter.com/DeliriusPri" 
-              target="_blank" 
+          <div className="flex gap-6 sm:gap-6 justify-center text-white/60">
+            <a
+              href="https://twitter.com/DeliriusPri"
+              target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors p-2 sm:p-3 rounded-full hover:bg-white/10"
+              className="hover:text-white transition-colors p-3 sm:p-3 rounded-full hover:bg-white/10 active:scale-95"
               aria-label="Follow on Twitter"
             >
-              <Twitter className="h-5 w-5 sm:h-6 sm:w-6" />
+              <Twitter className="h-6 w-6 sm:h-6 sm:w-6" />
             </a>
-            <a 
-              href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT" 
-              target="_blank" 
+            <a
+              href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT"
+              target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors p-2 sm:p-3 rounded-full hover:bg-white/10"
+              className="hover:text-white transition-colors p-3 sm:p-3 rounded-full hover:bg-white/10 active:scale-95"
               aria-label="Listen on Spotify"
             >
-              <Mic className="h-5 w-5 sm:h-6 sm:w-6" />
+              <Mic className="h-6 w-6 sm:h-6 sm:w-6" />
             </a>
           </div>
         </div>
 
         {/* Scroll indicator - larger touch target on mobile */}
-        <button 
+        <button
           onClick={scrollToAbout}
-          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/40 hover:text-white/80 transition-colors animate-bounce p-2"
+          className="absolute bottom-8 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/50 hover:text-white/90 transition-all animate-bounce p-4 rounded-full hover:bg-white/10 active:scale-95"
           aria-label="Scroll to content"
         >
-          <ArrowDown className="h-5 w-5 sm:h-6 sm:w-6" />
+          <ArrowDown className="h-6 w-6 sm:h-6 sm:w-6" />
         </button>
       </header>
       {/* Credibility Section */}
@@ -156,28 +165,28 @@ const Index = () => {
         }
       >
         <ScrollReveal direction="up">
-          <h3 className="text-3xl md:text-4xl font-light mb-6">
+          <h3 className="font-lato text-2xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6">
             Poet • Scientist • Explorer
           </h3>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+          <p className="font-lato text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0">
             I exist at the intersection of computational pharmacology, AI research, and philosophical inquiry — exploring liminal spaces where algorithms decode biological mysteries and consciousness contemplates its own emergence.
           </p>
         </ScrollReveal>
 
         <ScrollReveal direction="up" delay={100}>
-          <h4 className="text-2xl font-light mb-4 mt-12">Research Focus</h4>
-          <div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed">
+          <h4 className="font-lato text-xl sm:text-2xl font-light mb-4 mt-8 sm:mt-12">Research Focus</h4>
+          <div className="space-y-3 sm:space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed px-2 sm:px-0">
             <div className="flex items-start gap-3">
-              <span className="text-accent text-xl mt-1">•</span>
-              <span><strong>PBPK/QSP Modeling</strong> — Simulating drug behavior through computational frameworks</span>
+              <span className="text-accent text-lg sm:text-xl mt-1 flex-shrink-0">•</span>
+              <span className="font-lato"><strong className="font-bold">PBPK/QSP Modeling</strong> — Simulating drug behavior through computational frameworks</span>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-accent text-xl mt-1">•</span>
-              <span><strong>AI in Pharma</strong> — Machine learning applications in drug discovery and toxicology</span>
+              <span className="text-accent text-lg sm:text-xl mt-1 flex-shrink-0">•</span>
+              <span className="font-lato"><strong className="font-bold">AI in Pharma</strong> — Machine learning applications in drug discovery and toxicology</span>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-accent text-xl mt-1">•</span>
-              <span><strong>Philosophy & Science</strong> — Exploring consciousness, emergence, and the nature of being</span>
+              <span className="text-accent text-lg sm:text-xl mt-1 flex-shrink-0">•</span>
+              <span className="font-lato"><strong className="font-bold">Philosophy & Science</strong> — Exploring consciousness, emergence, and the nature of being</span>
             </div>
           </div>
         </ScrollReveal>

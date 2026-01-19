@@ -120,10 +120,21 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* Better mobile font sizing */
+  @media (max-width: 640px) {
+    body {
+      font-size: 16px;
+      line-height: 1.5;
+    }
   }
 
   /* Improve selection styling */
@@ -413,5 +424,64 @@ All colors MUST be HSL.
       hsl(var(--border)),
       transparent
     );
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    /* Better touch targets */
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Improved mobile text */
+    h1, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
+      line-height: 1.1 !important;
+      letter-spacing: -0.02em;
+    }
+
+    /* Better mobile padding */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Readable paragraph text on mobile */
+    p {
+      font-size: 1rem;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    /* Mobile hero adjustments */
+    .cosmic-glow {
+      text-shadow:
+        0 0 15px hsl(var(--cosmic-glow) / 0.4),
+        0 0 30px hsl(var(--cosmic-glow) / 0.2);
+    }
+  }
+
+  /* Tablet improvements */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    h1 {
+      font-size: clamp(3rem, 6vw, 5rem) !important;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem) !important;
+    }
+  }
+
+  /* Prevent horizontal scrolling on mobile */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Better mobile navigation spacing */
+  @media (max-width: 640px) {
+    nav {
+      padding: 0.75rem 1rem;
+    }
   }
 }
