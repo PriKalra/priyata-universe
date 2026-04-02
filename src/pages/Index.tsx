@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
+import { ParticleTitle } from "@/components/ParticleTitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
 import { Navigation } from "@/components/Navigation";
 import { CredibilitySection } from "@/components/CredibilitySection";
@@ -48,12 +49,9 @@ const Index = () => {
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
           {/* Main headline with refined typography - better mobile scaling */}
-          <h1 className="font-lato font-light tracking-tight text-white leading-[0.9] cosmic-glow
-                         text-[2.75rem] sm:text-5xl md:text-7xl lg:text-[8rem] xl:text-[10rem]
-                         mb-4 sm:mb-6 md:mb-8 lg:mb-12
-                         px-2 sm:px-0">
-            State of Being
-          </h1>
+          <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 px-2 sm:px-0">
+            <ParticleTitle text="State of Being" />
+          </div>
 
 
           {/* Tagline - improved mobile readability */}
