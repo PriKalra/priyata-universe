@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CosmicBackground } from "@/components/CosmicBackground";
 import { FractalSubtitle } from "@/components/FractalSubtitle";
+import { ParticleTitle } from "@/components/ParticleTitle";
 import { BuyMeACoffeeModal } from "@/components/BuyMeACoffeeModal";
 import { Navigation } from "@/components/Navigation";
 import { CredibilitySection } from "@/components/CredibilitySection";
