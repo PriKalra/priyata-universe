@@ -138,8 +138,50 @@ function getBMCPosts() {
   return [
     {
       type: "image",
+      title: "Geometry of Clarity Bloom",
+      excerpt: "A visual exploration of clarity emerging through geometric patterns and artistic expression.",
+      link: "https://buymeacoffee.com/priyata/the-mid",
+      source: "Buy Me a Coffee",
+      image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/03/26/010904_1774487347169_1000137426.png.png",
+      date: "2026-03-25",
+      size: "large"
+    },
+    {
+      type: "audio",
+      title: "LLM + ML + PBPK + Pharmacometrics",
+      excerpt: "Exploring the convergence of large language models, machine learning, PBPK modeling, and pharmacometrics.",
+      link: "https://buymeacoffee.com/priyata/llm-ml-pbpk-pharmacometrics",
+      source: "Buy Me a Coffee",
+      audioLength: "01:54",
+      audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2026/02/6231735cd580d4e6d049788226403633.mp3",
+      image: "https://cdn.buymeacoffee.com/uploads/project_updates/2026/02/6231735cd580d4e6d049788226403633.jpg",
+      date: "2026-02-18",
+      size: "medium"
+    },
+    {
+      type: "image",
+      title: "Geometry of Control",
+      excerpt: "A visual reflection on structure, control, and the patterns that govern systems and thought.",
+      link: "https://buymeacoffee.com/priyata/geometry-control",
+      source: "Buy Me a Coffee",
+      image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/02/13/003355_1770942835373_Media_1.jpg.jpeg",
+      date: "2026-02-12",
+      size: "large"
+    },
+    {
+      type: "image",
+      title: "The Intangible Asset",
+      excerpt: "Exploring the value of intangible assets through visual art and reflection.",
+      link: "https://buymeacoffee.com/priyata/the-intangible-asset-4384017",
+      source: "Buy Me a Coffee",
+      image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/01/13/025609_1768272968679_1000127957.jpg.jpeg",
+      date: "2026-01-12",
+      size: "large"
+    },
+    {
+      type: "image",
       title: "Recursive Surrender (Seed: 12345)",
-      excerpt: "A quantum emergence visualization exploring the intersection of computational science and consciousness",
+      excerpt: "A quantum emergence visualization exploring the intersection of computational science and consciousness.",
       link: "https://buymeacoffee.com/priyata/recursive-surrender-seed-12345",
       source: "Buy Me a Coffee",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2025/10/30/163350_1761842041931_quantum_emergence_1.jpg.jpeg",
@@ -149,7 +191,7 @@ function getBMCPosts() {
     {
       type: "image",
       title: "Suffering",
-      excerpt: "A visual reflection on the intersection of computational science and human experience",
+      excerpt: "A visual reflection on the intersection of computational science and human experience.",
       link: "https://buymeacoffee.com/priyata/suffering-4118280",
       source: "Buy Me a Coffee",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2025/10/19/162258_1760890979453_1000118344.jpg.jpeg",
@@ -165,8 +207,7 @@ function getBMCPosts() {
       audioLength: "34:00",
       audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17f7c86b0e3c17b45.mp3",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17b7c86b0e3c17b45.jpg",
-      date: "2024-10-06",
-      views: 111,
+      date: "2025-10-06",
       size: "medium"
     },
     {
@@ -178,8 +219,7 @@ function getBMCPosts() {
       audioLength: "18:54",
       audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/09/203b4664c1490ef46d800870a959b3c5.mp3",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/09/203b4664c1490ef46d800870a959b3c5.jpg",
-      date: "2024-09-09",
-      views: 84,
+      date: "2025-09-09",
       size: "medium"
     },
     {
@@ -191,8 +231,7 @@ function getBMCPosts() {
       audioLength: "20:09",
       audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/08/4a7ec3e8b391f35c0a4ded98a734b078.mp3",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/08/4a7ec3e8b391f35c0a4ded98a734b078.jpg",
-      date: "2024-08-07",
-      views: 148,
+      date: "2025-08-07",
       size: "medium"
     }
   ];
