@@ -161,9 +161,13 @@ export const ParticleTitle = ({ text = "State of Being" }: { text?: string }) =>
         const shimmer = Math.sin(time * 1.5 + p.phase) * 0.1;
         const alpha = Math.min(1, p.opacity + shimmer);
 
-        const lightness = 88 + Math.sin(time * 0.8 + p.phase) * 7;
+        const hue = 186 + Math.sin(p.phase) * 37;
+        const sat = 65 + Math.sin(time * 0.8 + p.phase) * 10;
+        const lightness = 85 + Math.sin(time * 0.8 + p.phase) * 8;
         ctx.globalAlpha = alpha;
-        ctx.fillStyle = `hsl(210, 25%, ${lightness}%)`;
+        ctx.fillStyle = `hsl(${hue}, ${sat}%, ${lightness}%)`;
+        ctx.shadowBlur = 3;
+        ctx.shadowColor = `hsl(${hue}, 76%, 52%)`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
