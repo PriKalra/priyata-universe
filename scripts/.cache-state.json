@@ -1,0 +1,311 @@
+{
+  "hey:https://world.hey.com/priyata/feed": {
+    "etag": "W/\"96cb99b473bc4c5fb1e7c83e06736060\"",
+    "lm": null,
+    "cache": []
+  },
+  "hey:https://world.hey.com/priyata": {
+    "cache": [
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-truths-we-learn-in-the-foam-6329e7ce",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/accountability-and-execution-why-most-scaling-companies-stall-and-how-the-best-ones-don-t-fe7f1dc5",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-great-demotion-is-an-ascension-c43c4bbc",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/reflection-of-agah-human-pharmacology-conference-3463a01e",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/clankers-of-llm-use-in-peer-review-how-to-respond-b56a8da1",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/things-i-learnt-when-my-role-lost-its-edges-b88f9673",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/mirror-in-the-machine-hacking-ai-judgement-loops-90cadb41",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/2025-wisdom-and-ghost-in-the-machine-d2d751ac",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-cost-we-pay-for-bias-equal-opportunity-5c682773",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/ai-evals-are-the-moat-of-your-ai-product-659dfd63",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/longevity-rituals-as-metabolic-intelligence-9d649b3b",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/fall-in-love-with-the-starting-line-cc9771b4",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-universal-reach-of-creating-490a7fd6",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/why-are-we-living-longer-but-feeling-worse-734d3778",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/ego-control-and-sincerity-in-pharma-science-an-epistemological-dissection-cef99a5d",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/why-environmental-metabolic-and-translational-gaps-are-pushing-biomedicine-toward-nams-9b9a3ace",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-nano-banana-experiment-ai-s-creative-power-in-biology-2b8c184b",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-three-fishes-why-only-some-swim-free-2b234476",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/is-there-an-explainable-biological-hypothesis-for-manifestation-a820bf6c",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/talent-leverage-art-of-building-internet-a4e36149",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/genuine-selflessness-161c4b02",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/learning-the-why-of-an-ai-product-80c3a061",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/ai-in-pharma-10x-revolution-fdabcd1b",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-unmovable-intelligence-of-compassion-82cd4a4e",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/mothers-and-scientists-guilding-kids-to-tinker-with-ai-3f748b8d",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-dimensions-of-reality-and-its-consequence-in-drug-dicovery-d44464c1",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/most-humans-walk-keeping-themselves-at-bay-d927a4b7",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/ai-personalities-and-persuasion-in-life-science-3b8e3d90",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/the-path-of-sovereign-self-cb524c86",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      },
+      {
+        "type": "blog",
+        "title": "Read more",
+        "excerpt": "Read more",
+        "link": "https://world.hey.com/priyata/matter-of-quality-part-i-pbpk-qsp-pkpd-models-and-basic-analysis-993f50c2",
+        "source": "Hey World",
+        "date": null,
+        "size": "small",
+        "image": null
+      }
+    ]
+  }
+}
