@@ -52,7 +52,7 @@ export const CosmicBackground = () => {
 
     // Fractal star clusters
     const starClusters = [];
-    const numClusters = 8;
+    const numClusters = scale(8);
     
     for (let i = 0; i < numClusters; i++) {
       starClusters.push({
@@ -67,7 +67,7 @@ export const CosmicBackground = () => {
 
     // Neural nodes (neurons)
     const neurons = [];
-    const numNeurons = 40;
+    const numNeurons = scale(30);
     
     for (let i = 0; i < numNeurons; i++) {
       neurons.push({
@@ -84,7 +84,7 @@ export const CosmicBackground = () => {
 
     // Particles
     const particles = [];
-    const numParticles = 250;
+    const numParticles = scale(140);
     
     for (let i = 0; i < numParticles; i++) {
       particles.push({
@@ -102,7 +102,7 @@ export const CosmicBackground = () => {
 
     // Comets
     const comets = [];
-    const numComets = 3;
+    const numComets = scale(3);
 
     for (let i = 0; i < numComets; i++) {
       comets.push({
