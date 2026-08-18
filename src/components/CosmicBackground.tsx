@@ -6,31 +6,49 @@ export const CosmicBackground = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let frame = 0;
     const updateDimensions = () => {
-      if (containerRef.current) {
-        setDimensions({
-          width: containerRef.current.offsetWidth,
-          height: containerRef.current.offsetHeight
-        });
-      }
+      const el = containerRef.current;
+      if (!el) return;
+      const width = el.offsetWidth;
+      const height = el.offsetHeight;
+      setDimensions((prev) => {
+        // Ignore tiny changes (mobile URL-bar show/hide) to avoid full re-init
+        if (Math.abs(prev.width - width) < 40 && Math.abs(prev.height - height) < 120) return prev;
+        return { width, height };
+      });
+    };
+
+    const onResize = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateDimensions);
     };
 
     updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
-    
+
     const { width, height } = dimensions;
-    
+
     canvas.width = width;
     canvas.height = height;
+
+    // Scale scene complexity to screen size / motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const density = Math.min(1, (width * height) / (1440 * 900));
+    const scale = (n: number) => Math.max(3, Math.round(n * (0.45 + 0.55 * density)));
+
 
     // Fractal star clusters
     const starClusters = [];
