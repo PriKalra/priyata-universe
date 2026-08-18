@@ -862,11 +862,42 @@ export const CosmicBackground = () => {
         }
       }
 
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
 
+    let rafId = 0;
+    let running = false;
+    const start = () => {
+      if (running || prefersReducedMotion) return;
+      running = true;
+      rafId = requestAnimationFrame(animate);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(rafId);
+    };
+
+    // Render one frame always (also covers reduced-motion users)
     animate();
+    stop();
+
+    // Only animate while the canvas is on screen and the tab is visible
+    const observer = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting && !document.hidden ? start() : stop()),
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
+    const onVisibility = () => (document.hidden ? stop() : start());
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      stop();
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
   }, [dimensions]);
+
 
   return (
     <div 
