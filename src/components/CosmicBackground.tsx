@@ -540,14 +540,16 @@ export const CosmicBackground = () => {
 
     // Animation loop
     let frame = 0;
+    // Background gradient is static — build it once instead of every frame
+    const bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
+    bgGradient.addColorStop(0, '#0a0a1f');
+    bgGradient.addColorStop(0.5, '#050510');
+    bgGradient.addColorStop(1, '#000005');
+
     const animate = () => {
-      // Create deep space background
-      const bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
-      bgGradient.addColorStop(0, '#0a0a1f');
-      bgGradient.addColorStop(0.5, '#050510');
-      bgGradient.addColorStop(1, '#000005');
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
+
 
       frame++;
 
