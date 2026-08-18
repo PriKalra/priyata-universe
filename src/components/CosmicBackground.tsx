@@ -6,35 +6,53 @@ export const CosmicBackground = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let frame = 0;
     const updateDimensions = () => {
-      if (containerRef.current) {
-        setDimensions({
-          width: containerRef.current.offsetWidth,
-          height: containerRef.current.offsetHeight
-        });
-      }
+      const el = containerRef.current;
+      if (!el) return;
+      const width = el.offsetWidth;
+      const height = el.offsetHeight;
+      setDimensions((prev) => {
+        // Ignore tiny changes (mobile URL-bar show/hide) to avoid full re-init
+        if (Math.abs(prev.width - width) < 40 && Math.abs(prev.height - height) < 120) return prev;
+        return { width, height };
+      });
+    };
+
+    const onResize = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateDimensions);
     };
 
     updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
-    
+
     const { width, height } = dimensions;
-    
+
     canvas.width = width;
     canvas.height = height;
 
+    // Scale scene complexity to screen size / motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const density = Math.min(1, (width * height) / (1440 * 900));
+    const scale = (n: number) => Math.max(3, Math.round(n * (0.45 + 0.55 * density)));
+
+
     // Fractal star clusters
     const starClusters = [];
-    const numClusters = 8;
+    const numClusters = scale(8);
     
     for (let i = 0; i < numClusters; i++) {
       starClusters.push({
@@ -49,7 +67,7 @@ export const CosmicBackground = () => {
 
     // Neural nodes (neurons)
     const neurons = [];
-    const numNeurons = 40;
+    const numNeurons = scale(30);
     
     for (let i = 0; i < numNeurons; i++) {
       neurons.push({
@@ -66,7 +84,7 @@ export const CosmicBackground = () => {
 
     // Particles
     const particles = [];
-    const numParticles = 250;
+    const numParticles = scale(140);
     
     for (let i = 0; i < numParticles; i++) {
       particles.push({
@@ -84,7 +102,7 @@ export const CosmicBackground = () => {
 
     // Comets
     const comets = [];
-    const numComets = 3;
+    const numComets = scale(3);
 
     for (let i = 0; i < numComets; i++) {
       comets.push({
@@ -522,14 +540,16 @@ export const CosmicBackground = () => {
 
     // Animation loop
     let frame = 0;
+    // Background gradient is static — build it once instead of every frame
+    const bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
+    bgGradient.addColorStop(0, '#0a0a1f');
+    bgGradient.addColorStop(0.5, '#050510');
+    bgGradient.addColorStop(1, '#000005');
+
     const animate = () => {
-      // Create deep space background
-      const bgGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width);
-      bgGradient.addColorStop(0, '#0a0a1f');
-      bgGradient.addColorStop(0.5, '#050510');
-      bgGradient.addColorStop(1, '#000005');
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
+
 
       frame++;
 
@@ -842,11 +862,42 @@ export const CosmicBackground = () => {
         }
       }
 
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
 
+    let rafId = 0;
+    let running = false;
+    const start = () => {
+      if (running || prefersReducedMotion) return;
+      running = true;
+      rafId = requestAnimationFrame(animate);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(rafId);
+    };
+
+    // Render one frame always (also covers reduced-motion users)
     animate();
+    stop();
+
+    // Only animate while the canvas is on screen and the tab is visible
+    const observer = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting && !document.hidden ? start() : stop()),
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
+    const onVisibility = () => (document.hidden ? stop() : start());
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      stop();
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
   }, [dimensions]);
+
 
   return (
     <div 

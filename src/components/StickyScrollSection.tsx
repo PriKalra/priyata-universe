@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 interface StickyScrollSectionProps {
   stickyContent: ReactNode;
@@ -15,30 +15,49 @@ export const StickyScrollSection = ({
 }: StickyScrollSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
+    let rafId = 0;
+    let ticking = false;
 
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionTop = rect.top;
-      const sectionHeight = rect.height;
+    const update = () => {
+      ticking = false;
+      const section = sectionRef.current;
+      const sticky = stickyRef.current;
+      if (!section || !sticky) return;
+
+      const rect = section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Calculate progress through the section
-      const scrollProgress = Math.max(0, Math.min(1, 
-        (windowHeight - sectionTop) / (sectionHeight + windowHeight)
+      // Skip work entirely when the section is off screen
+      if (rect.bottom < 0 || rect.top > windowHeight) return;
+
+      const scrollProgress = Math.max(0, Math.min(1,
+        (windowHeight - rect.top) / (rect.height + windowHeight)
       ));
 
-      setProgress(scrollProgress);
+      // Write styles directly — avoids a React re-render on every scroll frame
+      sticky.style.opacity = `${0.4 + scrollProgress * 0.6}`;
+      sticky.style.transform = `scale(${0.95 + scrollProgress * 0.05})`;
+    };
+
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      rafId = requestAnimationFrame(update);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
+    window.addEventListener('resize', handleScroll, { passive: true });
+    update(); // Initial call
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
+
 
   return (
     <section 
@@ -52,12 +71,10 @@ export const StickyScrollSection = ({
         <div className="hidden md:flex lg:sticky lg:top-0 lg:h-screen items-center justify-center p-4 sm:p-6 lg:p-12">
           <div 
             ref={stickyRef}
-            className="w-full"
-            style={{ 
-              opacity: 0.4 + (progress * 0.6),
-              transform: `scale(${0.95 + (progress * 0.05)})`
-            }}
+            className="w-full will-change-transform"
+            style={{ opacity: 0.4, transform: 'scale(0.95)' }}
           >
+
             {stickyContent}
           </div>
         </div>
