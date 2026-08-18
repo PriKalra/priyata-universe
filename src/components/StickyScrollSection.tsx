@@ -71,12 +71,10 @@ export const StickyScrollSection = ({
         <div className="hidden md:flex lg:sticky lg:top-0 lg:h-screen items-center justify-center p-4 sm:p-6 lg:p-12">
           <div 
             ref={stickyRef}
-            className="w-full"
-            style={{ 
-              opacity: 0.4 + (progress * 0.6),
-              transform: `scale(${0.95 + (progress * 0.05)})`
-            }}
+            className="w-full will-change-transform"
+            style={{ opacity: 0.4, transform: 'scale(0.95)' }}
           >
+
             {stickyContent}
           </div>
         </div>
