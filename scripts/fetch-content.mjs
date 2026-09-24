@@ -1,23 +1,29 @@
 // scripts/fetch-content.mjs
+// Syncs the site's public/content-feed.json with the latest posts from
+//   - Hey World blog  (https://world.hey.com/priyata)        -> scraped article cards
+//   - Buy Me a Coffee (https://buymeacoffee.com/priyata)     -> embedded page JSON
+// Also regenerates public/llms.txt and public/agents.txt so AI agents always
+// see the latest content together with Priyata's citation requirements.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { setTimeout as delay } from "node:timers/promises";
 import { parse as parseHTML } from "node-html-parser";
-import { XMLParser } from "fast-xml-parser";
-import crypto from "node:crypto";
 
 // ---------- Config ----------
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const OUT_PATH = path.join(__dirname, "..", "public", "content-feed.json");
+const LLMS_PATH = path.join(__dirname, "..", "public", "llms.txt");
+const AGENTS_PATH = path.join(__dirname, "..", "public", "agents.txt");
 const STATE_PATH = path.join(__dirname, ".cache-state.json");
+
+const SITE_URL = "https://prikalra.github.io/priyata-universe/";
 
 const SOURCES = {
   hey: {
     name: "Hey World",
-    feed: "https://world.hey.com/priyata/feed",
     site: "https://world.hey.com/priyata",
   },
   bmc: {
@@ -27,10 +33,11 @@ const SOURCES = {
 };
 
 const FETCH_OPTS = {
-  timeoutMs: 12_000,
+  timeoutMs: 15_000,
   retries: 2,
-  backoffMs: 800,
-  ua: "priyata-universe-bot (+https://prikalra.github.io/priyata-universe/) node/20",
+  backoffMs: 900,
+  // Browser-like UA: both sources serve reduced/blocked responses to obvious bots.
+  ua: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 priyata-universe-content-sync",
 };
 
 // ---------- tiny fetch with timeout + retries ----------
@@ -41,18 +48,13 @@ async function httpGet(url, headers = {}) {
     try {
       const res = await fetch(url, {
         method: "GET",
-        headers: {
-          "User-Agent": FETCH_OPTS.ua,
-          ...headers,
-        },
+        headers: { "User-Agent": FETCH_OPTS.ua, Accept: "text/html,application/xhtml+xml", ...headers },
         redirect: "follow",
         signal: controller.signal,
       });
       clearTimeout(t);
-      if (res.status === 304) return { status: 304, headers: res.headers, text: "" };
       if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-      const text = await res.text();
-      return { status: res.status, headers: res.headers, text };
+      return { status: res.status, headers: res.headers, text: await res.text() };
     } catch (e) {
       clearTimeout(t);
       if (attempt === FETCH_OPTS.retries) throw e;
@@ -61,7 +63,7 @@ async function httpGet(url, headers = {}) {
   }
 }
 
-// ---------- simple state (ETag/Last-Modified) ----------
+// ---------- persistent state (last good snapshots per source) ----------
 function loadState() {
   try {
     return JSON.parse(fs.readFileSync(STATE_PATH, "utf8"));
@@ -74,194 +76,164 @@ function saveState(state) {
 }
 
 // ---------- helpers ----------
-function sha(input) {
-  return crypto.createHash("sha1").update(input).digest("hex");
+function toISODate(d) {
+  const dt = new Date(d);
+  return Number.isNaN(dt.getTime()) ? null : dt.toISOString().split("T")[0];
 }
-function toISO(d) {
-  try {
-    return new Date(d).toISOString().split('T')[0];
-  } catch {
-    return null;
-  }
+function cleanText(s) {
+  return (s || "").replace(/\s+/g, " ").trim();
+}
+function stripHtml(s) {
+  return cleanText((s || "").replace(/<[^>]*>/g, " "));
+}
+function truncate(s, n) {
+  const t = cleanText(s);
+  return t.length > n ? t.slice(0, n - 1).trimEnd() + "…" : t;
+}
+function secondsToMmSs(sec) {
+  const s = Number(sec);
+  if (!Number.isFinite(s) || s <= 0) return undefined;
+  const m = Math.floor(s / 60);
+  const r = Math.round(s % 60);
+  return `${String(m).padStart(2, "0")}:${String(r).padStart(2, "0")}`;
 }
 
-// ---------- HEY World (scrape page since Atom feed is deprecated) ----------
+// ---------- HEY World: scrape article cards ----------
+// Card structure (verified 2026-09):
+//   <article class="card card--list">
+//     <div class="card__date ..."><span>May 31, 2026</span></div>
+//     <h2 class="hdg hdg--x-large ...">Title</h2>
+//     <div class="card__content">Excerpt…</div>
+//     <a class="card__link" href="/priyata/slug-hash">Read more</a>
+//   </article>
 async function fetchHey(state) {
   const url = SOURCES.hey.site;
-  const key = `hey:${url}`;
+  const key = "hey:index";
 
-  const res = await httpGet(url, {});
-  if (res.status === 304) {
-    return state[key]?.cache || getHeyFallback();
+  try {
+    const res = await httpGet(url);
+    const root = parseHTML(res.text);
+    const cards = root.querySelectorAll("article.card--list");
+    const entries = [];
+
+    for (const card of cards) {
+      const linkEl = card.querySelector("a.card__link");
+      const titleEl = card.querySelector("h2.hdg");
+      const dateEl = card.querySelector(".card__date span");
+      const excerptEl = card.querySelector(".card__content");
+      const href = linkEl?.getAttribute("href");
+      if (!href || !titleEl) continue;
+
+      entries.push({
+        type: "blog",
+        title: cleanText(titleEl.text),
+        excerpt: truncate(excerptEl?.text || "", 260),
+        link: href.startsWith("http") ? href : `https://world.hey.com${href}`,
+        source: SOURCES.hey.name,
+        date: toISODate(dateEl?.text || ""),
+        size: "small",
+        image: null,
+      });
+    }
+
+    if (entries.length > 0) {
+      state[key] = { fetchedAt: new Date().toISOString(), cache: entries };
+      console.log(`  Hey World: parsed ${entries.length} posts from live page`);
+      return entries;
+    }
+    throw new Error("no article cards found on Hey page");
+  } catch (err) {
+    console.warn(`  Hey World live fetch failed (${err.message})`);
+    if (state[key]?.cache?.length) {
+      console.warn("  -> using last good Hey snapshot from state");
+      return state[key].cache;
+    }
+    console.warn("  -> using built-in Hey fallback list");
+    return getHeyFallback();
   }
-
-  // Try to parse links from the page
-  const root = parseHTML(res.text);
-  const links = root.querySelectorAll('a[href*="/priyata/"]');
-  const entries = [];
-  const seen = new Set();
-
-  for (const a of links) {
-    const href = a.getAttribute("href");
-    if (!href || href === SOURCES.hey.site || href.includes("/feed") || seen.has(href)) continue;
-    // Only post links (have a slug with hash-like ID)
-    if (!href.match(/\/priyata\/[a-z0-9-]+-[a-f0-9]{6,}$/)) continue;
-    seen.add(href);
-
-    const fullUrl = href.startsWith("http") ? href : `https://world.hey.com${href}`;
-    const text = a.textContent?.trim() || "";
-    // Try to extract title from nearby content
-    const title = text.substring(0, 120) || fullUrl.split("/").pop().replace(/-[a-f0-9]+$/, "").replace(/-/g, " ");
-
-    entries.push({
-      type: "blog",
-      title: title.charAt(0).toUpperCase() + title.slice(1),
-      excerpt: text.substring(0, 240),
-      link: fullUrl,
-      source: SOURCES.hey.name,
-      date: null,
-      size: "small",
-      image: null,
-    });
-  }
-
-  if (entries.length > 0) {
-    state[key] = { cache: entries };
-    return entries;
-  }
-
-  // Fallback to hardcoded recent posts
-  return getHeyFallback();
 }
 
 function getHeyFallback() {
   return [
-    {
-      type: "blog",
-      title: "The Truths We Learn in the Foam",
-      excerpt: "Reflecting on career as a scientist and future as a leader, realizing that friction isn't just bad luck — it's a mathematical certainty of the systems we live in.",
-      link: "https://world.hey.com/priyata/the-truths-we-learn-in-the-foam-6329e7ce",
-      source: "Hey World",
-      date: "2026-04-02",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "Accountability and Execution: Why Most Scaling Companies Stall",
-      excerpt: "A deep discussion on leverage, scale and accountability in organizational psychology, and reflections from an AI at scale event.",
-      link: "https://world.hey.com/priyata/accountability-and-execution-why-most-scaling-companies-stall-and-how-the-best-ones-don-t-fe7f1dc5",
-      source: "Hey World",
-      date: "2026-03-28",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "The Great Demotion Is an Ascension",
-      excerpt: "Watching morning light hit dust motes — a chaotic and beautiful physics simulation. Reflections on the quiet panic running through headlines about AI.",
-      link: "https://world.hey.com/priyata/the-great-demotion-is-an-ascension-c43c4bbc",
-      source: "Hey World",
-      date: "2026-03-20",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "Reflection of AGAH Human Pharmacology Conference",
-      excerpt: "How AI has impacted pharmacology inside Europe's cautious, highly regulated environment. Optimism, Courage, and Pragmatism — Human Pharmacology 2030.",
-      link: "https://world.hey.com/priyata/reflection-of-agah-human-pharmacology-conference-3463a01e",
-      source: "Hey World",
-      date: "2026-03-12",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "Clankers of LLM Use in Peer Review: How to Respond",
-      excerpt: "Cases of concerns on GenAI use in peer review — instances on Bluesky and independently written expressions of concern.",
-      link: "https://world.hey.com/priyata/clankers-of-llm-use-in-peer-review-how-to-respond-b56a8da1",
-      source: "Hey World",
-      date: "2026-03-05",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "Things I Learnt When My Role Lost Its Edges",
-      excerpt: "Why clarity is the real competitive advantage. Reflections on pivoting and the friction of transition.",
-      link: "https://world.hey.com/priyata/things-i-learnt-when-my-role-lost-its-edges-b88f9673",
-      source: "Hey World",
-      date: "2026-02-25",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "Mirror in the Machine: Hacking AI Judgement Loops",
-      excerpt: "Most of our waking human moments are spent in judgment. Research suggests women are statistically more prone to self-judgment loops.",
-      link: "https://world.hey.com/priyata/mirror-in-the-machine-hacking-ai-judgement-loops-90cadb41",
-      source: "Hey World",
-      date: "2026-02-15",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "2025 Wisdom and Ghost in the Machine",
-      excerpt: "Happy 2026! Pondering the peculiar business of time — on the spiritual realm, the year turns slow, steady, and utterly indifferent to our frantic scurrying.",
-      link: "https://world.hey.com/priyata/2025-wisdom-and-ghost-in-the-machine-d2d751ac",
-      source: "Hey World",
-      date: "2026-01-01",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "AI Evals Are the Moat of Your AI Product",
-      excerpt: "AI products looked great in demos but under real pressure they quietly cracked. No stack traces. No crashes. Just wrong answers delivered with confidence.",
-      link: "https://world.hey.com/priyata/ai-evals-are-the-moat-of-your-ai-product-659dfd63",
-      source: "Hey World",
-      date: "2025-12-15",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "The Cost We Pay for Bias: Equal Opportunity",
-      excerpt: "The greatest leverage comes from being an impeccable team player. Yet, very few cultivate this skill with sincerity.",
-      link: "https://world.hey.com/priyata/the-cost-we-pay-for-bias-equal-opportunity-5c682773",
-      source: "Hey World",
-      date: "2025-12-08",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "Longevity Rituals as Metabolic Intelligence",
-      excerpt: "In India, there is a huge emphasis on life balanced with food elements and rest. The entire Hindu philosophy lives in every household as small routines.",
-      link: "https://world.hey.com/priyata/longevity-rituals-as-metabolic-intelligence-9d649b3b",
-      source: "Hey World",
-      date: "2025-11-20",
-      size: "small",
-      image: null,
-    },
-    {
-      type: "blog",
-      title: "Fall in Love with the Starting Line",
-      excerpt: "Holding on to the identity we have narrated to ourselves is rather obvious. Whenever we are put in the position of start over — there is a lot of friction.",
-      link: "https://world.hey.com/priyata/fall-in-love-with-the-starting-line-cc9771b4",
-      source: "Hey World",
-      date: "2025-10-28",
-      size: "small",
-      image: null,
-    },
+    { type: "blog", title: "Reflections on the Maturing Science of Pharmacometrics: Insights from PAGE 2026 in Dubrovnik", excerpt: "Arrived with high expectations shaped by years of following the field from afar. What I encountered surpassed them: a community not only d…", link: "https://world.hey.com/priyata/reflections-on-the-maturing-science-of-pharmacometrics-insights-from-page-2026-in-dubrovnik-c73fc7b0", source: "Hey World", date: "2026-06-27", size: "small", image: null },
+    { type: "blog", title: "The Agentic Shift in MIDD: Verifying becomes the most valuable skill", excerpt: "The core mental model for Model-Informed Drug Development has been quite straightforward. It rewarded scientists who could build robust models…", link: "https://world.hey.com/priyata/the-agentic-shift-in-midd-verifying-becomes-the-most-valuable-skill-13d3b1d0", source: "Hey World", date: "2026-05-31", size: "small", image: null },
+    { type: "blog", title: "The Truths We Learn in the Foam", excerpt: "Reflecting on career as a scientist and future as a leader, realizing that friction isn't just bad luck — it's a mathematical certainty of the systems we live in.", link: "https://world.hey.com/priyata/the-truths-we-learn-in-the-foam-6329e7ce", source: "Hey World", date: "2026-04-02", size: "small", image: null },
   ];
 }
 
-// ---------- Buy Me a Coffee (manual curated posts) ----------
-function getBMCPosts() {
+// ---------- Buy Me a Coffee: parse embedded Inertia page JSON ----------
+// The profile page embeds <script data-page="app" type="application/json">
+// with props.featured_posts.data = latest posts (verified 2026-09).
+async function fetchBMC(state) {
+  const key = "bmc:featured";
+
+  try {
+    const res = await httpGet(SOURCES.bmc.site);
+    const match = res.text.match(/<script data-page="app" type="application\/json">([\s\S]*?)<\/script>/);
+    if (!match) throw new Error("embedded page JSON not found");
+
+    const pageData = JSON.parse(match[1]);
+    const posts = pageData?.props?.featured_posts?.data;
+    if (!Array.isArray(posts) || posts.length === 0) throw new Error("no featured posts in page JSON");
+
+    const entries = posts.map(mapBMCPost).filter(Boolean);
+    state[key] = { fetchedAt: new Date().toISOString(), cache: entries };
+    console.log(`  Buy Me a Coffee: parsed ${entries.length} latest posts from live page`);
+    return entries;
+  } catch (err) {
+    console.warn(`  Buy Me a Coffee live fetch failed (${err.message})`);
+    if (state[key]?.cache?.length) {
+      console.warn("  -> using last good BMC snapshot from state");
+      return state[key].cache;
+    }
+    console.warn("  -> BMC live posts unavailable, archive below still provides coverage");
+    return [];
+  }
+}
+
+function mapBMCPost(p) {
+  if (!p?.project_update_heading || !p?.project_update_slug) return null;
+
+  const desc = p.post_description_json || {};
+  const audioContent = desc?.type === "doc-audio" ? desc.content : null;
+  const audioUrl = audioContent?.path || undefined;
+  const image = p.featured_image_url || null;
+  const slug = p.project_slug || "priyata";
+
+  let type = "blog";
+  if (audioUrl) type = "audio";
+  else if (image) type = "image";
+
+  return {
+    type,
+    title: cleanText(p.project_update_heading),
+    excerpt: truncate(stripHtml(p.project_update_short_description || p.project_update_description || ""), 260),
+    link: `https://buymeacoffee.com/${slug}/${p.project_update_slug}`,
+    source: SOURCES.bmc.name,
+    date: toISODate(p.project_update_created_on),
+    size: type === "image" ? "large" : type === "audio" ? "medium" : "small",
+    image,
+    ...(audioUrl ? { audioUrl, audioLength: secondsToMmSs(audioContent?.duration) } : {}),
+    ...(Number.isFinite(p.view_count) ? { views: p.view_count } : {}),
+  };
+}
+
+// ---------- Curated BMC archive ----------
+// Older posts that fall off the live "featured" window. New posts are picked
+// up automatically by fetchBMC(); keep this list for depth. Deduped by link.
+function getBMCArchive() {
   return [
+    {
+      type: "image",
+      title: "Liability of Light",
+      excerpt: "When something looks lush and successful, what invisible structures made it possible, and what hidden liabilities came with it? Every flourish implies a formula and every bloom may carry a cost.",
+      link: "https://buymeacoffee.com/priyata/lia-4696198",
+      source: "Buy Me a Coffee",
+      image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/04/22/232118_1776900078438_1000141523.png.png",
+      date: "2026-04-22",
+      size: "large",
+      views: 194,
+    },
     {
       type: "image",
       title: "Geometry of Clarity Bloom",
@@ -270,7 +242,7 @@ function getBMCPosts() {
       source: "Buy Me a Coffee",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/03/26/010904_1774487347169_1000137426.png.png",
       date: "2026-03-25",
-      size: "large"
+      size: "large",
     },
     {
       type: "audio",
@@ -282,7 +254,7 @@ function getBMCPosts() {
       audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2026/02/6231735cd580d4e6d049788226403633.mp3",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/2026/02/6231735cd580d4e6d049788226403633.jpg",
       date: "2026-02-18",
-      size: "medium"
+      size: "medium",
     },
     {
       type: "image",
@@ -292,7 +264,7 @@ function getBMCPosts() {
       source: "Buy Me a Coffee",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/02/13/003355_1770942835373_Media_1.jpg.jpeg",
       date: "2026-02-12",
-      size: "large"
+      size: "large",
     },
     {
       type: "image",
@@ -302,7 +274,7 @@ function getBMCPosts() {
       source: "Buy Me a Coffee",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/01/13/025609_1768272968679_1000127957.jpg.jpeg",
       date: "2026-01-12",
-      size: "large"
+      size: "large",
     },
     {
       type: "image",
@@ -312,7 +284,7 @@ function getBMCPosts() {
       source: "Buy Me a Coffee",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2025/10/30/163350_1761842041931_quantum_emergence_1.jpg.jpeg",
       date: "2025-10-30",
-      size: "large"
+      size: "large",
     },
     {
       type: "image",
@@ -322,7 +294,7 @@ function getBMCPosts() {
       source: "Buy Me a Coffee",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2025/10/19/162258_1760890979453_1000118344.jpg.jpeg",
       date: "2025-10-19",
-      size: "large"
+      size: "large",
     },
     {
       type: "audio",
@@ -334,7 +306,7 @@ function getBMCPosts() {
       audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17f7c86b0e3c17b45.mp3",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17b7c86b0e3c17b45.jpg",
       date: "2025-10-06",
-      size: "medium"
+      size: "medium",
     },
     {
       type: "audio",
@@ -346,7 +318,7 @@ function getBMCPosts() {
       audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/09/203b4664c1490ef46d800870a959b3c5.mp3",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/09/203b4664c1490ef46d800870a959b3c5.jpg",
       date: "2025-09-09",
-      size: "medium"
+      size: "medium",
     },
     {
       type: "audio",
@@ -358,57 +330,7 @@ function getBMCPosts() {
       audioUrl: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/08/4a7ec3e8b391f35c0a4ded98a734b078.mp3",
       image: "https://cdn.buymeacoffee.com/uploads/project_updates/2024/08/4a7ec3e8b391f35c0a4ded98a734b078.jpg",
       date: "2025-08-07",
-      size: "medium"
-    }
+      size: "medium",
+    },
   ];
 }
-
-// ---------- main ----------
-async function main() {
-  const state = loadState();
-
-  console.log("Fetching Hey World content...");
-  const heyItems = await fetchHey(state).catch(err => {
-    console.error("Hey World fetch failed:", err);
-    return [];
-  });
-
-  console.log(`Fetched ${heyItems.length} Hey World posts`);
-
-  const bmcItems = getBMCPosts();
-  console.log(`Using ${bmcItems.length} Buy Me a Coffee posts`);
-
-  const allContent = [...heyItems, ...bmcItems];
-
-  // Dedupe by link
-  const seen = new Set();
-  const deduped = allContent.filter((it) => {
-    if (seen.has(it.link)) return false;
-    seen.add(it.link);
-    return true;
-  });
-
-  // Sort by date descending
-  const sorted = deduped.sort((a, b) => {
-    const dateA = a.date || "";
-    const dateB = b.date || "";
-    return dateB.localeCompare(dateA);
-  });
-
-  // Persist state + feed
-  saveState(state);
-  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
-  
-  const output = {
-    lastUpdated: new Date().toISOString(),
-    content: sorted
-  };
-  
-  fs.writeFileSync(OUT_PATH, JSON.stringify(output, null, 2));
-  console.log(`✓ Wrote ${sorted.length} items -> ${path.relative(process.cwd(), OUT_PATH)}`);
-}
-
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
