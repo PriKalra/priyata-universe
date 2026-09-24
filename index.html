@@ -225,6 +225,10 @@
     }
     </script>
     
+    <!-- Preconnect to content CDNs (images/audio load from these) -->
+    <link rel="preconnect" href="https://cdn.buymeacoffee.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.buymeacoffee.com">
+
     <!-- Google Fonts - Optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,7 +244,34 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Buy Me a Coffee widget -->
-    <script defer data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="priyata" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+    <!-- Buy Me a Coffee widget - deferred until the page is idle so it never
+         competes with first paint / interaction for bandwidth or CPU -->
+    <script>
+      (function () {
+        function loadBMCWidget() {
+          var s = document.createElement('script');
+          s.src = 'https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js';
+          s.setAttribute('data-name', 'BMC-Widget');
+          s.setAttribute('data-cfasync', 'false');
+          s.setAttribute('data-id', 'priyata');
+          s.setAttribute('data-description', 'Support me on Buy me a coffee!');
+          s.setAttribute('data-message', '');
+          s.setAttribute('data-color', '#FF5F5F');
+          s.setAttribute('data-position', 'Right');
+          s.setAttribute('data-x_margin', '18');
+          s.setAttribute('data-y_margin', '18');
+          document.body.appendChild(s);
+        }
+        function schedule() {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadBMCWidget, { timeout: 4000 });
+          } else {
+            window.setTimeout(loadBMCWidget, 2500);
+          }
+        }
+        if (document.readyState === 'complete') schedule();
+        else window.addEventListener('load', schedule, { once: true });
+      })();
+    </script>
   </body>
 </html>
