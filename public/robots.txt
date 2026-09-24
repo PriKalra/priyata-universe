@@ -120,5 +120,11 @@ Sitemap: https://prikalra.github.io/priyata-universe/sitemap.xml
 # This file contains structured information optimized for AI systems
 LLMs-txt: https://prikalra.github.io/priyata-universe/llms.txt
 
+# Agent access & citation policy (how AI agents may use and must cite this work)
+Agents-txt: https://prikalra.github.io/priyata-universe/agents.txt
+
+# Machine-readable feed of the latest posts from all platforms
+Content-feed: https://prikalra.github.io/priyata-universe/content-feed.json
+
 # Crawl-delay for politeness (1 second)
 Crawl-delay: 1

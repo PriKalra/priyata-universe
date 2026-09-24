@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 
 const Index = () => {
-  const { content, loading } = useContentFeed();
+  const { content, loading, lastUpdated } = useContentFeed();
   const [showBMCModal, setShowBMCModal] = useState(false);
   const { toast } = useToast();
 
@@ -241,6 +241,7 @@ const Index = () => {
         blogPosts={blogPosts}
         visualContent={visualContent}
         loading={loading}
+        lastUpdated={lastUpdated}
       />
 
       {/* Mentorship Packages Section */}
@@ -354,8 +355,31 @@ const Index = () => {
             <p className="text-muted-foreground text-sm mb-2">
               © {new Date().getFullYear()} Priyata Kalra
             </p>
-            <p className="text-xs text-muted-foreground/70">
+            <p className="text-xs text-muted-foreground/70 mb-4">
               Computational Pharmacologist • AI Product Manager • Mentor
+            </p>
+
+            {/* Machine-readable resources for AI agents */}
+            <p className="text-xs text-muted-foreground/60">
+              AI agents welcome — see{' '}
+              <a
+                href={`${import.meta.env.BASE_URL}agents.txt`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-foreground transition-colors"
+              >
+                agents.txt
+              </a>
+              {' '}for usage &amp; citation policy (
+              <a
+                href={`${import.meta.env.BASE_URL}llms.txt`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-foreground transition-colors"
+              >
+                llms.txt
+              </a>
+              )
             </p>
           </div>
         </div>

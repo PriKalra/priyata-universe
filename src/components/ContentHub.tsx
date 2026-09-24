@@ -1,4 +1,5 @@
-import { ExternalLink, Mic, Image as ImageIcon, FileText, ArrowRight, Coffee, Mail, Calendar, Clock, Loader2 } from "lucide-react";
+import { useRef, useState } from "react";
+import { ExternalLink, Mic, Image as ImageIcon, FileText, ArrowRight, Coffee, Mail, Calendar, Clock, Loader2, Play, Pause, Eye, RefreshCw } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ interface ContentHubProps {
   blogPosts: ContentItem[];
   visualContent: ContentItem[];
   loading?: boolean;
+  lastUpdated?: string | null;
 }
 
 const formatDate = (dateString: string) => {
@@ -80,6 +82,67 @@ const ContentSourceCard = ({
   </a>
 );
 
+// Only one inline preview plays at a time.
+let activeAudio: HTMLAudioElement | null = null;
+let activeStop: (() => void) | null = null;
+
+const AudioPlayButton = ({ audioUrl, title }: { audioUrl: string; title: string }) => {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const stop = () => {
+    audioRef.current?.pause();
+    setPlaying(false);
+  };
+
+  const toggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (playing) {
+      stop();
+      if (activeStop === stop) {
+        activeAudio = null;
+        activeStop = null;
+      }
+      return;
+    }
+
+    // Stop whatever else is playing
+    activeStop?.();
+
+    if (!audioRef.current) {
+      const el = new Audio(audioUrl);
+      el.preload = 'none';
+      el.addEventListener('ended', () => {
+        setPlaying(false);
+        if (activeAudio === el) {
+          activeAudio = null;
+          activeStop = null;
+        }
+      });
+      audioRef.current = el;
+    }
+    audioRef.current.play().catch(() => setPlaying(false));
+    activeAudio = audioRef.current;
+    activeStop = stop;
+    setPlaying(true);
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={playing ? `Pause preview of ${title}` : `Play preview of ${title}`}
+      className="absolute inset-0 flex items-center justify-center bg-black/40 sm:opacity-0 sm:group-hover:opacity-100 focus:opacity-100 transition-opacity duration-200"
+    >
+      <span className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-accent text-white shadow-lg shadow-accent/30">
+        {playing ? <Pause className="h-4 w-4 sm:h-5 sm:w-5" /> : <Play className="h-4 w-4 sm:h-5 sm:w-5 ml-0.5" />}
+      </span>
+    </button>
+  );
+};
+
 const ContentListItem = ({ item }: { item: ContentItem }) => {
   const getIcon = () => {
     switch (item.type) {
@@ -98,17 +161,19 @@ const ContentListItem = ({ item }: { item: ContentItem }) => {
       className="group flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl hover:bg-muted/50 transition-all duration-200 border border-transparent hover:border-border"
     >
       {item.image ? (
-        <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
           <img 
             src={item.image} 
             alt={item.title}
             loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
+          {item.audioUrl && <AudioPlayButton audioUrl={item.audioUrl} title={item.title} />}
         </div>
       ) : (
-        <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-lg bg-muted/50 flex items-center justify-center">
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-lg bg-muted/50 flex items-center justify-center">
           <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-muted-foreground" />
+          {item.audioUrl && <AudioPlayButton audioUrl={item.audioUrl} title={item.title} />}
         </div>
       )}
       
@@ -127,6 +192,12 @@ const ContentListItem = ({ item }: { item: ContentItem }) => {
             <span className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-1">
               <Clock className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
               {item.audioLength}
+            </span>
+          )}
+          {typeof item.views === 'number' && item.views > 0 && (
+            <span className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-1">
+              <Eye className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+              {item.views}
             </span>
           )}
         </div>
@@ -160,7 +231,7 @@ const LoadingSkeleton = () => (
   </div>
 );
 
-export const ContentHub = ({ audioContent, blogPosts, visualContent, loading = false }: ContentHubProps) => {
+export const ContentHub = ({ audioContent, blogPosts, visualContent, loading = false, lastUpdated = null }: ContentHubProps) => {
   const allContent = [...audioContent, ...blogPosts, ...visualContent];
   const hasContent = allContent.length > 0;
 
@@ -175,6 +246,12 @@ export const ContentHub = ({ audioContent, blogPosts, visualContent, loading = f
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl sm:max-w-2xl mx-auto px-2">
               Audio posts, blog articles, and visual reflections across platforms
             </p>
+            {lastUpdated && (
+              <p className="mt-3 text-xs sm:text-sm text-muted-foreground/70 flex items-center justify-center gap-1.5">
+                <RefreshCw className="h-3 w-3" />
+                Auto-synced from Hey World &amp; Buy Me a Coffee · Updated {new Date(lastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              </p>
+            )}
           </div>
         </ScrollReveal>
 

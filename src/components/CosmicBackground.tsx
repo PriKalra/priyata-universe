@@ -546,6 +546,11 @@ export const CosmicBackground = () => {
     bgGradient.addColorStop(0.5, '#050510');
     bgGradient.addColorStop(1, '#000005');
 
+    // Hoisted per-scene constants (avoids re-allocating every frame)
+    const allCells = neurons.concat(bioCells).concat(fibonacciCells).concat(phyllotaxisCells);
+    const EQ_LINK_DIST = 250;
+    const EQ_LINK_DIST_SQ = EQ_LINK_DIST * EQ_LINK_DIST;
+
     const animate = () => {
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
@@ -656,17 +661,20 @@ export const CosmicBackground = () => {
         drawBioCell(cell, pulse, false);
       });
 
-      // Draw connections between nearby phyllotaxis cells
+      // Draw connections between nearby phyllotaxis cells (squared-distance check)
+      const PHYLLO_LINK_DIST = 60;
+      const PHYLLO_LINK_DIST_SQ = PHYLLO_LINK_DIST * PHYLLO_LINK_DIST;
       for (let i = 0; i < phyllotaxisCells.length; i++) {
         for (let j = i + 1; j < phyllotaxisCells.length; j++) {
           const cell1 = phyllotaxisCells[i];
           const cell2 = phyllotaxisCells[j];
           const dx = cell2.x - cell1.x;
           const dy = cell2.y - cell1.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (distance < 60) {
-            const alpha = (1 - distance / 60) * 0.2;
+          if (distSq < PHYLLO_LINK_DIST_SQ) {
+            const distance = Math.sqrt(distSq);
+            const alpha = (1 - distance / PHYLLO_LINK_DIST) * 0.2;
             ctx.strokeStyle = `hsla(${(cell1.hue + cell2.hue) / 2}, 65%, 55%, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.beginPath();
@@ -707,15 +715,18 @@ export const CosmicBackground = () => {
         drawNeuron(neuron, pulse);
       });
 
-      // Draw neural connections
+      // Draw neural connections (squared-distance check)
+      const NEURON_LINK_DIST = 150;
+      const NEURON_LINK_DIST_SQ = NEURON_LINK_DIST * NEURON_LINK_DIST;
       for (let i = 0; i < neurons.length; i++) {
         for (let j = i + 1; j < neurons.length; j++) {
           const dx = neurons[i].x - neurons[j].x;
           const dy = neurons[i].y - neurons[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (distance < 150) {
-            const alpha = (1 - distance / 150) * 0.5;
+          if (distSq < NEURON_LINK_DIST_SQ) {
+            const distance = Math.sqrt(distSq);
+            const alpha = (1 - distance / NEURON_LINK_DIST) * 0.5;
             const gradient = ctx.createLinearGradient(
               neurons[i].x, neurons[i].y,
               neurons[j].x, neurons[j].y
@@ -747,19 +758,18 @@ export const CosmicBackground = () => {
       equations.forEach((eq) => {
         if (eq.opacity > 0.15) {
           // Find closest biological structure (neuron, bioCell, fibonacciCell, or phyllotaxisCell)
-          let closestDist = Infinity;
+          let closestDistSq = Infinity;
           let closestX = 0;
           let closestY = 0;
           let closestHue = 200;
           let isFibonacci = false;
 
-          const allCells = neurons.concat(bioCells).concat(fibonacciCells).concat(phyllotaxisCells);
           allCells.forEach((cell, idx) => {
             const dx = eq.x - cell.x;
             const dy = eq.y - cell.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < closestDist && dist < 250) {
-              closestDist = dist;
+            const distSq = dx * dx + dy * dy;
+            if (distSq < closestDistSq && distSq < EQ_LINK_DIST_SQ) {
+              closestDistSq = distSq;
               closestX = cell.x;
               closestY = cell.y;
               closestHue = cell.hue;
@@ -768,8 +778,9 @@ export const CosmicBackground = () => {
             }
           });
 
-          if (closestDist < 250) {
-            const alpha = eq.opacity * 0.3 * (1 - closestDist / 250);
+          if (closestDistSq < EQ_LINK_DIST_SQ) {
+            const closestDist = Math.sqrt(closestDistSq);
+            const alpha = eq.opacity * 0.3 * (1 - closestDist / EQ_LINK_DIST);
             ctx.strokeStyle = `hsla(${(260 + closestHue) / 2}, 75%, 65%, ${alpha})`;
             ctx.lineWidth = isFibonacci ? 1.2 : 0.8; // Thicker lines to golden ratio patterns
             ctx.setLineDash([3, 6]);
@@ -843,15 +854,18 @@ export const CosmicBackground = () => {
         ctx.shadowBlur = 0;
       });
 
-      // Draw constellation connections
+      // Draw constellation connections (squared-distance check: sqrt only when in range)
+      const PARTICLE_LINK_DIST = 100;
+      const PARTICLE_LINK_DIST_SQ = PARTICLE_LINK_DIST * PARTICLE_LINK_DIST;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (distance < 100) {
-            const alpha = (1 - distance / 100) * 0.15;
+          if (distSq < PARTICLE_LINK_DIST_SQ) {
+            const distance = Math.sqrt(distSq);
+            const alpha = (1 - distance / PARTICLE_LINK_DIST) * 0.15;
             ctx.strokeStyle = `hsla(200, 80%, 60%, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
