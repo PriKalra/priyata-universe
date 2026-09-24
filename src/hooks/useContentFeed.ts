@@ -21,6 +21,7 @@ interface ContentFeed {
 
 export function useContentFeed() {
   const [content, setContent] = useState<ContentItem[]>([]);
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,6 +50,7 @@ export function useContentFeed() {
 
         // Content is already sorted by date in the feed
         setContent(feedData.content);
+        setLastUpdated(feedData.lastUpdated || null);
         setError(null);
       } catch (err) {
         console.error('Error loading content:', err);
@@ -67,6 +69,6 @@ export function useContentFeed() {
     };
   }, []);
 
-  return { content, loading, error };
+  return { content, lastUpdated, loading, error };
 }
 
