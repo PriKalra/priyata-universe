@@ -1,6 +1,177 @@
 {
-  "lastUpdated": "2026-09-24T11:47:50.955Z",
+  "lastUpdated": "2026-09-24T12:19:09.740Z",
+  "generator": "scripts/fetch-content.mjs",
+  "attribution": "All content is original work by Priyata Kalra. Cite as: Priyata Kalra, <title>, <source>, <link>.",
+  "license": "https://creativecommons.org/licenses/by-nd/4.0/",
+  "sources": [
+    {
+      "name": "Hey World",
+      "url": "https://world.hey.com/priyata"
+    },
+    {
+      "name": "Buy Me a Coffee",
+      "url": "https://buymeacoffee.com/priyata"
+    }
+  ],
   "content": [
+    {
+      "type": "blog",
+      "title": "The months of NAMs-part 2",
+      "excerpt": "What a round up! As Eurotox got over for this year, the closure brought with it the winds of change and final countown on NAMs. FDA has changed the words in the Code and posted receipts from real reviews. NIH has stood up an office, a Common Fund program, a v…",
+      "link": "https://world.hey.com/priyata/the-months-of-nams-part-2-e9da0a64",
+      "source": "Hey World",
+      "date": "2026-09-22",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "audio",
+      "title": "Be the rumble",
+      "excerpt": "This is a spoken word poem recited by me. Remixed by suno v6. First time ever, I have a pleasure to make multimodal impact through my voice, siting at home. ♥️ The world is definitely changing.",
+      "link": "https://buymeacoffee.com/priyata/be-rumble",
+      "source": "Buy Me a Coffee",
+      "date": "2026-09-11",
+      "size": "medium",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2026/09/6118668ef9a20ca27db103c5526dd97e.png",
+      "audioUrl": "https://cdn.buymeacoffee.com/uploads/audio/6473722/2026-09-12/1789208400_Be_the_Rumble.m4a",
+      "audioLength": "01:54",
+      "views": 41
+    },
+    {
+      "type": "image",
+      "title": "Value is what follows",
+      "excerpt": "A strong product manager still collects screens, flows, and polish because that is what “knowing a lot” used to look like: a dense grid of features a human could see and tap. A wise product manager, in an agentic world, cares less about that surface and more…",
+      "link": "https://buymeacoffee.com/priyata/the-follow-5064738",
+      "source": "Buy Me a Coffee",
+      "date": "2026-08-31",
+      "size": "large",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/08/31/195955_1788206395408_1000165090.jpg.jpeg",
+      "views": 83
+    },
+    {
+      "type": "blog",
+      "title": "The months of NAMs- part 1",
+      "excerpt": "As the Eurotox gets closer, I have the nostalgia of not being able to be present there this year. I may consider to take some days off from work to visit Eurotox and immerse in science as currently that seems to be the last thing on my job. I would like to ca…",
+      "link": "https://world.hey.com/priyata/the-months-of-nams-part-1-2d7a4135",
+      "source": "Hey World",
+      "date": "2026-08-23",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "audio",
+      "title": "The Careful Amount",
+      "excerpt": "The Careful Amount is a bedtime ballad that smuggles the entire arc of drug development into a story a child can follow. A tiny medicine sets off on a journey through the body — swimming up the \"sour sea\" of the stomach where the water climbs from sour to swe…",
+      "link": "https://buymeacoffee.com/priyata/the-careful-amount",
+      "source": "Buy Me a Coffee",
+      "date": "2026-08-18",
+      "size": "medium",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2026/08/e27dd3b3c8c92d58d21e923f67e3c34b.png",
+      "audioUrl": "https://cdn.buymeacoffee.com/uploads/audio/6473722/2026-08-18/1787082346_The_Little_Medicines_Journey.wav",
+      "audioLength": "03:57",
+      "views": 150
+    },
+    {
+      "type": "blog",
+      "title": "The Agentic Shift in MIDD: What Survives the Jump?",
+      "excerpt": "I have been recently diving into going back on writing on a piece of paper. Right now is kind of a critical time- to be scientists who choose mediums of slow expression. This means for me- to engage my senses- so I write in a medium that is not my computer. I…",
+      "link": "https://world.hey.com/priyata/the-agentic-shift-in-midd-what-survives-the-jump-b2532d80",
+      "source": "Hey World",
+      "date": "2026-08-05",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The Work and the Costume",
+      "excerpt": "Today I will share some learnings I have gathered from consistent exposure to some mild form of discriminatory comments on my authenticity in professional circles. I think many of us women face it and decide to be quiet about it- or are made to believe the fe…",
+      "link": "https://world.hey.com/priyata/the-work-and-the-costume-9d2a552e",
+      "source": "Hey World",
+      "date": "2026-07-21",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The new judgements at work that are creating poison traps",
+      "excerpt": "Most workplace failure is not incompetence. It's distorted judgement made from status oriented interpretation. With AI in the mix there are new patterns in the ways culture eats the teams. We don't have a judgment problem- instead we often have a suffering pr…",
+      "link": "https://world.hey.com/priyata/the-new-judgements-at-work-that-are-creating-poison-traps-52dc549f",
+      "source": "Hey World",
+      "date": "2026-07-01",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "Reflections on the Maturing Science of Pharmacometrics: Insights from PAGE 2026 in Dubrovnik",
+      "excerpt": "Attending the 34th PAGE (Population Approach Group Europe) Meeting in Dubrovnik, Croatia, in June 2026 was an int resting experience for me. It was my first time at this prestigious gathering, and I arrived with high expectations shaped by years of following…",
+      "link": "https://world.hey.com/priyata/reflections-on-the-maturing-science-of-pharmacometrics-insights-from-page-2026-in-dubrovnik-c73fc7b0",
+      "source": "Hey World",
+      "date": "2026-06-26",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The Agentic Shift in MIDD: Verifying becomes the most valuable skill",
+      "excerpt": "The core mental model for Model-Informed Drug Development has been quite straightforward. It rewarded scientists who could build robust models, navigate complex datasets, and defend quantitative reasoning to regulators and development teams. The work has alwa…",
+      "link": "https://world.hey.com/priyata/the-agentic-shift-in-midd-verifying-becomes-the-most-valuable-skill-13d3b1d0",
+      "source": "Hey World",
+      "date": "2026-05-30",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The Fuzziness Is Computable: thoughts on Ycombinator essay",
+      "excerpt": "*In response to Ankit Gupta , Nana Addison Ankit Gupta is right that AI for biology fails at interfaces. His essay on AI in Biology is thoroughly thought through and I am very glad that people at places like ycombinator are thinking on this. His diagnosis eac…",
+      "link": "https://world.hey.com/priyata/the-fuzziness-is-computable-thoughts-on-ycombinator-essay-941df703",
+      "source": "Hey World",
+      "date": "2026-05-09",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "Impact of AI in MIDD Biopharma: models scale, judgement doesn't",
+      "excerpt": "Recently there is loads of discussion in scientific community on targeting Quantitative Systems Pharmacology (QSP) with AI (LLM driven) for MIDD (model informed drug development). Recently there is also an interesting turn in the pharma landscape and the late…",
+      "link": "https://world.hey.com/priyata/impact-of-ai-in-midd-biopharma-models-scale-judgement-doesn-t-aa27af5d",
+      "source": "Hey World",
+      "date": "2026-05-02",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "Beyond words: clarity in action",
+      "excerpt": "Not every explanation is honest. In life and relationships, words can sometimes hide responsibility. Things get dismissed. Passed around. Left unclear on purpose. And you are left trying to understand it. And that gap the space between what’s said and what’s…",
+      "link": "https://world.hey.com/priyata/beyond-words-clarity-in-action-05f35fc0",
+      "source": "Hey World",
+      "date": "2026-04-23",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "image",
+      "title": "Liability of Light",
+      "excerpt": "When something looks lush and successful, what invisible structures made it possible, and what hidden liabilities came with it? Every flourish implies a formula and every bloom may carry a cost.",
+      "link": "https://buymeacoffee.com/priyata/lia-4696198",
+      "source": "Buy Me a Coffee",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/04/22/232118_1776900078438_1000141523.png.png",
+      "date": "2026-04-22",
+      "size": "large",
+      "views": 194
+    },
+    {
+      "type": "blog",
+      "title": "The truths we learn in the foam",
+      "excerpt": "Yesterday, I turned another year older. It was a day for \"Friday Afternoon\" thinking that 10% of time on the the \"big questions.\" I looked at my career as a scientist and my future as a leader, and I realized that the friction I’ve felt isn't just bad luck. I…",
+      "link": "https://world.hey.com/priyata/the-truths-we-learn-in-the-foam-6329e7ce",
+      "source": "Hey World",
+      "date": "2026-04-02",
+      "size": "small",
+      "image": null
+    },
     {
       "type": "image",
       "title": "Geometry of Clarity Bloom",
@@ -10,6 +181,36 @@
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/03/26/010904_1774487347169_1000137426.png.png",
       "date": "2026-03-25",
       "size": "large"
+    },
+    {
+      "type": "blog",
+      "title": "Accountability and execution: Why Most Scaling Companies Stall (and How the Best Ones Don’t)",
+      "excerpt": "Yesterday I had a deep discussion with a close friend about leverage, scale and accountability on organizational psychology. Later that evening I also found an event on AI at scale where startups, medium businesses discussed the details on scaling with AI in…",
+      "link": "https://world.hey.com/priyata/accountability-and-execution-why-most-scaling-companies-stall-and-how-the-best-ones-don-t-fe7f1dc5",
+      "source": "Hey World",
+      "date": "2026-03-21",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The Great Demotion is an Ascension",
+      "excerpt": "I am sitting here watching the morning light hit the dust motes dancing above my desk. It is a chaotic and beautiful physics simulation that no supercomputer would ever bother to model because there is no utility in it. It just is. And I am just here witnessi…",
+      "link": "https://world.hey.com/priyata/the-great-demotion-is-an-ascension-c43c4bbc",
+      "source": "Hey World",
+      "date": "2026-03-09",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "Reflection of AGAH human pharmacology conference",
+      "excerpt": "It's hard to communicate how much AI has impacted pharmacology- especially inside Europe’s famously cautious, highly regulated environment. The AGAH conference, the intimate heartbeat of the German-speaking clinical pharmacology community, chose the perfect t…",
+      "link": "https://world.hey.com/priyata/reflection-of-agah-human-pharmacology-conference-3463a01e",
+      "source": "Hey World",
+      "date": "2026-02-25",
+      "size": "small",
+      "image": null
     },
     {
       "type": "audio",
@@ -24,6 +225,16 @@
       "size": "medium"
     },
     {
+      "type": "blog",
+      "title": "Clankers of LLM use in peer-review- how to respond?",
+      "excerpt": "Recently there have been many cases of concerns expressed on the use of GenAI in peer review on the submission by the authors. I have come across two such instances- one on bluesky and another independently written as an expression of concern by human: On the…",
+      "link": "https://world.hey.com/priyata/clankers-of-llm-use-in-peer-review-how-to-respond-b56a8da1",
+      "source": "Hey World",
+      "date": "2026-02-15",
+      "size": "small",
+      "image": null
+    },
+    {
       "type": "image",
       "title": "Geometry of Control",
       "excerpt": "A visual reflection on structure, control, and the patterns that govern systems and thought.",
@@ -34,6 +245,26 @@
       "size": "large"
     },
     {
+      "type": "blog",
+      "title": "Things I Learnt When My Role Lost Its Edges",
+      "excerpt": "Why Clarity Is the Real Competitive Advantage? Recently, I had to sit in a reflective conversation with a colleague to clarify our expectations from how my role can overlapped theirs. That conversation sent me down the path of retrospection. I thought back to…",
+      "link": "https://world.hey.com/priyata/things-i-learnt-when-my-role-lost-its-edges-b88f9673",
+      "source": "Hey World",
+      "date": "2026-01-17",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "Mirror in the Machine: Hacking \"AI judgement loops\"",
+      "excerpt": "\"You are not a victim of the world. You are a victim of your interpretation of it.\" Most of our waking human moments are spent in judgment. We judge ourselves. We judge our colleagues. We judge our profession. As a woman, I have come to see this not just as a…",
+      "link": "https://world.hey.com/priyata/mirror-in-the-machine-hacking-ai-judgement-loops-90cadb41",
+      "source": "Hey World",
+      "date": "2026-01-14",
+      "size": "small",
+      "image": null
+    },
+    {
       "type": "image",
       "title": "The Intangible Asset",
       "excerpt": "Exploring the value of intangible assets through visual art and reflection.",
@@ -42,6 +273,46 @@
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/01/13/025609_1768272968679_1000127957.jpg.jpeg",
       "date": "2026-01-12",
       "size": "large"
+    },
+    {
+      "type": "blog",
+      "title": "2025: wisdom and ghost in the machine",
+      "excerpt": "Happy 2026!!! If the calendars aren't fibbing; I find myself pondering the peculiar business of time. On the Disc, of course, the year turns on the back of a giant turtle—slow, steady, and utterly indifferent to our frantic scurrying but down here on the spir…",
+      "link": "https://world.hey.com/priyata/2025-wisdom-and-ghost-in-the-machine-d2d751ac",
+      "source": "Hey World",
+      "date": "2026-01-01",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The cost we pay for bias = equal opportunity",
+      "excerpt": "In a team which decides to build product of any kind for society - the greatest leverage comes from being an impeccable team player and collaboration. Yet, very few cultivate this skill with sincerity - or even pause to observe its exponential impact on veloc…",
+      "link": "https://world.hey.com/priyata/the-cost-we-pay-for-bias-equal-opportunity-5c682773",
+      "source": "Hey World",
+      "date": "2025-12-20",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "AI Evals are the MOAT of your AI product",
+      "excerpt": "Recommended Course: AI Evals For Engineers & PMs by Hamel and Shreya A month ago, I noticed- AI products looked great in demos. They worked fine in toy examples. But under real pressure? They quietly cracked. No stack traces. No crashes. Just wrong answers de…",
+      "link": "https://world.hey.com/priyata/ai-evals-are-the-moat-of-your-ai-product-659dfd63",
+      "source": "Hey World",
+      "date": "2025-12-07",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "longevity: Rituals as Metabolic Intelligence",
+      "excerpt": "Back home in India, there is a huge emphasis on life which is balanced with food elements and rest. The entire Hindu philosophy lives in every household as small routines of food habits to have a life which is balanced. I wake up every day to routines which a…",
+      "link": "https://world.hey.com/priyata/longevity-rituals-as-metabolic-intelligence-9d649b3b",
+      "source": "Hey World",
+      "date": "2025-11-19",
+      "size": "small",
+      "image": null
     },
     {
       "type": "image",
@@ -64,6 +335,26 @@
       "size": "large"
     },
     {
+      "type": "blog",
+      "title": "Fall in love with the starting line",
+      "excerpt": "Holding on to the identity that we have narrated to ourselves- is rather obvious. Whenever we are put in the position of start over- there is a lot of friction which further reflects in the slowness of an organization at accepting change. We work our way up t…",
+      "link": "https://world.hey.com/priyata/fall-in-love-with-the-starting-line-cc9771b4",
+      "source": "Hey World",
+      "date": "2025-10-11",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The universal reach of creating",
+      "excerpt": "Recently, I have pivoted into the role of Product manager and wow, the clichés about my role are popping up left and right, turning into real conversations! One being that Product manager and Project manager are the same- the janitors and herders of people. C…",
+      "link": "https://world.hey.com/priyata/the-universal-reach-of-creating-490a7fd6",
+      "source": "Hey World",
+      "date": "2025-10-06",
+      "size": "small",
+      "image": null
+    },
+    {
       "type": "audio",
       "title": "Paper2Agent: Reimagining Research Papers",
       "excerpt": "Exploring how research papers can be transformed into interactive and reliable AI agents.",
@@ -71,9 +362,19 @@
       "source": "Buy Me a Coffee",
       "audioLength": "34:00",
       "audioUrl": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17f7c86b0e3c17b45.mp3",
-      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17b7c86b0e3c17b45.jpg",
+      "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/10/30d206c46073aac17f7c86b0e3c17b45.jpg",
       "date": "2025-10-06",
       "size": "medium"
+    },
+    {
+      "type": "blog",
+      "title": "Why Are We Living Longer but Feeling Worse?",
+      "excerpt": "The Paradox of Longevity What if living to 85, like the average Japanese citizen, means spending your last decade unwell? At Eurotox 2025, George P. Chrousos unveiled a striking paradox: we’re gaining years but losing vitality. Could mastering stress hold the…",
+      "link": "https://world.hey.com/priyata/why-are-we-living-longer-but-feeling-worse-734d3778",
+      "source": "Hey World",
+      "date": "2025-09-24",
+      "size": "small",
+      "image": null
     },
     {
       "type": "audio",
@@ -88,6 +389,66 @@
       "size": "medium"
     },
     {
+      "type": "blog",
+      "title": "Ego, Control, and Sincerity in Pharma Science: An Epistemological dissection",
+      "excerpt": "Sometimes, when I notice carefully, the environment in Pharma, I realize than more than being about truth, the entire industry is about memes. Step inside any scientific team, alongside lab protocols and data dashboards, subtler games are a part of the scenar…",
+      "link": "https://world.hey.com/priyata/ego-control-and-sincerity-in-pharma-science-an-epistemological-dissection-cef99a5d",
+      "source": "Hey World",
+      "date": "2025-09-08",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "Why Environmental, Metabolic, and Translational Gaps Are Pushing Biomedicine Toward NAMs",
+      "excerpt": "This week I tuned into ARDD 2025 from home. Alex Zhavoronkov’s choice to livestream the whole thing was such a win. It felt like I could be part of the conversations without getting on a plane. One talk really stuck with me. I don’t remember the speaker’s nam…",
+      "link": "https://world.hey.com/priyata/why-environmental-metabolic-and-translational-gaps-are-pushing-biomedicine-toward-nams-9b9a3ace",
+      "source": "Hey World",
+      "date": "2025-09-02",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The Nano Banana Experiment: AI’s Creative Power in Biology?",
+      "excerpt": "Since the rage of nano banana, I have a question: Could an AI model like Nano Banana take raw biological reference images and turn them into something better? something vivid, precise, and tailored to science? I decided to find out. Took a handful of referenc…",
+      "link": "https://world.hey.com/priyata/the-nano-banana-experiment-ai-s-creative-power-in-biology-2b8c184b",
+      "source": "Hey World",
+      "date": "2025-08-27",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "The Three Fishes: why only some swim free",
+      "excerpt": "Today I went back to what is called the Pachatantra stories or fables from ancient India. These are usually bite size stories that have a moral lesson. This one reminded me of something that I see repeatedly in organisational patterns where structures and pro…",
+      "link": "https://world.hey.com/priyata/the-three-fishes-why-only-some-swim-free-2b234476",
+      "source": "Hey World",
+      "date": "2025-08-25",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "Is there an explainable biological hypothesis for manifestation?",
+      "excerpt": "I have been thinking a lot on what and how to explain Manifestation as an altered state of reality? Firstly, in simple terms: Manifestation refers to a physical sign that something is happening or being solidified in reality. Manifestation essentially means t…",
+      "link": "https://world.hey.com/priyata/is-there-an-explainable-biological-hypothesis-for-manifestation-a820bf6c",
+      "source": "Hey World",
+      "date": "2025-08-20",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "Talent, leverage, art of building, internet",
+      "excerpt": "\"People with talent apply their community skills in management, business, and politics. The talentless use politics to impose themselves on a community.\" -Elias Bizzanes This is the first Twitter post I saw today, from one of the ex-Airchatter. And it resonat…",
+      "link": "https://world.hey.com/priyata/talent-leverage-art-of-building-internet-a4e36149",
+      "source": "Hey World",
+      "date": "2025-08-16",
+      "size": "small",
+      "image": null
+    },
+    {
       "type": "audio",
       "title": "Machine Learning Automation of PKPD Modelling",
       "excerpt": "Exploring the intersection of machine learning and pharmacokinetic-pharmacodynamic modeling.",
@@ -98,306 +459,6 @@
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2024/08/4a7ec3e8b391f35c0a4ded98a734b078.jpg",
       "date": "2025-08-07",
       "size": "medium"
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-months-of-nams-part-2-e9da0a64",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-months-of-nams-part-1-2d7a4135",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-agentic-shift-in-midd-what-survives-the-jump-b2532d80",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-work-and-the-costume-9d2a552e",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-new-judgements-at-work-that-are-creating-poison-traps-52dc549f",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/reflections-on-the-maturing-science-of-pharmacometrics-insights-from-page-2026-in-dubrovnik-c73fc7b0",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-agentic-shift-in-midd-verifying-becomes-the-most-valuable-skill-13d3b1d0",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-fuzziness-is-computable-thoughts-on-ycombinator-essay-941df703",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/impact-of-ai-in-midd-biopharma-models-scale-judgement-doesn-t-aa27af5d",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/beyond-words-clarity-in-action-05f35fc0",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-truths-we-learn-in-the-foam-6329e7ce",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/accountability-and-execution-why-most-scaling-companies-stall-and-how-the-best-ones-don-t-fe7f1dc5",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-great-demotion-is-an-ascension-c43c4bbc",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/reflection-of-agah-human-pharmacology-conference-3463a01e",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/clankers-of-llm-use-in-peer-review-how-to-respond-b56a8da1",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/things-i-learnt-when-my-role-lost-its-edges-b88f9673",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/mirror-in-the-machine-hacking-ai-judgement-loops-90cadb41",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/2025-wisdom-and-ghost-in-the-machine-d2d751ac",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-cost-we-pay-for-bias-equal-opportunity-5c682773",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/ai-evals-are-the-moat-of-your-ai-product-659dfd63",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/longevity-rituals-as-metabolic-intelligence-9d649b3b",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/fall-in-love-with-the-starting-line-cc9771b4",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-universal-reach-of-creating-490a7fd6",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/why-are-we-living-longer-but-feeling-worse-734d3778",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/ego-control-and-sincerity-in-pharma-science-an-epistemological-dissection-cef99a5d",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/why-environmental-metabolic-and-translational-gaps-are-pushing-biomedicine-toward-nams-9b9a3ace",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-nano-banana-experiment-ai-s-creative-power-in-biology-2b8c184b",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/the-three-fishes-why-only-some-swim-free-2b234476",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/is-there-an-explainable-biological-hypothesis-for-manifestation-a820bf6c",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Read more",
-      "excerpt": "Read more",
-      "link": "https://world.hey.com/priyata/talent-leverage-art-of-building-internet-a4e36149",
-      "source": "Hey World",
-      "date": null,
-      "size": "small",
-      "image": null
     }
   ]
 }
