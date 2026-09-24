@@ -3,24 +3,26 @@ name: Update Content Feed
 on:
   workflow_dispatch: {}
   schedule:
-    # Runs every 3 days at 08:30 UTC
-    - cron: "30 8 */3 * *"
+    # Twice a month: 1st and 15th at 08:30 UTC
+    - cron: "30 8 1,15 * *"
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: content-feed
   cancel-in-progress: true
 
 jobs:
-  build-feed:
+  update:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -31,19 +33,51 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Build content feed
+      - name: Fetch latest blog + Buy Me a Coffee posts
         run: node scripts/fetch-content.mjs
 
       - name: Commit feed if changed
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if [[ -n "$(git status --porcelain public/content-feed.json)" ]]; then
             git add public/content-feed.json
-            git commit -m "chore: update content-feed [skip ci]"
+            git commit -m "chore: update content feed"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "No changes to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
+
+  # Pushes made with GITHUB_TOKEN don't trigger other workflows,
+  # so redeploy the site here directly.
+  build:
+    needs: update
+    if: needs.update.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
