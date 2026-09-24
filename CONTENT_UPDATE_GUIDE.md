@@ -1,140 +1,59 @@
 # Content Update & Deployment Guide
 
-## 🤖 Automated Weekly Content Updates
+## 🤖 Automated Daily Content Sync
 
-Content is now **automatically fetched and updated weekly** using GitHub Actions - completely free with no backend required!
+Content is **automatically fetched and updated daily** using GitHub Actions — completely free, no backend required.
 
 ### How It Works
 
-**GitHub Actions runs weekly** (every Monday at 9 AM UTC) and:
-1. 📥 Fetches latest Hey World blog posts via RSS
-2. 🔀 Merges with Buy Me a Coffee audio posts
-3. 📝 Generates `public/content-feed.json`
-4. 💾 Commits changes to the repository
-5. 🚀 Triggers automatic deployment to GitHub Pages
+**GitHub Actions runs daily** (06:15 UTC, or manually via *Actions → Update Content Feed → Run workflow*) and:
+
+1. 📥 Scrapes the latest **Hey World** blog posts from `https://world.hey.com/priyata` (title, date, excerpt, link — from the article cards)
+2. 📥 Reads the latest **Buy Me a Coffee** posts from the embedded page JSON at `https://buymeacoffee.com/priyata` (title, date, excerpt, image, audio URL + duration, view count)
+3. 🔀 Merges them with the curated BMC archive in `scripts/fetch-content.mjs` (older posts that have rotated out of the live "featured" window), dedupes by link, sorts by date
+4. 📝 Regenerates:
+   - `public/content-feed.json` — the feed the site renders
+   - `public/llms.txt` — LLM-optimized summary with the latest content
+   - `public/agents.txt` — agent access & citation policy with featured content
+5. 💾 Commits the changes and redeploys to GitHub Pages
 
 **Workflow file**: `.github/workflows/update-content.yml`
+**Fetch script**: `scripts/fetch-content.mjs`
 
-### ✅ Hey World Blog Posts - **Fully Automated**
-- **Source**: RSS feed from `https://world.hey.com/priyata/feed.atom`
-- **Automation**: Fetched weekly by GitHub Actions
-- **No action needed**: Posts automatically appear when published
+### ✅ Hey World Blog Posts — Fully Automated
+- **Source**: `https://world.hey.com/priyata` (article cards; the old Atom feed is deprecated)
+- **No action needed**: new posts appear on the site within ~24 h of publishing
 
-### ⚠️ Buy Me a Coffee Posts - **Manual Entry Required**
-- **Why**: No public API available from Buy Me a Coffee
-- **Location**: `scripts/fetch-content.js` - `BMC_POSTS` array
-- **How to update**:
-  1. Open `scripts/fetch-content.js`
-  2. Add new entries to the `BMC_POSTS` array
-  3. Follow the existing format:
-  ```javascript
-  {
-    type: "audio",
-    title: "Your Post Title",
-    excerpt: "Brief description...",
-    link: "https://buymeacoffee.com/priyata/your-post-url",
-    source: "Buy Me a Coffee",
-    audioLength: "XX:XX",
-    audioUrl: "https://cdn.buymeacoffee.com/uploads/...",
-    image: "https://cdn.buymeacoffee.com/uploads/...",
-    date: "YYYY-MM-DD",
-    views: 0,
-    size: "medium"
-  }
-  ```
-  4. Push changes to trigger workflow (or run manually)
+### ✅ Buy Me a Coffee Posts — Automated (latest) + small archive (older)
+- The **3 latest posts** are picked up automatically from the live page, including audio URLs, durations, images, and view counts.
+- Older posts rotate out of BMC's featured window. To keep an older post on the site, add it once to the `getBMCArchive()` array in `scripts/fetch-content.mjs` (copy the format of existing entries). Links are deduped, so overlap with live data is harmless.
 
-### 🔄 Manually Trigger Content Update
+### 🛡 Resilience
+- Each source caches its last good snapshot in `scripts/.cache-state.json` (committed). If a live fetch fails, the previous snapshot is used; if there is no snapshot, a small built-in fallback list keeps the site populated.
 
-To update content immediately (without waiting for weekly schedule):
-
-1. Go to your GitHub repository
-2. Click **Actions** tab
-3. Select **Update Content Weekly** workflow
-4. Click **Run workflow** button
-5. Wait for completion - changes deploy automatically
-
-## 🚀 GitHub Pages Deployment
-
-### Automatic Deployment
-- **Trigger**: Push to `main` branch
-- **Workflow**: `.github/workflows/deploy.yml`
-- **Process**: Automatically builds and deploys to GitHub Pages
-
-### Setup Steps
-1. Go to your GitHub repository settings
-2. Navigate to Pages section
-3. Set Source to "GitHub Actions"
-4. Push to main branch - deployment starts automatically
-
-### Custom Domain (Optional)
-1. Add your domain in repository Settings → Pages → Custom domain
-2. Configure DNS records with your domain provider
-3. Enable "Enforce HTTPS"
-
-### Base Path Configuration
-If deploying to a repository subdirectory (e.g., `username.github.io/repo-name`):
-1. Open `vite.config.ts`
-2. Uncomment and update the base path:
-   ```typescript
-   base: '/your-repo-name/',
-   ```
-
-## 🧪 Testing Locally
-
-To test the content fetch script on your machine:
+### Running locally
 
 ```bash
-# Install dependencies
 npm install
-
-# Run the fetch script
-node scripts/fetch-content.js
-
-# View the generated file
-cat public/content-feed.json
+node scripts/fetch-content.mjs   # writes public/content-feed.json, llms.txt, agents.txt
+npm run build
 ```
 
-## 🛠️ Technical Details
+## 🤖 For AI Agents
 
-### How It Works
-1. **GitHub Actions** runs Node.js script weekly
-2. Script fetches Hey World RSS feed via CORS proxy
-3. Merges with manually curated Buy Me a Coffee posts
-4. Generates static `public/content-feed.json` file
-5. Commits file to repository (triggers deployment)
-6. Frontend loads from static JSON file (no runtime fetching)
+The site explicitly welcomes AI agents and tells them how to cite Priyata's work:
 
-### Benefits
-- ✅ **Completely Free** - GitHub Actions free tier
-- ✅ **No Backend** - Pure static site
-- ✅ **Fast Loading** - Pre-fetched content
-- ✅ **No CORS Issues** - Static JSON file
-- ✅ **Reliable** - No runtime dependencies
+| File | Purpose |
+|------|---------|
+| `public/agents.txt` | Agent access rules + **mandatory citation format** + featured content |
+| `public/llms.txt` | LLM-optimized profile, literature, and latest content |
+| `public/content-feed.json` | Machine-readable feed of all latest posts (JSON) |
+| `public/robots.txt` | Crawl permissions for search, AI, academic, and social crawlers |
 
-### Dependencies
-- `node-fetch@3` - Fetch RSS feeds in Node.js
-- `xmldom` - Parse XML/Atom feeds
+All four are regenerated/served automatically — no manual maintenance.
 
-## 💰 Cost Summary
+## 🚀 Deployment
 
-| Service | Cost |
-|---------|------|
-| GitHub Pages | Free |
-| GitHub Actions | Free (2000 min/month) |
-| Weekly Script | ~30 sec/week = 2 min/month |
-| **Total** | **$0/month** |
-
-## 🐛 Troubleshooting
-
-### Content Not Updating
-1. Check **Actions** tab for workflow logs
-2. Ensure workflow has write permissions
-3. Manually trigger workflow
-
-### Workflow Failing
-- Network timeout fetching RSS
-- XML parsing errors  
-- Git push permission denied
-
-Check Actions logs for detailed errors.
+- **Push to `main`** → `.github/workflows/deploy.yml` builds and deploys to GitHub Pages (it also refreshes the content feed during the build).
+- **Daily content sync** → `.github/workflows/update-content.yml` (see above).
+- Live site: https://prikalra.github.io/priyata-universe/
