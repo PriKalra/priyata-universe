@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-15T13:38:21.910Z",
+  "lastUpdated": "2026-11-01T15:24:03.412Z",
   "generator": "scripts/fetch-content.mjs",
   "attribution": "All content is original work by Priyata Kalra. Cite as: Priyata Kalra, <title>, <source>, <link>.",
   "license": "https://creativecommons.org/licenses/by-nd/4.0/",
@@ -14,6 +14,16 @@
     }
   ],
   "content": [
+    {
+      "type": "blog",
+      "title": "ACoP 2026: models to medicine review",
+      "excerpt": "I am back from my first ever ACoP under the “Models to Medicines” banner. This conference, is the first conference, where I promised I will show up for X meeting, and ended up being a no-show because of work obligations that came up as a surprise on my calend…",
+      "link": "https://world.hey.com/priyata/acop-2026-models-to-medicine-review-472ed6bb",
+      "source": "Hey World",
+      "date": "2026-10-25",
+      "size": "small",
+      "image": null
+    },
     {
       "type": "blog",
       "title": "Made with AI ≠ AI slop: learn the difference",
@@ -45,7 +55,7 @@
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2026/09/6118668ef9a20ca27db103c5526dd97e.png",
       "audioUrl": "https://cdn.buymeacoffee.com/uploads/audio/6473722/2026-09-12/1789208400_Be_the_Rumble.m4a",
       "audioLength": "01:54",
-      "views": 69
+      "views": 98
     },
     {
       "type": "image",
@@ -56,7 +66,7 @@
       "date": "2026-08-31",
       "size": "large",
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/08/31/195955_1788206395408_1000165090.jpg.jpeg",
-      "views": 104
+      "views": 146
     },
     {
       "type": "blog",
@@ -79,7 +89,7 @@
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2026/08/e27dd3b3c8c92d58d21e923f67e3c34b.png",
       "audioUrl": "https://cdn.buymeacoffee.com/uploads/audio/6473722/2026-08-18/1787082346_The_Little_Medicines_Journey.wav",
       "audioLength": "03:57",
-      "views": 176
+      "views": 224
     },
     {
       "type": "blog",
@@ -435,16 +445,6 @@
       "link": "https://world.hey.com/priyata/the-three-fishes-why-only-some-swim-free-2b234476",
       "source": "Hey World",
       "date": "2025-08-26",
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "Is there an explainable biological hypothesis for manifestation?",
-      "excerpt": "I have been thinking a lot on what and how to explain Manifestation as an altered state of reality? Firstly, in simple terms: Manifestation refers to a physical sign that something is happening or being solidified in reality. Manifestation essentially means t…",
-      "link": "https://world.hey.com/priyata/is-there-an-explainable-biological-hypothesis-for-manifestation-a820bf6c",
-      "source": "Hey World",
-      "date": "2025-08-21",
       "size": "small",
       "image": null
     },
