@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-01T15:24:03.412Z",
+  "lastUpdated": "2026-11-15T15:47:08.377Z",
   "generator": "scripts/fetch-content.mjs",
   "attribution": "All content is original work by Priyata Kalra. Cite as: Priyata Kalra, <title>, <source>, <link>.",
   "license": "https://creativecommons.org/licenses/by-nd/4.0/",
@@ -14,6 +14,26 @@
     }
   ],
   "content": [
+    {
+      "type": "blog",
+      "title": "The next analysis is waiting",
+      "excerpt": "I have gone through more disease maps in the past six months than in the years before. Claude science or gemini for science opens papers on natural product chemistry, women health and other topics of scientific gaps that occupy my mind that I would not have f…",
+      "link": "https://world.hey.com/priyata/the-next-analysis-is-waiting-9dc3ce63",
+      "source": "Hey World",
+      "date": "2026-11-12",
+      "size": "small",
+      "image": null
+    },
+    {
+      "type": "blog",
+      "title": "When Everyone Owns the Customer, No One Owns the Product",
+      "excerpt": "I have talked about many players in an organisation, treating their work as status game. AI makes that game cheaper to play and more expensive to lose. Recently, I have been using the situation of this sort to understand where is the reality living for a cust…",
+      "link": "https://world.hey.com/priyata/when-everyone-owns-the-customer-no-one-owns-the-product-afef102c",
+      "source": "Hey World",
+      "date": "2026-11-10",
+      "size": "small",
+      "image": null
+    },
     {
       "type": "blog",
       "title": "ACoP 2026: models to medicine review",
@@ -55,7 +75,7 @@
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2026/09/6118668ef9a20ca27db103c5526dd97e.png",
       "audioUrl": "https://cdn.buymeacoffee.com/uploads/audio/6473722/2026-09-12/1789208400_Be_the_Rumble.m4a",
       "audioLength": "01:54",
-      "views": 98
+      "views": 141
     },
     {
       "type": "image",
@@ -66,7 +86,7 @@
       "date": "2026-08-31",
       "size": "large",
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/6474503/2026/08/31/195955_1788206395408_1000165090.jpg.jpeg",
-      "views": 146
+      "views": 184
     },
     {
       "type": "blog",
@@ -89,7 +109,7 @@
       "image": "https://cdn.buymeacoffee.com/uploads/project_updates/2026/08/e27dd3b3c8c92d58d21e923f67e3c34b.png",
       "audioUrl": "https://cdn.buymeacoffee.com/uploads/audio/6473722/2026-08-18/1787082346_The_Little_Medicines_Journey.wav",
       "audioLength": "03:57",
-      "views": 224
+      "views": 261
     },
     {
       "type": "blog",
@@ -425,26 +445,6 @@
       "link": "https://world.hey.com/priyata/why-environmental-metabolic-and-translational-gaps-are-pushing-biomedicine-toward-nams-9b9a3ace",
       "source": "Hey World",
       "date": "2025-09-03",
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "The Nano Banana Experiment: AI’s Creative Power in Biology?",
-      "excerpt": "Since the rage of nano banana, I have a question: Could an AI model like Nano Banana take raw biological reference images and turn them into something better? something vivid, precise, and tailored to science? I decided to find out. Took a handful of referenc…",
-      "link": "https://world.hey.com/priyata/the-nano-banana-experiment-ai-s-creative-power-in-biology-2b8c184b",
-      "source": "Hey World",
-      "date": "2025-08-28",
-      "size": "small",
-      "image": null
-    },
-    {
-      "type": "blog",
-      "title": "The Three Fishes: why only some swim free",
-      "excerpt": "Today I went back to what is called the Pachatantra stories or fables from ancient India. These are usually bite size stories that have a moral lesson. This one reminded me of something that I see repeatedly in organisational patterns where structures and pro…",
-      "link": "https://world.hey.com/priyata/the-three-fishes-why-only-some-swim-free-2b234476",
-      "source": "Hey World",
-      "date": "2025-08-26",
       "size": "small",
       "image": null
     },
