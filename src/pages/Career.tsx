@@ -14,7 +14,7 @@ const Career = () => {
         <meta name="keywords" content="PBPK modeling expert, QSP modeling specialist, AI drug discovery, pharmaceutical modeling, machine learning pharma, quantitative systems pharmacology, computational pharmacology, drug development AI, toxicology modeling, pharmacokinetics expert, IVIVE, reverse dosimetry, clinical pharmacology, pharmaceutical product management, NAMs new approach methodologies, oral cavity absorption, systems biology, systems toxicology, pharmacometric modeling" />
         <meta property="og:title" content="Priyata Kalra - PBPK/QSP Expert | AI Product Manager" />
         <meta property="og:description" content="10+ years of expertise in PBPK/QSP modeling and AI automation for pharmaceutical sciences. Product manager at Simulations Plus Inc leading AI/automation strategy." />
-        <link rel="canonical" href="https://prikalra.github.io/priyata-universe/#/career" />
+        <meta property="og:url" content="https://prikalra.github.io/priyata-universe/#/career" />
       </Helmet>
       
       {/* Structured Data for Career Page */}
