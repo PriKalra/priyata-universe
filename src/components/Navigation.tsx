@@ -58,8 +58,8 @@ export const Navigation = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm'
-            : 'bg-transparent'
+            ? 'nav-glass'
+            : 'bg-transparent border-b border-transparent'
         }`}
       >
         <div className="container mx-auto px-6 max-w-7xl">
@@ -67,9 +67,7 @@ export const Navigation = () => {
             {/* Logo */}
             <Link 
               to="/" 
-              className={`text-lg font-light tracking-wide transition-colors ${
-                isScrolled ? 'text-foreground' : 'text-white'
-              }`}
+              className={`text-lg font-light tracking-wide transition-colors text-hero`}
             >
               Priyata Kalra
             </Link>
@@ -78,40 +76,32 @@ export const Navigation = () => {
             <div className="hidden md:flex items-center gap-8">
               <button
                 onClick={() => scrollToSection('about')}
-                className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
-                  isScrolled ? 'text-foreground' : 'text-white/90'
-                }`}
+                className={`text-sm font-light tracking-wide transition-colors hover:text-cosmic-glow text-hero`}
               >
                 About
               </button>
               <Link
                 to="/career"
-                className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
-                  isScrolled ? 'text-foreground' : 'text-white/90'
-                }`}
+                className={`text-sm font-light tracking-wide transition-colors hover:text-cosmic-glow text-hero`}
               >
                 Career
               </Link>
               <button
                 onClick={() => scrollToSection('mentorship')}
-                className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
-                  isScrolled ? 'text-foreground' : 'text-white/90'
-                }`}
+                className={`text-sm font-light tracking-wide transition-colors hover:text-cosmic-glow text-hero`}
               >
                 Mentorship
               </button>
               <button
                 onClick={() => scrollToSection('support')}
-                className={`text-sm font-light tracking-wide transition-colors hover:text-accent ${
-                  isScrolled ? 'text-foreground' : 'text-white/90'
-                }`}
+                className={`text-sm font-light tracking-wide transition-colors hover:text-cosmic-glow text-hero`}
               >
                 Support
               </button>
               <Button
                 onClick={handleBookClick}
                 size="sm"
-                className="bg-accent text-accent-foreground hover:bg-accent/90"
+                className="bg-accent text-cosmic-darker font-semibold hover:bg-accent/90 shadow-glow"
               >
                 <Calendar className="h-4 w-4 mr-2" />
                 Book a Session
@@ -121,9 +111,7 @@ export const Navigation = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`md:hidden p-2 transition-colors ${
-                isScrolled ? 'text-foreground' : 'text-white'
-              }`}
+              className={`md:hidden p-2 transition-colors text-hero`}
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -131,30 +119,30 @@ export const Navigation = () => {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-border/50 bg-background/95 backdrop-blur-md">
+            <div className="md:hidden py-4 border-t border-cosmic-glow/15 nav-glass rounded-b-lg">
               <div className="flex flex-col gap-4">
                 <button
                   onClick={() => scrollToSection('about')}
-                  className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                  className="text-sm font-light tracking-wide text-foreground hover:text-cosmic-glow text-left px-2 py-2"
                 >
                   About
                 </button>
                 <Link
                   to="/career"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-sm font-light tracking-wide text-foreground hover:text-accent px-2 py-2"
+                  className="text-sm font-light tracking-wide text-foreground hover:text-cosmic-glow px-2 py-2"
                 >
                   Career
                 </Link>
                 <button
                   onClick={() => scrollToSection('mentorship')}
-                  className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                  className="text-sm font-light tracking-wide text-foreground hover:text-cosmic-glow text-left px-2 py-2"
                 >
                   Mentorship
                 </button>
                 <button
                   onClick={() => scrollToSection('support')}
-                  className="text-sm font-light tracking-wide text-foreground hover:text-accent text-left px-2 py-2"
+                  className="text-sm font-light tracking-wide text-foreground hover:text-cosmic-glow text-left px-2 py-2"
                 >
                   Support
                 </button>

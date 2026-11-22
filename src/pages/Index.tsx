@@ -38,31 +38,39 @@ const Index = () => {
       <Navigation />
 
       {/* Hero Section - Full Immersive Cosmic Background */}
-      <header className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[hsl(var(--cosmic-dark))]">
+      <header className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-cosmic-dark">
         {/* Cosmic Background - fills entire header */}
         <div className="absolute inset-0 z-0">
           <CosmicBackground />
         </div>
 
         {/* Subtle gradient overlay for text readability */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-black/20 to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 z-[1] hero-aurora pointer-events-none" />
+        <div className="absolute inset-0 z-[1] hero-vignette pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
           {/* Main headline with refined typography - better mobile scaling */}
-          <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 px-2 sm:px-0">
+          {/* Eyebrow: who this is, at a glance */}
+          <div className="inline-flex items-center gap-2 mb-6 sm:mb-8 px-4 py-1.5 rounded-full border border-cosmic-glow/30 bg-cosmic-dark/50 backdrop-blur-sm font-lato text-xs sm:text-sm tracking-[0.18em] uppercase text-hero-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-cosmic-glow shadow-[0_0_10px_hsl(var(--cosmic-glow))]" />
+            <span className="hidden sm:inline">Priyata Kalra · </span>PBPK/QSP · AI in Pharma
+          </div>
+
+          <div className="mb-4 sm:mb-6 md:mb-8 px-2 sm:px-0">
             <ParticleTitle text="State of Being" />
           </div>
 
 
           {/* Tagline - improved mobile readability */}
-          <p className="font-lato font-light tracking-wide text-white/80
+          <p className="font-lato font-light tracking-wide text-hero-muted
                         text-base sm:text-lg md:text-xl lg:text-2xl
                         mb-4 sm:mb-6 md:mb-8
                         max-w-sm sm:max-w-xl md:max-w-2xl mx-auto
                         px-4 sm:px-2
                         leading-relaxed">
-            Exploring consciousness, computation & the nature of existence
+            Exploring <span className="text-gradient-cosmic font-normal">consciousness, computation</span> & the nature of existence
           </p>
+          <div className="hero-divider h-px w-24 sm:w-32 mx-auto mb-6 sm:mb-8" aria-hidden="true" />
 
           <div className="mb-6 sm:mb-8 md:mb-12 lg:mb-16">
             <FractalSubtitle />
@@ -73,7 +81,7 @@ const Index = () => {
             <Button
               asChild
               size="lg"
-              className="font-lato w-full sm:w-auto bg-accent text-white hover:bg-accent/90 transition-all shadow-lg shadow-accent/25 text-base sm:text-base md:text-lg py-6 sm:py-3"
+              className="font-lato w-full sm:w-auto bg-accent text-cosmic-darker font-semibold hover:bg-accent/90 hover:-translate-y-0.5 transition-all shadow-glow text-base sm:text-base md:text-lg py-6 sm:py-3"
             >
               <a href="#mentorship" onClick={(e) => {
                 e.preventDefault();
@@ -87,7 +95,7 @@ const Index = () => {
               asChild
               size="lg"
               variant="outline"
-              className="font-lato w-full sm:w-auto border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50 transition-all text-base sm:text-base md:text-lg py-6 sm:py-3"
+              className="font-lato w-full sm:w-auto border-cosmic-glow-secondary/40 bg-cosmic-glow-secondary/10 backdrop-blur-sm text-hero hover:bg-cosmic-glow-secondary/20 hover:border-cosmic-glow-secondary/70 hover:text-hero transition-all text-base sm:text-base md:text-lg py-6 sm:py-3"
             >
               <a href="#content" onClick={(e) => {
                 e.preventDefault();
@@ -101,7 +109,7 @@ const Index = () => {
               asChild
               size="lg"
               variant="ghost"
-              className="font-lato w-full sm:w-auto text-white/70 hover:text-white hover:bg-white/10 transition-all text-base sm:text-base md:text-lg py-6 sm:py-3"
+              className="font-lato w-full sm:w-auto text-hero-muted hover:text-hero hover:bg-hero/10 transition-all text-base sm:text-base md:text-lg py-6 sm:py-3"
             >
               <a href="https://world.hey.com/priyata" target="_blank" rel="noopener noreferrer">
                 <Mail className="h-5 w-5 mr-2" />
@@ -111,12 +119,12 @@ const Index = () => {
           </div>
 
           {/* Social links - more visible on mobile */}
-          <div className="flex gap-6 sm:gap-6 justify-center text-white/60">
+          <div className="flex gap-6 sm:gap-6 justify-center text-hero-muted">
             <a
               href="https://twitter.com/DeliriusPri"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors p-3 sm:p-3 rounded-full hover:bg-white/10 active:scale-95"
+              className="hover:text-cosmic-glow transition-colors p-3 sm:p-3 rounded-full hover:bg-hero/10 active:scale-95"
               aria-label="Follow on Twitter"
             >
               <Twitter className="h-6 w-6 sm:h-6 sm:w-6" />
@@ -125,7 +133,7 @@ const Index = () => {
               href="https://open.spotify.com/episode/74BmnS3NAaR9cHEefbonzT"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors p-3 sm:p-3 rounded-full hover:bg-white/10 active:scale-95"
+              className="hover:text-cosmic-glow transition-colors p-3 sm:p-3 rounded-full hover:bg-hero/10 active:scale-95"
               aria-label="Listen on Spotify"
             >
               <Mic className="h-6 w-6 sm:h-6 sm:w-6" />
@@ -136,7 +144,7 @@ const Index = () => {
         {/* Scroll indicator - larger touch target on mobile */}
         <button
           onClick={scrollToAbout}
-          className="absolute bottom-8 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/50 hover:text-white/90 transition-all animate-bounce p-4 rounded-full hover:bg-white/10 active:scale-95"
+          className="absolute bottom-8 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 text-hero-muted/70 hover:text-hero transition-all animate-bounce p-4 rounded-full hover:bg-hero/10 active:scale-95"
           aria-label="Scroll to content"
         >
           <ArrowDown className="h-6 w-6 sm:h-6 sm:w-6" />

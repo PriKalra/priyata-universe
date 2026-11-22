@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      boxShadow: {
+        glow: "var(--shadow-glow)",
+        cosmic: "var(--shadow-cosmic)",
+      },
       fontFamily: {
         lato: ['Lato', 'sans-serif'],
       },
@@ -59,6 +63,11 @@ export default {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        // hero header text
+        hero: {
+          DEFAULT: "hsl(var(--hero-foreground))",
+          muted: "hsl(var(--hero-muted))",
         },
         cosmic: {
           dark: "hsl(var(--cosmic-dark))",
